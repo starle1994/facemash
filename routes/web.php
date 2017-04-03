@@ -11,9 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+            'as' => 'index',
+            'uses' => 'HomeController@index'
+        ]);
+Route::get('/get-random', [
+            'as' => 'get-random',
+            'uses' => 'HomeController@getRandom'
+        ]);
 
 
 Route::group([ 'middleware' => 'auth'], function () {
@@ -125,3 +130,4 @@ if (Schema::hasTable('menus')) {
         });
     }
 }
+Route::post('/login', ['as'=>'post.login','uses'=>'Auth\LoginController@login']);

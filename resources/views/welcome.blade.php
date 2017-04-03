@@ -6,86 +6,100 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
+        <!--<link rel="stylesheet" href="{{ url('quickadmin/css') }}/bootstrap.min.css"/>   -->      
         <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
+        <!--  <script src='{!! url('js/bootstrap.min.js') !!}' type='text/javascript'></script>--> 
+        <!--<script src='{!! url('js/jquery-3.1.1.min.js') !!}' type='text/javascript'></script>--> 
+        <style type="text/css"> 
+            body {
+                font-family: Tahoma;
                 margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
+                padding: 0;
                 text-align: center;
             }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
+            a {
                 text-decoration: none;
-                text-transform: uppercase;
+                color: darkblue;
             }
-
-            .m-b-md {
-                margin-bottom: 30px;
+            a:hover {
+                text-decoration: underline;
+            }
+            img {
+                width: 175px;
+                height: 250px;
+                border: 2px solid #aaa;
+            }
+            #header {
+                background-color: #8C1B08;
+                color: #fff;
+                padding: 5px;
+            }
+            #header a{
+                color: #fff;
+                text-decoration: none;
+            }
+            #main table {
+                margin: 0 auto;
+            }
+            #footer {
+                font: 12px Tahoma;
+                margin: 25px 0 50px 0;
+            }
+            #footer a {
+                margin-right: 10px;
             }
         </style>
+        
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+        <div id="header">
+            <h1><a href="index.html">FACEMASH</a></h1>
         </div>
+        <div id="main">
+            <h3>Were we let in for our looks? No. Will we be judged on them? Yes.</h3>
+            <h2>Who's Hotter? Click to Choose.</h2>
+            <table>
+                <tr class = "row-image">
+                   
+                    <td>
+                        <a id="left" onclick="getRandom('<?php echo $staff[0]['id']  ?>','<?php echo 'left'?>');"><img   id="imgLeft" src="{{ asset('uploads/') . '/'.  $staff[0]['image'] }}"></a>
+                        
+                    </td>
+                    <td>OR</td>
+                    <td class="right">
+                       <a id="right" onclick="getRandom('<?php echo $staff[1]['id']  ?>','<?php echo 'right'?>');"> <img id="imgRight" src="{{ asset('uploads/') . '/'.  $staff[1]['image'] }}">
+                       </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <script type="text/javascript">            
+            function getRandom(id,choose){                              
+                $.ajax({
+                    type:'GET',
+                    url:'jp/get-random',
+                    dataType: 'json',
+                    data:'func=getRandom&id='+id+'&choose='+choose,
+                    success:function(staffs){                        
+                        $("#left").attr("onclick","getRandom('"+staffs[0]['id']+"','left')");
+
+                        $("#imgLeft").attr("src","http://localhost/facemash/public/uploads/"+staffs[0]['image']);
+
+                        $("#right").attr("onclick","getRandom('"+staffs[1]['id']+"','right')");
+
+                        $("#imgRight").attr("src","http://localhost/facemash/public/uploads/"+staffs[1]['image']);                        
+                    }
+            });
+        }  
+        </script>        
     </body>
 </html>
