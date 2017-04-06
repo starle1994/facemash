@@ -83,24 +83,15 @@
             </table>
         </div>
         
-        <script type="text/javascript">   
-            
-            $(document).ready(function(){
-                var d = new Date();
-                var n = d.getTime(); 
-                $(window).on('beforeunload', function(){
-                      return 'Are you sure you want to leave?';
-                });
-                
-            });           
+        <script type="text/javascript"> 
 
-
-            function getRandom(id,choose){                              
+            function getRandom(id,choose){                                              
                 $.ajax({
                     type:'GET',
                     url:'jp/get-random',
                     dataType: 'json',
                     data:'func=getRandom&id='+id+'&choose='+choose,
+
                     success:function(staffs){                        
                         $("#left").attr("onclick","getRandom('"+staffs[0]['id']+"','left')");
 
@@ -110,8 +101,33 @@
 
                         $("#imgRight").attr("src","http://localhost/facemash/public/uploads/"+staffs[1]['image']);                        
                     }
+                });
+            }
+
+            $(document).ready(function(){
+                var dateOld = new Date();
+                var timeOld = dateOld.getTime();
+                $(window).on('beforeunload', function(){
+
+                    var dateNew = new Date();
+                    var timeNew = dateNew.getTime();                    
+                    var time = timeNew - timeOld;
+                    time = time * 1.66666667 * Math.pow(10,-5);
+                    time = time.toFixed(2);
+
+                    $.ajax({
+                    type:'GET',
+                    url:'jp/get-time',
+                    dataType: 'json',
+                    data:'time='+time
+                    });
+                });
+
             });
-        }  
+                         
+
+
+            
         </script>        
     </body>
 </html>

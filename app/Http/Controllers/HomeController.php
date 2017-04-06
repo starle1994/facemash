@@ -90,6 +90,23 @@ class HomeController extends Controller
 		}
 
    }
+
+   public function getTime(){
+
+        $day = (int)date('d');
+        $month = (int)date('m');
+        $year = (int)date('Y');
+
+        $time = $_GET['time'];
+
+        $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
+
+        if($statistical != null){
+                $timeNew = $statistical->timespent + $time;
+                Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['timespent' => $timeNew]);
+        }
+   }
+
    public function statistical()
         {
             $day = (int)date('d');
@@ -97,6 +114,10 @@ class HomeController extends Controller
             $year = (int)date('Y');
 
             $total = (int)(Statistical::sum('views'));
+
+            $time = (double)(Statistical::sum('timespent'));
+
+            $timeAvg = round(($time/(double)$total),2);
 
             $left = (int)(Statistical::sum('numberleft'));
             $right  = (int)(Statistical::sum('numberright'));
@@ -111,6 +132,6 @@ class HomeController extends Controller
             }else{
                 $onday = 0;
             }
-            return view('statistical', compact('total','onday','left','right'));
+            return view('statistical', compact('total','onday','left','right','timeAvg'));
         }           
 }

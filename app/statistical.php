@@ -18,6 +18,7 @@ class statistical extends Model
           'year',
           'numberleft',
           'numberright',
-          'views'
+          'views',
+          'timespent',
     ];
 }
