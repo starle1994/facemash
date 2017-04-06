@@ -19,7 +19,10 @@ Route::get('/get-random', [
             'as' => 'get-random',
             'uses' => 'HomeController@getRandom'
         ]);
-
+Route::get('/statistical', [
+            'as' => 'statistical',
+            'uses' => 'HomeController@statistical'
+        ]);
 
 Route::group([ 'middleware' => 'auth'], function () {
 	Route::get(config('quickadmin.homeRoute'), 'QuickadminController@index');

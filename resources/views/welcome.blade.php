@@ -18,6 +18,7 @@
         <!-- Styles -->
         <!--  <script src='{!! url('js/bootstrap.min.js') !!}' type='text/javascript'></script>--> 
         <!--<script src='{!! url('js/jquery-3.1.1.min.js') !!}' type='text/javascript'></script>--> 
+
         <style type="text/css"> 
             body {
                 font-family: Tahoma;
@@ -82,7 +83,18 @@
             </table>
         </div>
         
-        <script type="text/javascript">            
+        <script type="text/javascript">   
+            
+            $(document).ready(function(){
+                var d = new Date();
+                var n = d.getTime(); 
+                $(window).on('beforeunload', function(){
+                      return 'Are you sure you want to leave?';
+                });
+                
+            });           
+
+
             function getRandom(id,choose){                              
                 $.ajax({
                     type:'GET',
