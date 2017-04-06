@@ -32,11 +32,11 @@ class HomeController extends Controller
 			switch($_GET['func']){
 				case 'getRandom':
 					$id = $_GET['id'];
-					$choose = $_GET['choose'];					
+					$choose = $_GET['choose'];
                     $a = Staff::where('id', $id)->first();
                     $number = $a->rating + 1;
 
-                    $a->update(['rating' => $number]);    
+                    $a->update(['rating' => $number]);
 					$staffs = Staff::all()->random(2);
 			    	$staff =[];
 			    	$i= 0;
@@ -50,6 +50,6 @@ class HomeController extends Controller
 
 					return $staff;
 			}
-		}		
+		}
    }
 }

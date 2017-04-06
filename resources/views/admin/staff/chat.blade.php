@@ -16,41 +16,34 @@
                         <th>
                             {!! Form::checkbox('delete_all',1,false,['class' => 'mass']) !!}
                         </th>
-                        <th>Level</th>
-                        <th>image</th>
-                        <th>rating</th>
+                        <th>Messages</th>
+                        <th>When</th>
 
 
+                        <th>&nbsp;</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                <?php $i = 0;
-                    $pre = -1;
-                ?>
+                <?php $i =1 ?>
                     @foreach ($staff as $row)
-                    <?php
-                            $current = $row->rating;
-                            if($current != $pre){
-                                $i++;
-                            }
-                            $pre = $current;
-                            ?>
                         <tr>
-                            <td >
+                            <td>
                                 {!! Form::checkbox('del-'.$row->id,1,false,['class' => 'single','data-id'=> $row->id]) !!}
                             </td>
-                            <td colspan="1">{{ $i }}</td>
-                            <td colspan="1">@if($row->image != '')<img src="{{ asset('uploads/thumb') . '/'.  $row->image }}">@endif</td>
-                            <td colspan="2">
-                                <div class="progress">
-                                  <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                  aria-valuemin="0" aria-valuemax="100" style="width:{{ $row->rating }}px" >
-                                    <span class="sr-only">70% Complete</span>
-                                  </div>
-                                </div>
+                            <td>{{ $i }}</td>
+                            <td>{{ $row->name }}</td>
+                            <td>@if($row->image != '')<img src="{{ asset('uploads/thumb') . '/'.  $row->image }}">@endif</td>
+                            <td>{{ $row->rating }}</td>
+                            <td>
+                                {!! link_to_route(config('quickadmin.route').'.staff.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
+                                {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('".trans("quickadmin::templates.templates-view_index-are_you_sure")."');",  'route' => array(config('quickadmin.route').'.staff.destroy', $row->id))) !!}
+                                {!! Form::submit(trans('quickadmin::templates.templates-view_index-delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                {!! Form::close() !!}
                             </td>
                         </tr>
+                        <?php
+                         $i++ ?>
                     @endforeach
                 </tbody>
 
@@ -66,7 +59,7 @@
                 <input type="hidden" id="send" name="toDelete">
             {!! Form::close() !!}
         </div>
-	</div>
+    </div>
 @else
     {{ trans('quickadmin::templates.templates-view_index-no_entries_found') }}
 @endif

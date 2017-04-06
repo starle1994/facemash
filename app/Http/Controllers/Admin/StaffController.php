@@ -23,10 +23,15 @@ class StaffController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $staff = Staff::all();
-
+        $staff = Staff::orderBy('rating', 'DESC')->get();
+       // var_dump($staff);exit;
 		return view('admin.staff.index', compact('staff'));
 	}
+    public function chat(Request $request)
+    {
+
+        return view('admin.staff.index', compact('staff'));
+    }
 
 	/**
 	 * Show the form for creating a new staff
@@ -35,9 +40,9 @@ class StaffController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.staff.create');
+
+            $staff = Staff::paginate(4);
+	    return view('admin.staff.create', compact('staff'));
 	}
 
 	/**
@@ -62,8 +67,8 @@ class StaffController extends Controller {
 	public function edit($id)
 	{
 		$staff = Staff::find($id);
-	    
-	    
+
+
 		return view('admin.staff.edit', compact('staff'));
 	}
 
@@ -77,7 +82,7 @@ class StaffController extends Controller {
 	{
 		$staff = Staff::findOrFail($id);
 
-        
+
 $request = $this->saveFiles($request);
 		$staff->update($request->all());
 

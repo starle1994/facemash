@@ -22,7 +22,7 @@
     {!! Form::label('name', 'name*', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('name', old('name'), array('class'=>'form-control')) !!}
-        
+
     </div>
 </div><div class="form-group">
     {!! Form::label('image', 'image*', array('class'=>'col-sm-2 control-label')) !!}
@@ -40,5 +40,22 @@
 </div>
 
 {!! Form::close() !!}
+
+
+<div class="row">
+<ul>
+    <li style="list-style-type: none;">
+    @foreach($staff as $row)
+    <img src="{{ asset('uploads/'.$row->image)}}" alt="" style="width: 20%; height: 40%; margin-right: 30px; margin-top: 10px;">
+    @endforeach
+    </li>
+
+</ul>
+
+</div>
+
+<div style="float: right;">
+{{ $staff->links() }}
+</div>
 
 @endsection

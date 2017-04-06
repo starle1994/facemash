@@ -42,7 +42,7 @@ Route::group([ 'middleware' => 'auth'], function () {
             'as' => 'menu.edit',
             'uses' => 'QuickadminMenuController@update'
         ]);
-  
+
             Route::get(config('quickadmin.route') . '/menu/crud', [
                 'as' => 'menu.crud',
                 'uses' => 'QuickadminMenuController@createCrud'
@@ -69,7 +69,7 @@ Route::group([ 'middleware' => 'auth'], function () {
                 'as' => 'menu.custom.insert',
                 'uses' => 'QuickadminMenuController@insertCustom'
             ]);
-  
+
         Route::get(config('quickadmin.route') . '/actions', [
             'as' => 'actions',
             'uses' => 'UserActionsController@index'
@@ -131,3 +131,4 @@ if (Schema::hasTable('menus')) {
     }
 }
 Route::post('/login', ['as'=>'post.login','uses'=>'Auth\LoginController@login']);
+//Route::get('imagestaff', ['as'=>'group-top','uses'=>'HomeController@index']);
