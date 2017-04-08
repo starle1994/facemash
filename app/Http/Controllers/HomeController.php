@@ -39,7 +39,7 @@ class HomeController extends Controller
     		];
     		$i++;
     	}
-        return view('welcome', compact('staff'));
+        return view('welcome', compact('staff','viewNumber'));
     }
 
    public function getRandom()
@@ -98,12 +98,17 @@ class HomeController extends Controller
         $year = (int)date('Y');
 
         $time = $_GET['time'];
+        $numberClick = $_GET['numberClick'];
 
         $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
 
         if($statistical != null){
                 $timeNew = $statistical->timespent + $time;
                 Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['timespent' => $timeNew]);
+                if($numberClick > 0){
+                    $viewClick = $statistical->viewClick + 1;
+                    Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['viewClick' => $viewClick]);
+                }
         }
    }
 
@@ -115,6 +120,12 @@ class HomeController extends Controller
 
             $total = (int)(Statistical::sum('views'));
 
+            $viewClick = (int)(Statistical::sum('viewClick'));
+
+            $percentClick = ($viewClick/$total)*100;
+
+            $percentClick = round($percentClick);
+
             $time = (double)(Statistical::sum('timespent'));
 
             $timeAvg = round(($time/(double)$total),2);
@@ -122,16 +133,23 @@ class HomeController extends Controller
             $left = (int)(Statistical::sum('numberleft'));
             $right  = (int)(Statistical::sum('numberright'));
 
-            $left = ($left/($left + $right))*100;
+            $totalClick = $left + $right;
+
+            $left = ($left/$totalClick)*100;
+
             $left = round($left);
+
             $right = 100 - $left;
+
 
             $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
             if($statistical != null){
-                $onday = $statistical->views;
+                $ondayleft = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->sum('numberleft');
+                $ondayright = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->sum('numberright');
+                $onday = $ondayleft + $ondayright;
             }else{
                 $onday = 0;
             }
-            return view('statistical', compact('total','onday','left','right','timeAvg'));
+            return view('statistical', compact('totalClick','onday','left','right','timeAvg','percentClick'));
         }           
 }

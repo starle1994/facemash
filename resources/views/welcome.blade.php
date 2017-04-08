@@ -84,7 +84,7 @@
         </div>
         
         <script type="text/javascript"> 
-
+            var numberClick = 0;
             function getRandom(id,choose){                                              
                 $.ajax({
                     type:'GET',
@@ -92,7 +92,8 @@
                     dataType: 'json',
                     data:'func=getRandom&id='+id+'&choose='+choose,
 
-                    success:function(staffs){                        
+                    success:function(staffs){    
+                        numberClick = numberClick + 1;                    
                         $("#left").attr("onclick","getRandom('"+staffs[0]['id']+"','left')");
 
                         $("#imgLeft").attr("src","http://localhost/facemash/public/uploads/"+staffs[0]['image']);
@@ -119,7 +120,7 @@
                     type:'GET',
                     url:'jp/get-time',
                     dataType: 'json',
-                    data:'time='+time
+                    data:'time='+time+'&numberClick='+numberClick
                     });
                 });
 
