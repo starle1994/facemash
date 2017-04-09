@@ -26,7 +26,7 @@ class CreateStaffRequest extends FormRequest {
 		return [
             'name' => 'required', 
             'image' => 'required', 
-          
+            'rating' => 'required', 
             
 		];
 	}

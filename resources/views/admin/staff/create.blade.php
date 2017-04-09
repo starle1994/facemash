@@ -16,7 +16,7 @@
     </div>
 </div>
 
-{!! Form::open(array('files' => true,'route' => config('quickadmin.route').'.staff.store', 'id' => 'form-with-validation', 'class' => 'form-horizontal')) !!}
+{!! Form::open(array('route' => config('quickadmin.route').'.staff.store', 'id' => 'form-with-validation', 'class' => 'form-horizontal')) !!}
 
 <div class="form-group">
     {!! Form::label('name', 'name*', array('class'=>'col-sm-2 control-label')) !!}
@@ -27,9 +27,14 @@
 </div><div class="form-group">
     {!! Form::label('image', 'image*', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::file('image') !!}
-        {!! Form::hidden('image_w', 4096) !!}
-        {!! Form::hidden('image_h', 4096) !!}
+        {!! Form::text('image', old('image'), array('class'=>'form-control')) !!}
+        
+    </div>
+</div><div class="form-group">
+    {!! Form::label('rating', 'rating*', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::text('rating', old('rating'), array('class'=>'form-control')) !!}
+        
     </div>
 </div>
 

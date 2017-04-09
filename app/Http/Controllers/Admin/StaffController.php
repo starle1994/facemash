@@ -10,7 +10,7 @@ use App\Http\Requests\CreateStaffRequest;
 use App\Http\Requests\UpdateStaffRequest;
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\Traits\FileUploadTrait;
+
 
 class StaffController extends Controller {
 
@@ -52,7 +52,7 @@ class StaffController extends Controller {
 	 */
 	public function store(CreateStaffRequest $request)
 	{
-	    $request = $this->saveFiles($request);
+	    
 		Staff::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.staff.index');
@@ -82,8 +82,7 @@ class StaffController extends Controller {
 	{
 		$staff = Staff::findOrFail($id);
 
-
-$request = $this->saveFiles($request);
+		$request = $this->saveFiles($request);
 		$staff->update($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.staff.index');

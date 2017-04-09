@@ -16,7 +16,7 @@
     </div>
 </div>
 
-{!! Form::model($staff, array('class' => 'form-horizontal', 'id' => 'form-with-validation', 'method' => 'PATCH', 'route' => array(config('quickadmin.route').'.staff.update', $staff->id)),'files' => true) !!}
+{!! Form::model($staff, array('class' => 'form-horizontal', 'id' => 'form-with-validation', 'method' => 'PATCH', 'route' => array(config('quickadmin.route').'.staff.update', $staff->id))) !!}
 
 <div class="form-group">
     {!! Form::label('name', 'name*', array('class'=>'col-sm-2 control-label')) !!}
@@ -27,9 +27,8 @@
 </div><div class="form-group">
     {!! Form::label('image', 'image*', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::file('image') !!}
-        {!! Form::hidden('image_w', 4096) !!}
-        {!! Form::hidden('image_h', 4096) !!}
+        {!! Form::text('image', old('image',$staff->image), array('class'=>'form-control')) !!}
+        
     </div>
 </div><div class="form-group">
     {!! Form::label('rating', 'rating*', array('class'=>'col-sm-2 control-label')) !!}

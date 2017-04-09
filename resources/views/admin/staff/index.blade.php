@@ -49,6 +49,7 @@
                                     <span class="sr-only">70% Complete</span>
                                   </div>
                                 </div>
+
                             </td>
                         </tr>
                     @endforeach
