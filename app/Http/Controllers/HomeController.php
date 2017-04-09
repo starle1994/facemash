@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Staff;
 use App\Statistical;
+use App\Message;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -39,7 +41,8 @@ class HomeController extends Controller
     		];
     		$i++;
     	}
-        return view('welcome', compact('staff','viewNumber'));
+        $tests = Message::limit(100)->get();
+        return view('welcome', compact('staff','view','tests'));
     }
 
    public function getRandom()
@@ -151,5 +154,37 @@ class HomeController extends Controller
                 $onday = 0;
             }
             return view('statistical', compact('totalClick','onday','left','right','timeAvg','percentClick'));
-        }           
+        }   
+
+    public function store(Request $request){
+        $add = new Message;
+        $add->msg = $request->input('msg');
+        $add->name = $request->input('name');
+        $add->view = $request->input('view');
+        $add->save();
+    }   
+
+    public function ajax(Request $request){
+        ini_set('max_execution_time',7200);
+        $time = $request->input('timePre');
+        while(Message::where('created_at','>',$time)->count() < 1){
+            usleep(1000);
+        }
+        if(Message::where('created_at','>',$time)->count() > 0){
+            $data = Message::where('created_at','>',$time)->get();
+            $arrMsg = array();
+            $i= 0;
+            foreach ($data as $item) {
+                $arrMsg[$i] = [
+                            'msg'=>$item->msg,
+                            'name'=>$item->name,
+                            'view'=>$item->view,
+                            'created_at'=>$item->created_at->format('Y-m-d H:i:s')
+                        ];
+                $i++;
+            }
+            return response()->json($arrMsg);      
+        }
+
+    }
 }

@@ -13,18 +13,46 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <!-- Fonts -->
-        <!--<link rel="stylesheet" href="{{ url('quickadmin/css') }}/bootstrap.min.css"/>   -->      
-        <!-- Styles -->
-        <!--  <script src='{!! url('js/bootstrap.min.js') !!}' type='text/javascript'></script>--> 
-        <!--<script src='{!! url('js/jquery-3.1.1.min.js') !!}' type='text/javascript'></script>--> 
 
         <style type="text/css"> 
-            body {
-                font-family: Tahoma;
+            body {                
                 margin: 0;
                 padding: 0;
                 text-align: center;
+                font-size: 25px;
+                font-family: "ＭＳ Ｐゴシック";
+            }
+            .container{
+                margin-top: 35px;
+            }
+            .chat-box{
+                font-size: 13px;
+                margin-top: 35px;  
+                border-style: solid;
+                border-radius: 4px;
+                border-width: 1px;
+                border-color: orange;
+            }
+            .message-box{
+                width: 100%;
+                height: 400px;
+                overflow: scroll;                              
+            }
+            .input-box{
+                background-color: orange;
+                height: 90px;
+            }
+            .input-box input{
+                height: 100%;                
+            }
+            .input-msg{
+                padding: 10px;
+                height: 100%;                
+            }
+            .input-button{
+                padding: 10px;
+                float:right;
+                height: 100%;                
             }
             a {
                 text-decoration: none;
@@ -34,21 +62,29 @@
                 text-decoration: underline;
             }
             img {
-                width: 175px;
-                height: 250px;
-                border: 2px solid #aaa;
+                width: 100%;
+                height: 100%;                
             }
-            #header {
-                background-color: #8C1B08;
+            .header {
+                background-image :url("{{ asset('images/header.png')}}");
+                background-size: 100% 100%;    
+                background-repeat:   no-repeat;
                 color: #fff;
+                height: 20px;
                 padding: 5px;
+                width: : 100%;
             }
-            #header a{
+            .header a{
                 color: #fff;
                 text-decoration: none;
             }
-            #main table {
-                margin: 0 auto;
+            #main{
+                border-right: solid;
+                border-bottom: solid;
+                border-left : solid;
+                border-width: 1px;
+                border-color: orange;
+                height: auto;
             }
             #footer {
                 font: 12px Tahoma;
@@ -57,34 +93,226 @@
             #footer a {
                 margin-right: 10px;
             }
+            .leftButton{
+                background-image :url("{{ asset('images/left.png')}}");
+                background-size: 100% 100%;    
+                background-repeat:   no-repeat;
+                height: 23px;
+            }
+            .rightButton{
+                background-image :url("{{ asset('images/right.png')}}");
+                background-size: 100% 100%;    
+                background-repeat:   no-repeat;
+                height: 23px;
+            }
+            .header1{
+                margin-top: 35px;
+                margin-bottom: 40px;
+            }
+            .please{
+                margin-bottom: 30px;
+            }
+            .row-choose{
+                margin-left: 7%;
+            }
+            .row-choose div{
+                height: 210px;
+                text-align: center;
+                vertical-align: middle;
+                line-height: 210px; 
+            }
+            .row-bottom{
+                margin-top: 30px;
+            }
+            .line{
+                background-image :url("{{ asset('images/line.png')}}");
+                background-size: 100% 100%;    
+                background-repeat:   no-repeat;
+                height: 10px;
+            }
+            .row-msg{
+                text-align: left;
+                word-wrap: break-word;
+            }
+            .my-msg{
+                border: 1px solid #00ff80;
+                border-radius: 4px;
+                background-color: #00ff80;                
+            }
+            .other-msg{
+                border: 1px solid #00bfff;
+                border-radius: 4px;
+                background-color: #00bfff;                
+            }            
+            .date-message{
+                font-size: 10px;
+                text-align: right;
+            }
+            .row-name{
+                font-size: 13px;
+            }
+            .my-name{
+                font-size:13px;
+                text-align: right;
+                margin-right: 12%
+            }
+            .send{
+                height: 100% !important; 
+            }
+
         </style>
-        
     </head>
-    <body>
-        <div id="header">
-            <h1><a href="index.html">FACEMASH</a></h1>
-        </div>
-        <div id="main">
-            <h3>Were we let in for our looks? No. Will we be judged on them? Yes.</h3>
-            <h2>Who's Hotter? Click to Choose.</h2>
-            <table>
-                <tr class = "row-image">
-                   
-                    <td>
-                        <a id="left" onclick="getRandom('<?php echo $staff[0]['id']  ?>','<?php echo 'left'?>');"><img   id="imgLeft" src="{{ asset('uploads/') . '/'.  $staff[0]['image'] }}"></a>
-                        
-                    </td>
-                    <td>OR</td>
-                    <td class="right">
-                       <a id="right" onclick="getRandom('<?php echo $staff[1]['id']  ?>','<?php echo 'right'?>');"> <img id="imgRight" src="{{ asset('uploads/') . '/'.  $staff[1]['image'] }}">
-                       </a>
-                    </td>
-                </tr>
-            </table>
+    <body>        
+        <div class="container">
+            <div class="row row-name">
+                <div class="col-md-2 col-xs-8 col-md-offset-8"> あなたの名前ください。 </div>
+                <div class="col-md-2 col-xs-2"><input type="text" id="name" maxlength="15"></div>
+            </div>
+            <div class="row header">              
+            </div>         
+            <div class = "row" id="main">
+                <div class = "col-md-8 col-xs-12" >
+                    <div class="row header1">
+                        <div class="col-md-3 col-md-offset-2 col-xs-3 col-xs-offset-2 leftButton"></div>
+                        <div class="col-md-3 col-md-offset-2 col-xs-3 col-xs-offset-2 rightButton"></div>
+                    </div>
+                    <div class="row please">
+                        <b>あなたはどちらがお好きですか？</b><br>
+                        <b>お好きな方を選んでください。</b>
+                    </div>
+                    <div class="row row-choose">
+                        <div class="col-md-4 col-md-offset-1 col-xs-5">
+                            <a id="left" onclick="getRandom('<?php echo $staff[0]['id']  ?>','<?php echo 'left'?>');"><img id="imgLeft" class="img-reponsive" src="{{ asset('uploads/') . '/'.  $staff[0]['image'] }}"></a>
+                        </div>
+                        <div class="col-md-1 col-xs-1">OR</div>
+                        <div class="col-md-4 col-xs-5">
+                            <a id="right" onclick="getRandom('<?php echo $staff[1]['id']  ?>','<?php echo 'right'?>');"> <img id="imgRight" class="img-reponsive" src="{{ asset('uploads/') . '/'.  $staff[1]['image'] }}">
+                           </a>
+                        </div>
+                    </div>      
+                    <div class="row row-bottom">Which do you like?</div>                     
+                 </div>
+                <div class = "col-md-4 col-xs-12">
+                    <div class = "col-md-10 col-xs-10 col-xs-offset-1">
+                        <div class= "chat-box">
+                            <div class= "message-box">
+                            <?php $viewPrevios = null;
+                                    $createAtPrevios = null?>
+                            @foreach($tests as $test)                                
+                                @if($test->view!=$viewPrevios)
+                                    @if($viewPrevios != null)
+                                    </div>
+                                    <div class="date-message">{{$createAtPrevios}}</div>
+                                    </div>                                    
+                                    <div class="line"></div>
+                                    @endif
+                                    <div class="row-msg">
+                                        <div class="col-md-offset-1 name-user"><b>{{$test->name}}</b></div>
+                                        <input type="hidden" class="view-hidden" value="<?php echo $test->view;?>" />
+                                        <div class="msg-user other-msg col-md-offset-2">
+                                            <div class="col-md-offset-2">{{$test->msg}}</div>                                                                                                   
+                                @else
+                                    <div class="col-md-offset-2">{{$test->msg}}</div>                                  
+                                @endif
+                                <?php $viewPrevios=$test->view;
+                                    $createAtPrevios=$test->created_at?>
+                            @endforeach 
+                            </div>
+                            </div>
+                            <div class="date-message">{{$createAtPrevios}}</div>
+                            </div> 
+                            <div class="input-box">
+                                <div class="col-md-9 col-xs-9 input-msg">
+                                    <textarea name="msg" class="form-control send"></textarea>
+                                </div>
+                                <div class="col-md-3 col-xs-3 input-button">
+                                    <input type="button" name="submit" id="submit" value="SEND">
+                                </div>
+                            </div>                       
+                        </div>                            
+                    </div>
+                </div>
+            </div>
         </div>
         
         <script type="text/javascript"> 
+        /// chat
+            var view = <?php echo $view?>;
+            var enter = false;
             var numberClick = 0;
+            $(document).on('keydown','.send',function(e){
+                var msg = $(this).val();
+                var element = $(this);
+                var name = $('#name').val(); 
+                if(!msg == '' && e.keyCode == 13 && !e.shiftKey){
+                    if(name!=""){
+                        $.ajax({
+                        type:'POST',
+                        url:'jp/test/add',
+                        data:{_token:"{{csrf_token()}}",msg:msg,name:name,view:view}
+                        });
+                        element.val('');
+                        $('#name').attr('disabled','true');
+                   }else{
+                        alert("Please enter your name");
+                    }
+                    enter = true;
+                }
+            });
+
+            $(function(){
+                var msgBox = $('.message-box');
+                msgBox.scrollTop(msgBox.prop("scrollHeight"));
+                liveChat();
+            });
+
+            function liveChat(){                
+                var timePre = $('.date-message:last').html();
+                var xhr = $.ajax({
+                    url:'jp/ajax',
+                    data:{_token:"{{csrf_token()}}",timePre:timePre},
+                    success:function(data){     
+                        var check = setScrollBottom();
+                        for(i = 0; i < data.length ; i++){ 
+                            var viewPre = $('.view-hidden:last').val();
+                             if(data[i]['view']!=viewPre){
+
+                                    $('.message-box').append('<div class="line"></div>');                                    
+                                    $('.message-box').append('<div class="row-msg"></div>');
+                                    if(data[i]['view']!=view){
+                                        $('.row-msg:last').append('<div class="col-md-offset-1 name-user"><b>'+data[i]['name']+'</b></div>');
+                                        $('.row-msg:last').append('<div class="msg-user other-msg col-md-offset-2"></div>');                                        
+                                    }else{
+                                        $('.row-msg:last').append('<div class="col-md-offset-1 my-name"><b>'+data[i]['name']+'</b></div>');
+                                        $('.row-msg:last').append('<div class="msg-user my-msg col-md-offset-2"></div>');                                        
+                                    }
+                                    $('.row-msg:last').append('<input type="hidden" class="view-hidden" value="'+data[i]['view']+'" />');
+                                    $('.msg-user:last').append('<div class="col-md-offset-2">'+data[i]['msg']+'</div>');
+                                        $('.message-box').append('<div class="date-message">'+data[i]['created_at']+'</div>');                               
+                                                                    
+                                }
+                            else{
+
+                                $('.msg-user:last').append('<div class="col-md-offset-2">'+data[i]['msg']+'</div>');
+                                $('.date-message:last').html(data[i]['created_at']);                               
+                            }                                       
+                        } 
+                        if(check==true||enter==true){
+                            var msgBox = $('.message-box');
+                            msgBox.scrollTop(msgBox.prop("scrollHeight"));
+                            enter = false;
+                        }                                       
+                        setTimeout(liveChat,1000);                    
+                    },
+                    error:function(){
+
+                        setTimeout(liveChat,5000);  
+                    }
+                });
+            }
+
+            // number
+            
             function getRandom(id,choose){                                              
                 $.ajax({
                     type:'GET',
@@ -105,7 +333,16 @@
                 });
             }
 
-            $(document).ready(function(){
+            function setScrollBottom(){
+                var divMessage = $('.message-box');
+                if(divMessage.scrollTop() + divMessage.innerHeight() >= divMessage[0].scrollHeight){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+            $(document).ready(function(){                
                 var dateOld = new Date();
                 var timeOld = dateOld.getTime();
                 $(window).on('beforeunload', function(){
@@ -123,12 +360,27 @@
                     data:'time='+time+'&numberClick='+numberClick
                     });
                 });
-
+                $('#submit').click(function(){
+                    var element = $('.send');
+                    var msg = element.val();                    
+                    var name = $('#name').val();
+                    if(!msg == ''){
+                        if(name!=""){
+                            $.ajax({
+                            type:'POST',
+                            url:'jp/test/add',
+                            data:{_token:"{{csrf_token()}}",msg:msg,name:name,view:view}
+                            });
+                            element.val('');
+                            $('#name').attr('disabled','true');
+                        }else{
+                            alert("Please enter your name");
+                        }
+                    enter = true;
+                    }
+                });              
             });
-                         
-
-
-            
+                                   
         </script>        
     </body>
 </html>

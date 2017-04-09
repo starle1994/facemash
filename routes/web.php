@@ -27,6 +27,14 @@ Route::get('/statistical', [
             'as' => 'statistical',
             'uses' => 'HomeController@statistical'
         ]);
+Route::post('/test/add', [
+            'as' => 'add',
+            'uses' => 'HomeController@store'
+        ]);
+Route::get('/ajax', [
+            'as' => 'ajax',
+            'uses' => 'HomeController@ajax'
+        ]);
 
 Route::group([ 'middleware' => 'auth'], function () {
 	Route::get(config('quickadmin.homeRoute'), 'QuickadminController@index');
