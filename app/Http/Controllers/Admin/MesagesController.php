@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Message;
 
 class MesagesController extends Controller {
 
@@ -15,7 +16,8 @@ class MesagesController extends Controller {
 	 */
 	public function index()
     {
-		return view('admin.mesages.index');
+    	$mesages = Message::orderBy('id','desc')->get();
+		return view('admin.mesages.index',compact('mesages'));
 	}
 
 }
