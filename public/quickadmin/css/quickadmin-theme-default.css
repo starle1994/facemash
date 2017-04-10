@@ -3,7 +3,7 @@ Page Header
 ***********/
 /* Header search bar, toggler button & top menu */
 .page-header.navbar {
-  background-color: #1f1f1f;
+  background-color: #212631;
   /* Top notification menu/bar */
   /* Header seaech box */
   /* Toggler button for sidebar expand/collapse and responsive sidebar menu */
@@ -132,7 +132,7 @@ Page Header
   background: #2c2c2c;
 }
 .page-header.navbar .top-menu .navbar-nav > li.dropdown-notification.dropdown-dark .dropdown-menu .dropdown-menu-list > li > a:hover .time {
-  background: #1f1f1f;
+  background: #212631;
 }
 .page-header.navbar .search-form {
   background: #151515;
@@ -323,7 +323,7 @@ Page Header
 /* Page sidebar */
 .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover,
 .page-sidebar {
-  background-color: #3d3d3d;
+  background-color: #212631;
   /* Default sidebar */
   /* light sidebar */
   /* Sidebar search */
@@ -428,7 +428,7 @@ Page Header
 }
 .page-sidebar-closed .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu:hover .sub-menu, .page-sidebar-closed
 .page-sidebar .page-sidebar-menu:hover .sub-menu {
-  background-color: #3d3d3d;
+  background-color: #212631;
 }
 .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li > a,
 .page-sidebar .page-sidebar-menu .sub-menu > li > a {
@@ -525,7 +525,7 @@ Page Header
 }
 .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .sidebar-search .input-group .form-control,
 .page-sidebar .sidebar-search .input-group .form-control {
-  background-color: #3d3d3d;
+  background-color: #212631;
   color: #5c5c5c;
 }
 .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .sidebar-search .input-group .form-control::-moz-placeholder,
@@ -551,7 +551,7 @@ Page Header
 }
 .page-sidebar-closed .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .sidebar-search.open .input-group, .page-sidebar-closed
 .page-sidebar .sidebar-search.open .input-group {
-  background-color: #3d3d3d;
+  background-color: #212631;
 }
 .page-sidebar-closed .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .sidebar-search.open .remove > i, .page-sidebar-closed
 .page-sidebar .sidebar-search.open .remove > i {
@@ -572,12 +572,12 @@ Page Header
 }
 .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .sidebar-search.sidebar-search-solid.open .input-group,
 .page-sidebar .sidebar-search.sidebar-search-solid.open .input-group {
-  border: 1px solid #3d3d3d;
-  background: #3d3d3d;
+  border: 1px solid #212631;
+  background: #212631;
 }
 .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .sidebar-search.sidebar-search-solid.open .input-group .form-control,
 .page-sidebar .sidebar-search.sidebar-search-solid.open .input-group .form-control {
-  background: #3d3d3d;
+  background: #212631;
 }
 
 .page-sidebar-reversed .page-sidebar-menu.page-sidebar-menu-light {
@@ -792,7 +792,7 @@ Page Footer
     /* Page footer */
   }
   .page-boxed .page-container {
-    background-color: #3d3d3d;
+    background-color: #212631;
     border-left: 1px solid #484848;
     border-bottom: 1px solid #484848;
   }
@@ -842,7 +842,7 @@ Page Footer
     /* light sidebar */
   }
   .page-sidebar .page-sidebar-menu > li > a {
-    border-top: 1px solid #3d3d3d;
+    border-top: 1px solid #212631;
   }
   .page-sidebar .page-sidebar-menu > li:hover > a, .page-sidebar .page-sidebar-menu > li.open > a {
     background: #333333;
@@ -881,10 +881,10 @@ Page Footer
     /* Top menu */
   }
   .page-header.navbar .top-menu {
-    background-color: #3d3d3d;
+    background-color: #212631;
   }
   .page-header-fixed-mobile .page-header.navbar .top-menu {
-    background-color: #1f1f1f;
+    background-color: #212631;
   }
   .page-header.navbar .top-menu .navbar-nav > li.dropdown-user .dropdown-toggle {
     background-color: #3b3b3b;
@@ -900,7 +900,7 @@ Page Footer
 Boby
 ****/
 body {
-  background-color: #3d3d3d;
+  background-color: #212631;
 }
 
 /****
