@@ -194,11 +194,11 @@
                         <p>お好きな方を選んでください。</p>
                     </div>
                     <div class="row row-choose">
-                        <div class="col-md-4 col-md-offset-1 col-xs-5">
+                        <div class="col-md-4 col-md-offset-1 col-xs-5" style="padding-right: 0px;padding-left: 0px">
                             <a id="left" onclick="getRandom('<?php echo $staff[0]['id']  ?>','<?php echo 'left'?>');"><img id="imgLeft" class="img-reponsive" src="{{ asset('uploads/') . '/'.  $staff[0]['image'] }}"></a>
                         </div>
                         <div class="col-md-1 col-xs-1">OR</div>
-                        <div class="col-md-4 col-xs-5">
+                        <div class="col-md-4 col-xs-5" style="padding-right: 0px;padding-left: 0px" >
                             <a id="right" onclick="getRandom('<?php echo $staff[1]['id']  ?>','<?php echo 'right'?>');"> <img id="imgRight" class="img-reponsive" src="{{ asset('uploads/') . '/'.  $staff[1]['image'] }}">
                            </a>
                         </div>
