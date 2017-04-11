@@ -23,12 +23,12 @@
 
 <div class="row">
 	<div class="col-sm-4 bg" >
-		<p>Tổng Số lần truy Cập </p>
+		<p>All click </p>
 		<p class="text-right number" > <b> {{$totalClick}} </b></p>
 	</div>
 	<div class="col-sm-1"></div>
 	<div class="col-sm-4 bg">
-		<p>Số Lần truy cập trong ngày </p>
+		<p>Today click </p>
 		<p class="text-right number" ><b> {{$onday}} </b></p>
 	</div>
 	
@@ -100,11 +100,13 @@
 <div style="clear: both;"></div>
 <div class="row">
 	<div class="col-sm-4 bg" >
-		<p class="text-center number" > <b> {{$timeAvg}} minute %</b></p>
+		<p>How long</p>
+		<p class="text-right number" > <b> {{$timeAvg}} minute %</b></p>
 	</div>
 	<div class="col-sm-1"></div>
 	<div class="col-sm-4 bg">
-		<p class="text-center number" ><b>{{$percentClick}} % </b></p>
+		<p>Percent click</p>
+		<p class="text-right number" > <b>{{$percentClick}} % </b></p>
 	</div>
 </div>
 
