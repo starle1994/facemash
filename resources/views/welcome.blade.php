@@ -369,11 +369,11 @@
                         numberClick = numberClick + 1;                    
                         $("#left").attr("onclick","getRandom('"+staffs[0]['id']+"','left')");
 
-                        $("#imgLeft").attr("src","http://"+$(location).attr('host')+"/facemash"+"/public"+"/uploads/"+staffs[0]['image']);
+                        $("#imgLeft").attr("src","http://"+$(location).attr('host')+"/uploads/"+staffs[0]['image']);
 
                         $("#right").attr("onclick","getRandom('"+staffs[1]['id']+"','right')");
 
-                        $("#imgRight").attr("src","http://"+$(location).attr('host')+"/facemash"+"/public"+"/uploads/"+staffs[1]['image']);                        
+                        $("#imgRight").attr("src","http://"+$(location).attr('host')+"/uploads/"+staffs[1]['image']);                        
                     }
                 });
             }
