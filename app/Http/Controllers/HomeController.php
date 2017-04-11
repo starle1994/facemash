@@ -24,6 +24,7 @@ class HomeController extends Controller
         $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
 
         // check first view
+        $view =1;
         if($statistical == null){
             Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>0,'views'=>1]);
         }else{

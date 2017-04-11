@@ -60,7 +60,7 @@ class StatisticalController extends Controller {
                 $ondayleft = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->sum('numberleft');
                 $ondayright = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->sum('numberright');
                 $onday = $ondayleft + $ondayright;
-
+                $ondayView = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->sum('views');
             }else{
                 $onday = 0;
             }
@@ -98,8 +98,7 @@ class StatisticalController extends Controller {
                     }
                 }
             }
-
-            return view('admin.statistical.statistical', compact('totalClick','onday','left','right','timeAvg','percentClick','date','aaa','months'));
+            return view('admin.statistical.statistical', compact('totalClick','onday','left','right','timeAvg','percentClick','date','aaa','months','total','ondayView'));
 	}
 
 }

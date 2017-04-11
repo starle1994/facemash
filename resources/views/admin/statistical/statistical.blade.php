@@ -20,19 +20,6 @@
 }
 </style>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
-<div class="row">
-	<div class="col-sm-4 bg" >
-		<p>All click </p>
-		<p class="text-right number" > <b> {{$totalClick}} </b></p>
-	</div>
-	<div class="col-sm-1"></div>
-	<div class="col-sm-4 bg">
-		<p>Today click </p>
-		<p class="text-right number" ><b> {{$onday}} </b></p>
-	</div>
-	
-</div>
 <div class="row">
 	<div class="col-sm-4 bg" >
 		<p>All View </p>
@@ -42,6 +29,19 @@
 	<div class="col-sm-4 bg">
 		<p>Today View </p>
 		<p class="text-right number" ><b> {{$ondayView}} </b></p>
+	</div>
+	
+</div>
+<br>
+<div class="row">
+	<div class="col-sm-4 bg" >
+		<p>All click </p>
+		<p class="text-right number" > <b> {{$totalClick}} </b></p>
+	</div>
+	<div class="col-sm-1"></div>
+	<div class="col-sm-4 bg">
+		<p>Today click </p>
+		<p class="text-right number" ><b> {{$onday}} </b></p>
 	</div>
 	
 </div>

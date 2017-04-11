@@ -21,8 +21,11 @@
                 margin: 0;
                 padding: 0;
                 text-align: center;
-                font-size: 25px;
+               
                 font-family: "ＭＳ Ｐゴシック";
+            }
+            body p {
+                 font-size: 25px;
             }
             .or{
                
@@ -136,7 +139,7 @@
                 margin-bottom: 30px;
             }
             .row-choose{
-                margin-left: 7%;
+                margin-left: 1%;
             }
             .row-choose div{
               
@@ -194,10 +197,7 @@
     </head>
     <body>        
         <div class="container">
-            <div class="row row-name">
-                <div class="col-md-2 col-xs-6 col-md-offset-8"> あなたの名前ください。 </div>
-                <div class="col-md-2 col-xs-2"><input type="text" id="name" maxlength="15"></div>
-            </div>
+           
             <div class="row header">              
             </div>         
             <div class = "row" id="main">
@@ -212,15 +212,15 @@
                     </div>
                     <div class="row row-choose">
                         <div class="col-md-4 col-md-offset-1 col-xs-5" style="padding-right: 0px;padding-left: 0px">
-                            <a id="left" onclick="getRandom('<?php echo $staff[0]['id']  ?>','<?php echo 'left'?>');"><img id="imgLeft" class="img-reponsive" src="{{ asset('uploads/') . '/'.  $staff[0]['image'] }}"></a>
+                            <a id="left" onclick="getRandom('<?php echo $staff[0]['id']  ?>','<?php echo 'left'?>');"><img id="imgLeft" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[0]['image'] }}"></a>
                         </div>
                         <div class="col-md-1 col-xs-1 or">OR</div>
                         <div class="col-md-4 col-xs-5" style="padding-right: 0px;padding-left: 0px" >
-                            <a id="right" onclick="getRandom('<?php echo $staff[1]['id']  ?>','<?php echo 'right'?>');"> <img id="imgRight" class="img-reponsive" src="{{ asset('uploads/') . '/'.  $staff[1]['image'] }}">
+                            <a id="right" onclick="getRandom('<?php echo $staff[1]['id']  ?>','<?php echo 'right'?>');"> <img id="imgRight" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[1]['image'] }}">
                            </a>
                         </div>
                     </div>      
-                    <div class="row row-bottom">Which do you like?</div>                     
+                    <div class="row row-bottom"><p>Which do you like?</p></div>                     
                  </div>
                 <div class = "col-md-4 col-xs-12">
                     <div class = "col-md-10 col-xs-10 col-xs-offset-1">
