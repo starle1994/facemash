@@ -34,9 +34,6 @@
                             $pre = $current;
                             ?>
                         <tr>
-                            <td >
-                                {!! Form::checkbox('del-'.$row->id,1,false,['class' => 'single','data-id'=> $row->id]) !!}
-                            </td>
                             <td colspan="1">{{ $i }}</td>
                             <td colspan="1">@if($row->image != '')<img src="{{ asset('uploads/thumb') . '/'.  $row->image }}">@endif</td>
                             <td colspan="2">
