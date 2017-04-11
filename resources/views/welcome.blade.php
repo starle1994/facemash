@@ -238,8 +238,8 @@
                                 <div class="col-md-9 col-xs-9 input-msg">
                                     <textarea name="msg" class="form-control send"></textarea>
                                 </div>
-                                <div class="col-md-3 col-xs-3 input-button">
-                                    <input type="button" name="submit" id="submit" value="SEND">
+                                <div class="col-md-3 col-xs-3 input-button" >
+                                    <input type="button" name="submit" id="submit" value="送信" style="margin-left: -10px">
                                 </div>
                             </div>                       
                         </div>                            
@@ -267,7 +267,7 @@
                         element.val('');
                         $('#name').attr('disabled','true');
                    }else{
-                        alert("Please enter your name");
+                        alert("あなたの名前を入力してください");
                     }
                     enter = true;
                 }
@@ -389,7 +389,7 @@
                             element.val('');
                             $('#name').attr('disabled','true');
                         }else{
-                            alert("Please enter your name");
+                            alert("あなたの名前を入力してください");
                         }
                     enter = true;
                     }
