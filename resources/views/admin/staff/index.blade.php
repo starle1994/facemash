@@ -10,7 +10,7 @@
             <div class="caption">{{ trans('quickadmin::templates.templates-view_index-list') }}</div>
         </div>
         <div class="portlet-body">
-            <table class="table table-striped table-hover table-responsive datatable" id="datatable">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>
@@ -54,7 +54,19 @@
                         </tr>
                     @endforeach
                 </tbody>
-
+                @if ($staff->lastPage() > 1)
+                <ul class="pagination">
+                    <li class="pagination_previous {{ ($staff->currentPage() == 1) ? ' disabled' : '' }}">
+                        <a href="{{ $staff->url(1) }}" title="2"><i class="fa fa-chevron-left"></i></a>
+                    </li>
+                    @for ($i = 1; $i <= $staff->lastPage(); $i++)
+                        <li class="{{ ($staff->currentPage() == $i) ? ' active' : '' }}">
+                            <a href="{{ $staff->url($i) }}">{{ $i }}</a>
+                        </li>
+                    @endfor
+                    <li class="pagination_next {{ ($staff->currentPage() == $staff->lastPage()) ? ' disabled' : '' }}"><a href="{{ $staff->url($staff->currentPage()+1) }}"><i class="fa fa-chevron-right"></i></a></li>
+                </ul>
+                @endif
             </table>
             <div class="row">
                 <div class="col-xs-12">
