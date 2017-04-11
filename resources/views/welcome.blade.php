@@ -15,6 +15,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
         <style type="text/css"> 
+        @media screen and (min-width: 320px)
+        {
             body {                
                 margin: 0;
                 padding: 0;
@@ -22,6 +24,17 @@
                 font-size: 25px;
                 font-family: "ＭＳ Ｐゴシック";
             }
+        }
+        @media (max-width: 767px)
+        { 
+            body {                
+                margin: 0;
+                padding: 0;
+                text-align: center;
+                font-size: 15px;
+                font-family: "ＭＳ Ｐゴシック";
+            }
+        } 
             .container{
                 margin-top: 35px;
             }
@@ -165,7 +178,7 @@
     <body>        
         <div class="container">
             <div class="row row-name">
-                <div class="col-md-2 col-xs-8 col-md-offset-8"> あなたの名前ください。 </div>
+                <div class="col-md-2 col-xs-6 col-md-offset-8"> あなたの名前ください。 </div>
                 <div class="col-md-2 col-xs-2"><input type="text" id="name" maxlength="15"></div>
             </div>
             <div class="row header">              
@@ -177,8 +190,8 @@
                         <div class="col-md-3 col-md-offset-2 col-xs-3 col-xs-offset-2 rightButton"></div>
                     </div>
                     <div class="row please">
-                        <b>あなたはどちらがお好きですか？</b><br>
-                        <b>お好きな方を選んでください。</b>
+                        <p>あなたはどちらがお好きですか？</p>
+                        <p>お好きな方を選んでください。</p>
                     </div>
                     <div class="row row-choose">
                         <div class="col-md-4 col-md-offset-1 col-xs-5">

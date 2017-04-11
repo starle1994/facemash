@@ -20,4 +20,12 @@ class MesagesController extends Controller {
 		return view('admin.mesages.index',compact('mesages'));
 	}
 
+	public function destroy($id)
+	{
+		Message::destroy($id);
+
+		return redirect()->route(config('quickadmin.route').'.mesages.index');
+	}
+
+
 }

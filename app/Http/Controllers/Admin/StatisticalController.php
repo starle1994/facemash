@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Statistical;
 use DateTime;
+use DB;
 
 class StatisticalController extends Controller {
 
@@ -84,8 +85,21 @@ class StatisticalController extends Controller {
                     }
                 }
             }
-          
-            return view('admin.statistical.statistical', compact('totalClick','onday','left','right','timeAvg','percentClick','date','aaa'));
+            
+             $statistical_months = Statistical::where('month',$month)->where('year',$year)->select('month', DB::raw('sum(numberleft) as numberleft'), DB::raw('sum(numberright) as numberright') )->groupby('month')->get();
+             for ($i=1; $i <= 12 ; $i++) { 
+                $months[$i] =0;
+            }
+
+            foreach ($months as $key => $value) {
+                foreach ($statistical_months as $month) {
+                    if($key == $month->month){
+                        $months[$key]= $month->numberleft  + $month->numberright;
+                    }
+                }
+            }
+
+            return view('admin.statistical.statistical', compact('totalClick','onday','left','right','timeAvg','percentClick','date','aaa','months'));
 	}
 
 }

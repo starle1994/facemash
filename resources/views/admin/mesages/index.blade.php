@@ -14,6 +14,7 @@
                     <thead>
                     <tr>
                         <th>{{ trans('quickadmin::admin.users-index-name') }}</th>
+                        <th>message</th>
                         <th>&nbsp;</th>
                     </tr>
                     </thead>
@@ -22,9 +23,9 @@
                     @foreach ($mesages as $user)
                         <tr>
                             <td>{{ $user->name }}</td>
+                            <td>{{ $user->msg }}</td>
                             <td>
-                                {!! link_to_route('users.edit', trans('quickadmin::admin.users-index-edit'), [$user->id], ['class' => 'btn btn-xs btn-info']) !!}
-                                {!! Form::open(['style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => 'return confirm(\'' . trans('quickadmin::admin.users-index-are_you_sure') . '\');',  'route' => array('users.destroy', $user->id)]) !!}
+                                {!! Form::open(['style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => 'return confirm(\'' . trans('quickadmin::admin.users-index-are_you_sure') . '\');',  'route' => array('admin.mesages.delete', $user->id)]) !!}
                                 {!! Form::submit(trans('quickadmin::admin.users-index-delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                 {!! Form::close() !!}
                             </td>

@@ -94,6 +94,7 @@ Route::group([ 'middleware' => 'auth'], function () {
             'as' => 'actions.ajax',
             'uses' => 'UserActionsController@table'
         ]);
+         Route::DELETE('delete/{id}', ['as' => 'admin.mesages.delete', 'uses' => 'Admin\MesagesController@destroy']);
     });
 });
 
@@ -143,6 +144,7 @@ if (Schema::hasTable('menus')) {
                         break;
                 }
             }
+
         });
     }
 }
