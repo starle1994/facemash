@@ -9,7 +9,7 @@ use App\Staff;
 use App\Http\Requests\CreateStaffRequest;
 use App\Http\Requests\UpdateStaffRequest;
 use Illuminate\Http\Request;
-
+use Image;
 
 
 class StaffController extends Controller {
@@ -50,10 +50,34 @@ class StaffController extends Controller {
 	 *
      * @param CreateStaffRequest|Request $request
 	 */
-	public function store(CreateStaffRequest $request)
+	public function store(Request $request)
 	{
-	    
-		Staff::create($request->all());
+	    $length =3;
+		$image = $request->file('file');
+        $description = $request->get('description');
+        $restaurant_id = $request->get('restaurant_id');
+        $name = $request->get('name');
+        $chars = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
+	    $chars_length = (strlen($chars) - 1);
+	    $string = $chars{rand(0, $chars_length)};
+
+	    for ($i = 1; $i < $length; $i = strlen($string))
+	    {
+	        $r = $chars{rand(0, $chars_length)};
+	        if ($r != $string{$i - 1}) $string .=  $r;
+	    }
+        $input['imagename'] = time().'-'.$string.'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('uploads/thumb');
+        $img = Image::make($image->getRealPath());
+        $img->resize(50, 50, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath.'/'.$input['imagename']);
+
+        $destinationPath = public_path('uploads');
+            $image->move($destinationPath, $input['imagename']);
+
+		Staff::create(['name'=>$request->name,
+						'image'=>$input['imagename']]);
 
 		return redirect()->route(config('quickadmin.route').'.staff.index');
 	}

@@ -1,7 +1,8 @@
 @extends('admin.layouts.master')
 
 @section('content')
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
 <div class="row">
     <div class="col-sm-10 col-sm-offset-2">
         <h1>{{ trans('quickadmin::templates.templates-view_create-add_new') }}</h1>
@@ -16,7 +17,7 @@
     </div>
 </div>
 
-{!! Form::open(array('route' => config('quickadmin.route').'.staff.store', 'id' => 'form-with-validation', 'class' => 'form-horizontal')) !!}
+{!! Form::open(array('route' => config('quickadmin.route').'.staff.store', 'id' => 'form-with-validation', 'files' => true, 'enctype' => 'multipart/form-data', 'class' => 'dropzone', 'id' => 'image-upload')) !!}
 
 <div class="form-group">
     {!! Form::label('name', 'name*', array('class'=>'col-sm-2 control-label')) !!}
@@ -25,42 +26,20 @@
 
     </div>
 </div><div class="form-group">
-    {!! Form::label('image', 'image*', array('class'=>'col-sm-2 control-label')) !!}
+    {!! Form::label('image', 'image', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::text('image', old('image'), array('class'=>'form-control')) !!}
+       <div>
+                <h3>Upload Multiple Image By Click On Box</h3>
+            </div>
         
-    </div>
-</div><div class="form-group">
-    {!! Form::label('rating', 'rating*', array('class'=>'col-sm-2 control-label')) !!}
-    <div class="col-sm-10">
-        {!! Form::text('rating', old('rating'), array('class'=>'form-control')) !!}
-        
-    </div>
-</div>
-
-<div class="form-group">
-    <div class="col-sm-10 col-sm-offset-2">
-      {!! Form::submit( trans('quickadmin::templates.templates-view_create-create') , array('class' => 'btn btn-primary')) !!}
     </div>
 </div>
 
 {!! Form::close() !!}
-
-
-<div class="row">
-<ul>
-    <li style="list-style-type: none;">
-    @foreach($staff as $row)
-    <img src="{{ asset('uploads/'.$row->image)}}" alt="" style="width: 20%; height: 40%; margin-right: 30px; margin-top: 10px;">
-    @endforeach
-    </li>
-
-</ul>
-
-</div>
-
-<div style="float: right;">
-{{ $staff->links() }}
-</div>
-
+<script type="text/javascript">
+        Dropzone.options.imageUpload = {
+            maxFilesize         :       10,
+            acceptedFiles: ".jpeg,.jpg,.png,.gif"
+        };
+</script>
 @endsection

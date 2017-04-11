@@ -116,10 +116,10 @@
                 margin-left: 7%;
             }
             .row-choose div{
-                height: 210px;
+              
                 text-align: center;
                 vertical-align: middle;
-                line-height: 210px; 
+      
             }
             .row-bottom{
                 margin-top: 30px;
@@ -313,22 +313,24 @@
 
             // number
             
-            function getRandom(id,choose){                                              
+            function getRandom(id,choose){  
+
                 $.ajax({
                     type:'GET',
                     url:'jp/get-random',
                     dataType: 'json',
-                    data:'func=getRandom&id='+id+'&choose='+choose,
+                    data: 'func=getRandom&id='+id+'&choose='+choose,
 
-                    success:function(staffs){    
+                    success:function(staffs){   
+                    console.log(staffs); 
                         numberClick = numberClick + 1;                    
                         $("#left").attr("onclick","getRandom('"+staffs[0]['id']+"','left')");
 
-                        $("#imgLeft").attr("src","http://localhost/facemash/public/uploads/"+staffs[0]['image']);
+                        $("#imgLeft").attr("src","http://"+$(location).attr('host')+"/uploads/"+staffs[0]['image']);
 
                         $("#right").attr("onclick","getRandom('"+staffs[1]['id']+"','right')");
 
-                        $("#imgRight").attr("src","http://localhost/facemash/public/uploads/"+staffs[1]['image']);                        
+                        $("#imgRight").attr("src","http://"+$(location).attr('host')+"/uploads/"+staffs[1]['image']);                        
                     }
                 });
             }
