@@ -115,11 +115,12 @@ class HomeController extends Controller
 
    public function statistical()
         {
+            $date = Date('Y-m-d');
             $day = (int)date('d');
             $month = (int)date('m');
             $year = (int)date('Y');
 
-            $total = (int)(Statistical::sum('views'));
+            $total = (int)(Statistical::sum('views'));            
 
             $viewClick = (int)(Statistical::sum('viewClick'));
 
@@ -148,10 +149,12 @@ class HomeController extends Controller
                 $ondayleft = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->sum('numberleft');
                 $ondayright = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->sum('numberright');
                 $onday = $ondayleft + $ondayright;
+                $ondayView = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->sum('views');
             }else{
                 $onday = 0;
+                $ondayView = 0;
             }
-            return view('statistical', compact('totalClick','onday','left','right','timeAvg','percentClick'));
+            return view('admin.statistical.statistical', compact('totalClick','onday','left','right','timeAvg','percentClick','date','total','ondayView'));
         }   
 
     public function store(Request $request){
@@ -164,8 +167,12 @@ class HomeController extends Controller
 
     public function ajax(Request $request){
         ini_set('max_execution_time',7200);
+
         $time = $request->input('timePre');
-        while(Message::where('created_at','>',$time)->count() < 1){
+        if($time == null){
+            $time = Date('Y-m-d H:i:s');
+        }
+        while(Message::where('created_at','>',$time)->count() < 1 ){
             usleep(1000);
         }
         if(Message::where('created_at','>',$time)->count() > 0){
