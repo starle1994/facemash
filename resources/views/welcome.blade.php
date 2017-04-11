@@ -181,8 +181,15 @@
             }
             .send{
                 height: 100% !important; 
+                width: 100%;
             }
-
+            #name{
+                width: 100%;
+            }
+            #submit{
+                width: 100%;
+                height: 100%;
+            }            
         </style>
     </head>
     <body>        
@@ -220,35 +227,42 @@
                         <div class= "chat-box">
                             <div class= "message-box">
                             <?php $viewPrevios = null;
-                                    $createAtPrevios = null?>
-                            @foreach($tests as $test)                                
-                                @if($test->view!=$viewPrevios)
-                                    @if($viewPrevios != null)
-                                    </div>
-                                    <div class="date-message">{{$createAtPrevios}}</div>
-                                    </div>                                    
-                                    <div class="line"></div>
+                                    $createAtPrevios = null;?>
+                            @if(count($tests) > 0)
+                                @foreach($tests as $test)                                
+                                    @if($test->view!=$viewPrevios)
+                                        @if($viewPrevios != null)
+                                        </div>
+                                        <div class="date-message">{{$createAtPrevios}}</div>
+                                        </div>                                    
+                                        <div class="line"></div>
+                                        @endif
+                                        <div class="row-msg">
+                                            <div class="col-md-offset-1 name-user"><b>{{$test->name}}</b></div>
+                                            <input type="hidden" class="view-hidden" value="<?php echo $test->view;?>" />
+                                            <div class="msg-user other-msg col-md-offset-2">
+                                                <div class="col-md-offset-2">{{$test->msg}}</div>                                                                                                   
+                                    @else
+                                        <div class="col-md-offset-2">{{$test->msg}}</div>                                  
                                     @endif
-                                    <div class="row-msg">
-                                        <div class="col-md-offset-1 name-user"><b>{{$test->name}}</b></div>
-                                        <input type="hidden" class="view-hidden" value="<?php echo $test->view;?>" />
-                                        <div class="msg-user other-msg col-md-offset-2">
-                                            <div class="col-md-offset-2">{{$test->msg}}</div>                                                                                                   
-                                @else
-                                    <div class="col-md-offset-2">{{$test->msg}}</div>                                  
-                                @endif
-                                <?php $viewPrevios=$test->view;
-                                    $createAtPrevios=$test->created_at?>
-                            @endforeach 
+                                    <?php $viewPrevios=$test->view;
+                                        $createAtPrevios=$test->created_at?>
+                                @endforeach 
                             </div>
                             </div>
                             <div class="date-message">{{$createAtPrevios}}</div>
+                            @else
+                            </div>
+                            @endif
                             </div> 
                             <div class="input-box">
                                 <div class="col-md-9 col-xs-9 input-msg">
-                                    <textarea name="msg" class="form-control send"></textarea>
+                                    <div class="row">
+                                        <div class="col-md-12 col-xs-12"><input type="text" id="name" maxlength="15" placeholder="あなたの名前ください。"></div>
+                                        <div class="col-md-12 col-xs-12"><textarea name="msg" class="form-control send"></textarea></div>
+                                    </div>
                                 </div>
-                                <div class="col-md-3 col-xs-3 input-button" >
+                                <div class="col-md-3 col-xs-3 input-button">
                                     <input type="button" name="submit" id="submit" value="送信" style="margin-left: -10px">
                                 </div>
                             </div>                       
@@ -289,38 +303,45 @@
                 liveChat();
             });
 
-            function liveChat(){                
+            function liveChat(){                              
                 var timePre = $('.date-message:last').html();
                 var xhr = $.ajax({
                     url:'jp/ajax',
                     data:{_token:"{{csrf_token()}}",timePre:timePre},
-                    success:function(data){     
+                    success:function(data){                          
                         var check = setScrollBottom();
                         for(i = 0; i < data.length ; i++){ 
                             var viewPre = $('.view-hidden:last').val();
-                             if(data[i]['view']!=viewPre){
 
-                                    $('.message-box').append('<div class="line"></div>');                                    
-                                    $('.message-box').append('<div class="row-msg"></div>');
-                                    if(data[i]['view']!=view){
-                                        $('.row-msg:last').append('<div class="col-md-offset-1 name-user"><b>'+data[i]['name']+'</b></div>');
-                                        $('.row-msg:last').append('<div class="msg-user other-msg col-md-offset-2"></div>');                                        
-                                    }else{
-                                        $('.row-msg:last').append('<div class="col-md-offset-1 my-name"><b>'+data[i]['name']+'</b></div>');
-                                        $('.row-msg:last').append('<div class="msg-user my-msg col-md-offset-2"></div>');                                        
-                                    }
-                                    $('.row-msg:last').append('<input type="hidden" class="view-hidden" value="'+data[i]['view']+'" />');
-                                    $('.msg-user:last').append('<div class="col-md-offset-2">'+data[i]['msg']+'</div>');
-                                        $('.message-box').append('<div class="date-message">'+data[i]['created_at']+'</div>');                               
-                                                                    
+                            if(data[i]['view']!=viewPre){
+                                if($('.row-msg').length){
+
+                                    $('.message-box').append('<div class="line"></div>');                                       
                                 }
-                            else{
+                                $('.message-box').append('<div class="row-msg"></div>');
+
+                                if(data[i]['view']!=view){
+                                    $('.row-msg:last').append('<div class="col-md-offset-1 name-user"><b>'+data[i]['name']+'</b></div>');
+                                    $('.row-msg:last').append('<div class="msg-user other-msg col-md-offset-2"></div>');                                        
+                                }else{
+                                    $('.row-msg:last').append('<div class="col-md-offset-1 my-name"><b>'+data[i]['name']+'</b></div>');
+                                    $('.row-msg:last').append('<div class="msg-user my-msg col-md-offset-2"></div>');                                        
+                                }
+
+                                $('.row-msg:last').append('<input type="hidden" class="view-hidden" value="'+data[i]['view']+'" />');
+
+                                $('.msg-user:last').append('<div class="col-md-offset-2">'+data[i]['msg']+'</div>');
+
+                                $('.message-box').append('<div class="date-message">'+data[i]['created_at']+'</div>');                                                                        
+                           }else{
 
                                 $('.msg-user:last').append('<div class="col-md-offset-2">'+data[i]['msg']+'</div>');
                                 $('.date-message:last').html(data[i]['created_at']);                               
-                            }                                       
-                        } 
-                        if(check==true||enter==true){
+                            } 
+
+                            } 
+
+                        if(check==true|| enter==true){
                             var msgBox = $('.message-box');
                             msgBox.scrollTop(msgBox.prop("scrollHeight"));
                             enter = false;
@@ -345,15 +366,14 @@
                     data: 'func=getRandom&id='+id+'&choose='+choose,
 
                     success:function(staffs){   
-                    console.log(staffs); 
                         numberClick = numberClick + 1;                    
                         $("#left").attr("onclick","getRandom('"+staffs[0]['id']+"','left')");
 
-                        $("#imgLeft").attr("src","http://"+$(location).attr('host')+"/uploads/"+staffs[0]['image']);
+                        $("#imgLeft").attr("src","http://"+$(location).attr('host')+"/facemash"+"/public"+"/uploads/"+staffs[0]['image']);
 
                         $("#right").attr("onclick","getRandom('"+staffs[1]['id']+"','right')");
 
-                        $("#imgRight").attr("src","http://"+$(location).attr('host')+"/uploads/"+staffs[1]['image']);                        
+                        $("#imgRight").attr("src","http://"+$(location).attr('host')+"/facemash"+"/public"+"/uploads/"+staffs[1]['image']);                        
                     }
                 });
             }

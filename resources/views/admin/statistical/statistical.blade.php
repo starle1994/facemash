@@ -33,6 +33,18 @@
 	</div>
 	
 </div>
+<div class="row">
+	<div class="col-sm-4 bg" >
+		<p>All View </p>
+		<p class="text-right number" > <b> {{$total}} </b></p>
+	</div>
+	<div class="col-sm-1"></div>
+	<div class="col-sm-4 bg">
+		<p>Today View </p>
+		<p class="text-right number" ><b> {{$ondayView}} </b></p>
+	</div>
+	
+</div>
 <br>
 <div class="row">
 	<div class="col-sm-4 bg" >
