@@ -41,7 +41,7 @@
             .or{
                 font-size: 10px;
                 margin-top: 100px;
-                margin-left: -5px;
+                margin-right: 10px;
             }
         } 
             .container{
