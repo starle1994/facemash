@@ -13,9 +13,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>
-                            {!! Form::checkbox('delete_all',1,false,['class' => 'mass']) !!}
-                        </th>
                         <th>Level</th>
                         <th>image</th>
                         <th>rating</th>
@@ -56,16 +53,7 @@
                 </tbody>
                
             </table>
-            <div class="row">
-                <div class="col-xs-12">
-                    <button class="btn btn-danger" id="delete">
-                        {{ trans('quickadmin::templates.templates-view_index-delete_checked') }}
-                    </button>
-                </div>
-            </div>
-            {!! Form::open(['route' => config('quickadmin.route').'.staff.massDelete', 'method' => 'post', 'id' => 'massDelete']) !!}
-                <input type="hidden" id="send" name="toDelete">
-            {!! Form::close() !!}
+        
         </div>
 
 	</div>
@@ -87,28 +75,3 @@
 @endif
 
 @endsection
-
-@section('javascript')
-    <script>
-        $(document).ready(function () {
-            $('#delete').click(function () {
-                if (window.confirm('{{ trans('quickadmin::templates.templates-view_index-are_you_sure') }}')) {
-                    var send = $('#send');
-                    var mass = $('.mass').is(":checked");
-                    if (mass == true) {
-                        send.val('mass');
-                    } else {
-                        var toDelete = [];
-                        $('.single').each(function () {
-                            if ($(this).is(":checked")) {
-                                toDelete.push($(this).data('id'));
-                            }
-                        });
-                        send.val(JSON.stringify(toDelete));
-                    }
-                    $('#massDelete').submit();
-                }
-            });
-        });
-    </script>
-@stop

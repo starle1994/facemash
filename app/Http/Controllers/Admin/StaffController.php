@@ -23,7 +23,7 @@ class StaffController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $staff = Staff::orderBy('rating', 'DESC')->paginate(15);
+        $staff = Staff::orderBy('rating', 'DESC')->paginate(20);
        // var_dump($staff);exit;
 		return view('admin.staff.index', compact('staff'));
 	}
