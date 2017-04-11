@@ -45,6 +45,7 @@
         } 
             .container{
                 margin-top: 35px;
+                margin-bottom: 35px;
             }
             .chat-box{
                 font-size: 13px;
