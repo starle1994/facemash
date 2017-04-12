@@ -242,7 +242,7 @@
                                             <div class="col-md-offset-1 name-user name-row"><b>{{$test->name}}</b></div>
                                             <input type="hidden" class="view-hidden" value="<?php echo $test->view;?>" />
                                             <div class="msg-user other-msg col-md-offset-2">
-                                                <div class="col-md-offset-2">{{$test->msg}}</div>                                                                                                   
+                                                <div class="col-md-offset-2">{{$test->msg}}</div>                                                                                             
                                     @else
                                         <div class="col-md-offset-2">{{$test->msg}}</div>                                  
                                     @endif
@@ -373,7 +373,6 @@
                     url:'jp/get-random',
                     dataType: 'json',
                     data: 'id='+id+'&choose='+choose,
-
                     success:function(staffs){   
                         numberClick = numberClick + 1;                    
                         $("#left").attr("onclick","getRandom('"+staffs[0]['id']+"','left')");

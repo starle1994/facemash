@@ -17,26 +17,27 @@ class HomeController extends Controller
     public function index()
     {
         // get date now
+        $hour = (int)date('H');
         $day = (int)date('d');
         $month = (int)date('m');
         $year = (int)date('Y');
 
-        $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
+
+        $statistical = Statistical::where('hour',$hour)->where('day',$day)->where('month',$month)->where('year',$year)->first();
 
         // check first view
-        $view =1;
         if($statistical == null){
-            Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>0,'views'=>1]);
+            $view = 1;
+            Statistical::insert(['hour'=>$hour,'day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>0,'views'=>1]);
         }else{
             $view = $statistical->views + 1;
-            Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['views' => $view]); 
+            Statistical::where('hour',$hour)->where('day',$day)->where('month',$month)->where('year',$year)->increment('views'); 
         }
 
     	$staffs = Staff::get()->toArray();
    
         shuffle($staffs);
 
-    	
     		$staff[0] = [
     			'image'=>$staffs[0]['image'],
     			'id'=>  $staffs[0]['id']
@@ -56,24 +57,24 @@ class HomeController extends Controller
         $choose = $_GET['choose'];
 
         Staff::where('id', $id)->increment('rating');                      
-
+        $hour = (int)date('H');
         $day = (int)date('d');
         $month = (int)date('m');
         $year = (int)date('Y');
 
-        $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
+        $statistical = Statistical::where('hour',$hour)->where('day',$day)->where('month',$month)->where('year',$year)->first();
 
         if($statistical == null){
             if($choose=='left'){
-                Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>1,'numberright'=>0,'views'=>1]);
+                Statistical::insert(['hour'=>$hour,'day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>1,'numberright'=>0,'views'=>1]);
             }elseif($choose=='right'){
-                Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>1,'views'=>1]);
+                Statistical::insert(['hour'=>$hour,'day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>1,'views'=>1]);
                         }                                               
             }else{
             if($choose=='left'){
-                Statistical::where('day',$day)->where('month',$month)->where('year',$year)->increment('numberleft');
+                Statistical::where('hour',$hour)->where('day',$day)->where('month',$month)->where('year',$year)->increment('numberleft');
             }elseif($choose=='right'){
-                Statistical::where('day',$day)->where('month',$month)->where('year',$year)->increment('numberright');
+                Statistical::where('hour',$hour)->where('day',$day)->where('month',$month)->where('year',$year)->increment('numberright');
             }
         }
         $staffs = Staff::get()->toArray();
@@ -98,14 +99,14 @@ class HomeController extends Controller
         $time = $_GET['time'];
         $numberClick = $_GET['numberClick'];
 
-        $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
+        $statistical = Statistical::where('hour',$hour)->where('day',$day)->where('month',$month)->where('year',$year)->first();
 
         if($statistical != null){
                 $timeNew = $statistical->timespent + $time;
-                Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['timespent' => $timeNew]);
+                Statistical::where('hour',$hour)->where('day',$day)->where('month',$month)->where('year',$year)->update(['timespent' => $timeNew]);
                 if($numberClick > 0){
                     $viewClick = $statistical->viewClick + 1;
-                    Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['viewClick' => $viewClick]);
+                    Statistical::where('hour',$hour)->where('day',$day)->where('month',$month)->where('year',$year)->update(['viewClick' => $viewClick]);
                 }
         }
    }
@@ -113,6 +114,7 @@ class HomeController extends Controller
    public function statistical()
         {
             $date = Date('Y-m-d');
+            $hour = (int)date('H');
             $day = (int)date('d');
             $month = (int)date('m');
             $year = (int)date('Y');
@@ -121,25 +123,31 @@ class HomeController extends Controller
 
             $viewClick = (int)(Statistical::sum('viewClick'));
 
-            $percentClick = ($viewClick/$total)*100;
-
-            $percentClick = round($percentClick);
-
-            $time = (double)(Statistical::sum('timespent'));
-
-            $timeAvg = round(($time/(double)$total),2);
-
+            if($total > 0){
+                $percentClick = ($viewClick/$total)*100;
+                $percentClick = round($percentClick);
+                $time = (double)(Statistical::sum('timespent'));
+                $timeAvg = round(($time/(double)$total),2);
+            }else{
+                $percentClick = 0;
+                $timeAvg = 0;
+            }
+            
             $left = (int)(Statistical::sum('numberleft'));
             $right  = (int)(Statistical::sum('numberright'));
 
             $totalClick = $left + $right;
 
-            $left = ($left/$totalClick)*100;
+            if($totalClick > 0){
+                $left = ($left/$totalClick)*100;
 
-            $left = round($left);
+                $left = round($left);
 
-            $right = 100 - $left;
-
+                $right = 100 - $left;
+            }else{
+                $left = 0;
+                $right = 0;
+            }
 
             $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
             if($statistical != null){
@@ -151,7 +159,14 @@ class HomeController extends Controller
                 $onday = 0;
                 $ondayView = 0;
             }
-            return view('admin.statistical.statistical', compact('totalClick','onday','left','right','timeAvg','percentClick','date','total','ondayView'));
+            $thisHourModal = Statistical::where('hour',$hour)->where('day',$day)->where('month',$month)->where('year',$year)->first();
+            if($thisHourModal!=null){
+                $thisHour = $thisHourModal->views;
+            }else{
+                $thisHour = 0;
+            }
+            dd($thisHour);
+            return view('admin.statistical.statistical', compact('totalClick','onday','left','right','timeAvg','percentClick','date','total','ondayView','thisHour'));
         }   
 
     public function store(Request $request){
