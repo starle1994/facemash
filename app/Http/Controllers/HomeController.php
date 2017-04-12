@@ -32,20 +32,24 @@ class HomeController extends Controller
             Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['views' => $view]); 
         }
 
-    	$staffs = Staff::all()->random(2);
-    	$staff =[];
-    	$i= 0;
-    	foreach ($staffs as $value) {
-    		$staff[$i] = [
-    			'image'=>$value->image,
-    			'id'=>  $value->id
+    	$staffs = Staff::get()->toArray();
+   
+        shuffle($staffs);
+
+    	
+    		$staff[0] = [
+    			'image'=>$staffs[0]['image'],
+    			'id'=>  $staffs[0]['id']
     		];
-    		$i++;
-    	}
+    		$staff[1] = [
+                'image'=>$staffs[1]['image'],
+                'id'=>  $staffs[1]['id']
+            ];
+    	
         $tests = Message::limit(100)->get();
         return view('welcome', compact('staff','view','tests'));
     }
-
+   
    public function getRandom()
    {
    		if(isset($_GET['func']) && !empty($_GET['func'])){
@@ -77,18 +81,17 @@ class HomeController extends Controller
                             Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['numberright' => $right]);
                         }
                     }
-                $staffs = Staff::all()->random(2);
-			    	$staff =[];
-			    	$i= 0;
-			    	foreach ($staffs as  $value) {
-			    		$staff[$i] = [
-			    			'image'=>$value->image,
-			    			'id'=>  $value->id
-			    		];
-			    		$i++;
-			    	}
-
-					return $staff;
+                $staffs = Staff::get()->toArray();
+			    shuffle($staffs);
+                $staff[0] = [
+                    'image'=>$staffs[0]['image'],
+                    'id'=>  $staffs[0]['id']
+                ];
+                $staff[1] = [
+                    'image'=>$staffs[1]['image'],
+                    'id'=>  $staffs[1]['id']
+                ];
+				return $staff;
 			}
 		}
    }
