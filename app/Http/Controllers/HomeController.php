@@ -20,7 +20,7 @@ class HomeController extends Controller
         $day = (int)date('d');
         $month = (int)date('m');
         $year = (int)date('Y');
-        
+
         $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
 
         // check first view
@@ -32,19 +32,18 @@ class HomeController extends Controller
             Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['views' => $view]); 
         }
 
-    	$staffs = Staff::get()->toArray();
-   
-        shuffle($staffs);
+    	$staffs = Staff::inRandomOrder()->take(2)->get()->toArray();
+ 
 
     	
-    		$staff[0] = [
-    			'image'=>$staffs[0]['image'],
-    			'id'=>  $staffs[0]['id']
-    		];
-    		$staff[1] = [
-                'image'=>$staffs[1]['image'],
-                'id'=>  $staffs[1]['id']
-            ];
+		$staff[0] = [
+			'image'=>$staffs[0]['image'],
+			'id'=>  $staffs[0]['id']
+		];
+		$staff[1] = [
+            'image'=>$staffs[1]['image'],
+            'id'=>  $staffs[1]['id']
+        ];
     	
         $tests = Message::limit(100)->get();
         return view('welcome', compact('staff','view','tests'));
@@ -81,8 +80,8 @@ class HomeController extends Controller
                             Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['numberright' => $right]);
                         }
                     }
-                $staffs = Staff::get()->toArray();
-			    shuffle($staffs);
+                $staffs = Staff::inRandomOrder()->take(2)->get()->toArray();
+			    
                 $staff[0] = [
                     'image'=>$staffs[0]['image'],
                     'id'=>  $staffs[0]['id']
