@@ -58,7 +58,7 @@
             }
             .message-box{
                 width: 100%;
-                height: 400px;
+                height: 437px;
                 overflow: scroll;                              
             }
             .input-box{
@@ -224,10 +224,11 @@
                         <div class= "chat-box">
                             <div class= "message-box">
                             <?php $viewPrevios = null;
-                                    $createAtPrevios = null;?>
+                                    $createAtPrevios = null;
+                                    $namePrevios = null;?>
                             @if(count($tests) > 0)
                                 @foreach($tests as $test)                                
-                                    @if($test->view!=$viewPrevios)
+                                    @if($test->view!=$viewPrevios || $test->name!=$namePrevios)
                                         @if($viewPrevios != null)
                                         </div>
                                         <div class="date-message">{{$createAtPrevios}}</div>
@@ -235,7 +236,7 @@
                                         <div class="line"></div>
                                         @endif
                                         <div class="row-msg">
-                                            <div class="col-md-offset-1 name-user"><b>{{$test->name}}</b></div>
+                                            <div class="col-md-offset-1 name-user name-row"><b>{{$test->name}}</b></div>
                                             <input type="hidden" class="view-hidden" value="<?php echo $test->view;?>" />
                                             <div class="msg-user other-msg col-md-offset-2">
                                                 <div class="col-md-offset-2">{{$test->msg}}</div>                                                                                                   
@@ -243,6 +244,7 @@
                                         <div class="col-md-offset-2">{{$test->msg}}</div>                                  
                                     @endif
                                     <?php $viewPrevios=$test->view;
+                                        $namePrevios = $test->name;
                                         $createAtPrevios=$test->created_at?>
                                 @endforeach 
                             </div>
@@ -255,7 +257,7 @@
                             <div class="input-box">
                                 <div class="col-md-9 col-xs-9 input-msg">
                                     <div class="row">
-                                        <div class="col-md-12 col-xs-12"><input type="text" id="name" maxlength="15" placeholder="あなたの名前ください。"></div>
+                                        <div class="col-md-12 col-xs-12"><input type="text" id="name" maxlength="15" placeholder="名前入力"></div>
                                         <div class="col-md-12 col-xs-12"><textarea name="msg" class="form-control send"></textarea></div>
                                     </div>
                                 </div>
@@ -288,7 +290,13 @@
                         element.val('');
                         $('#name').attr('disabled','true');
                    }else{
-                        alert("あなたの名前を入力してください");
+                        name = "No name"
+                        $.ajax({
+                        type:'POST',
+                        url:'jp/test/add',
+                        data:{_token:"{{csrf_token()}}",msg:msg,name:name,view:view}
+                        });
+                        element.val('');
                     }
                     enter = true;
                 }
@@ -309,8 +317,9 @@
                         var check = setScrollBottom();
                         for(i = 0; i < data.length ; i++){ 
                             var viewPre = $('.view-hidden:last').val();
+                            var namePre = $('.name-row:last b').html();
 
-                            if(data[i]['view']!=viewPre){
+                            if(data[i]['view']!=viewPre||data[i]['name']!=namePre){
                                 if($('.row-msg').length){
 
                                     $('.message-box').append('<div class="line"></div>');                                       
@@ -318,10 +327,10 @@
                                 $('.message-box').append('<div class="row-msg"></div>');
 
                                 if(data[i]['view']!=view){
-                                    $('.row-msg:last').append('<div class="col-md-offset-1 name-user"><b>'+data[i]['name']+'</b></div>');
+                                    $('.row-msg:last').append('<div class="col-md-offset-1 name-user name-row"><b>'+data[i]['name']+'</b></div>');
                                     $('.row-msg:last').append('<div class="msg-user other-msg col-md-offset-2"></div>');                                        
                                 }else{
-                                    $('.row-msg:last').append('<div class="col-md-offset-1 my-name"><b>'+data[i]['name']+'</b></div>');
+                                    $('.row-msg:last').append('<div class="col-md-offset-1 my-name name-row"><b>'+data[i]['name']+'</b></div>');
                                     $('.row-msg:last').append('<div class="msg-user my-msg col-md-offset-2"></div>');                                        
                                 }
 
@@ -355,22 +364,22 @@
             // number
             
             function getRandom(id,choose){  
-
                 $.ajax({
                     type:'GET',
                     url:'jp/get-random',
                     dataType: 'json',
-                    data: 'func=getRandom&id='+id+'&choose='+choose,
+                    data: 'id='+id+'&choose='+choose,
 
                     success:function(staffs){   
+                        console.log(staffs);
                         numberClick = numberClick + 1;                    
                         $("#left").attr("onclick","getRandom('"+staffs[0]['id']+"','left')");
 
-                        $("#imgLeft").attr("src","http://"+$(location).attr('host')+"/uploads/"+staffs[0]['image']);
+                        $("#imgLeft").attr("src","http://localhost/facemash/public/images/uploads/"+staffs[0]['image']);
 
                         $("#right").attr("onclick","getRandom('"+staffs[1]['id']+"','right')");
 
-                        $("#imgRight").attr("src","http://"+$(location).attr('host')+"/uploads/"+staffs[1]['image']);                        
+                        $("#imgRight").attr("src","http://localhost/facemash/public/images/uploads/"+staffs[1]['image']);                                     
                     }
                 });
             }
@@ -416,7 +425,13 @@
                             element.val('');
                             $('#name').attr('disabled','true');
                         }else{
-                            alert("あなたの名前を入力してください");
+                            name = "No name"
+                            $.ajax({
+                            type:'POST',
+                            url:'jp/test/add',
+                            data:{_token:"{{csrf_token()}}",msg:msg,name:name,view:view}
+                            });
+                            element.val('');
                         }
                     enter = true;
                     }

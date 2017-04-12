@@ -33,9 +33,6 @@ class HomeController extends Controller
         }
 
     	$staffs = Staff::inRandomOrder()->take(2)->get()->toArray();
- 
-
-    	
 		$staff[0] = [
 			'image'=>$staffs[0]['image'],
 			'id'=>  $staffs[0]['id']
@@ -51,48 +48,47 @@ class HomeController extends Controller
    
    public function getRandom()
    {
-   		if(isset($_GET['func']) && !empty($_GET['func'])){
-			switch($_GET['func']){
-				case 'getRandom':
-					$id = $_GET['id'];
-					$choose = $_GET['choose'];
-                    $a = Staff::where('id', $id)->first();
-                    $number = $a->rating + 1;
-                    $a->update(['rating' => $number]);                         
 
-                    $day = (int)date('d');
-                    $month = (int)date('m');
-                    $year = (int)date('Y');
+		$id = $_GET['id'];
+		$choose = $_GET['choose'];
+        $a = Staff::where('id', $id)->first();
+        $number = $a->rating + 1;
+        $a->update(['rating' => $number]);                         
 
-                    $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
-                    if($statistical == null){
-                        if($choose=='left'){
-                            Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>1,'numberright'=>0,'views'=>1]);
-                        }elseif($choose=='right'){
-                            Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>1,'views'=>1]);
-                        }                                               
-                    }else{
-                        if($choose=='left'){
-                            $left = $statistical->numberleft + 1;
-                            Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['numberleft' => $left]);
-                        }elseif($choose=='right'){
-                            $right = $statistical->numberright + 1;
-                            Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['numberright' => $right]);
-                        }
-                    }
-                $staffs = Staff::inRandomOrder()->take(2)->get()->toArray();
-			    
-                $staff[0] = [
-                    'image'=>$staffs[0]['image'],
-                    'id'=>  $staffs[0]['id']
-                ];
-                $staff[1] = [
-                    'image'=>$staffs[1]['image'],
-                    'id'=>  $staffs[1]['id']
-                ];
-				return $staff;
-			}
-		}
+        $day = (int)date('d');
+        $month = (int)date('m');
+        $year = (int)date('Y');
+
+        $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
+        if($statistical == null){
+            if($choose=='left'){
+                Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>1,'numberright'=>0,'views'=>1]);
+            }elseif($choose=='right'){
+                Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>1,'views'=>1]);
+            }                                               
+        }else{
+            if($choose=='left'){
+                $left = $statistical->numberleft + 1;
+                Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['numberleft' => $left]);
+            }elseif($choose=='right'){
+                $right = $statistical->numberright + 1;
+                Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['numberright' => $right]);
+            }
+        }
+        $staffs = Staff::inRandomOrder()->take(2)->get()->toArray();
+        
+        $staff[0] = [
+            'image'=>$staffs[0]['image'],
+            'id'=>  $staffs[0]['id']
+        ];
+        $staff[1] = [
+            'image'=>$staffs[1]['image'],
+            'id'=>  $staffs[1]['id']
+        ];
+
+    	return $staff;
+
+		
    }
 
    public function getTime(){
