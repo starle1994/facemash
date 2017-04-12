@@ -51,49 +51,42 @@ class HomeController extends Controller
     }
    
    public function getRandom()
-   {
-   		if(isset($_GET['func']) && !empty($_GET['func'])){
-			switch($_GET['func']){
-				case 'getRandom':
-					$id = $_GET['id'];
-					$choose = $_GET['choose'];
-                    $a = Staff::where('id', $id)->first();
-                    $number = $a->rating + 1;
-                    $a->update(['rating' => $number]);                         
+   {   		
+		$id = $_GET['id'];
+        $choose = $_GET['choose'];
 
-                    $day = (int)date('d');
-                    $month = (int)date('m');
-                    $year = (int)date('Y');
+        Staff::where('id', $id)->increment('rating');                      
 
-                    $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
-                    if($statistical == null){
-                        if($choose=='left'){
-                            Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>1,'numberright'=>0,'views'=>1]);
-                        }elseif($choose=='right'){
-                            Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>1,'views'=>1]);
+        $day = (int)date('d');
+        $month = (int)date('m');
+        $year = (int)date('Y');
+
+        $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
+
+        if($statistical == null){
+            if($choose=='left'){
+                Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>1,'numberright'=>0,'views'=>1]);
+            }elseif($choose=='right'){
+                Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>1,'views'=>1]);
                         }                                               
-                    }else{
-                        if($choose=='left'){
-                            $left = $statistical->numberleft + 1;
-                            Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['numberleft' => $left]);
-                        }elseif($choose=='right'){
-                            $right = $statistical->numberright + 1;
-                            Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['numberright' => $right]);
-                        }
-                    }
-                $staffs = Staff::get()->toArray();
-			    shuffle($staffs);
-                $staff[0] = [
-                    'image'=>$staffs[0]['image'],
-                    'id'=>  $staffs[0]['id']
-                ];
-                $staff[1] = [
-                    'image'=>$staffs[1]['image'],
-                    'id'=>  $staffs[1]['id']
-                ];
-				return $staff;
-			}
-		}
+            }else{
+            if($choose=='left'){
+                Statistical::where('day',$day)->where('month',$month)->where('year',$year)->increment('numberleft');
+            }elseif($choose=='right'){
+                Statistical::where('day',$day)->where('month',$month)->where('year',$year)->increment('numberright');
+            }
+        }
+        $staffs = Staff::get()->toArray();
+		shuffle($staffs);
+        $staff[0] = [
+            'image'=>$staffs[0]['image'],
+            'id'=>  $staffs[0]['id']
+            ];
+        $staff[1] = [
+            'image'=>$staffs[1]['image'],
+            'id'=>  $staffs[1]['id']
+            ];
+		return $staff;
    }
 
    public function getTime(){
