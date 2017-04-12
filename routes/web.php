@@ -95,6 +95,14 @@ Route::group([ 'middleware' => 'auth'], function () {
             'uses' => 'UserActionsController@table'
         ]);
          Route::DELETE('delete/{id}', ['as' => 'admin.mesages.delete', 'uses' => 'Admin\MesagesController@destroy']);
+         Route::get(config('quickadmin.route') . '/add/image/{id}', [
+            'as' => 'admin.genre.add.image',
+            'uses' => 'Admin\ImageGenreController@create'
+        ]);
+         Route::get(config('quickadmin.route') . '/imagegenre/{id}', [
+            'as' => 'admin.imagegenre.image',
+            'uses' => 'Admin\ImageGenreController@getImage'
+        ]);
     });
 });
 

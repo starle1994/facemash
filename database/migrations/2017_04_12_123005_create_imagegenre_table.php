@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Eloquent\Model;
 
-class CreateGenreTable extends Migration {
+class CreateImageGenreTable extends Migration {
 
     /**
      * Run the migrations.
@@ -14,9 +14,10 @@ class CreateGenreTable extends Migration {
     public function up()
     {
         Model::unguard();
-        Schema::create('genre',function(Blueprint $table){
+        Schema::create('imagegenre',function(Blueprint $table){
             $table->increments("id");
-            $table->string("name");
+            $table->integer("genre_id")->references("id")->on("genre");
+            $table->string("image");
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,7 +30,7 @@ class CreateGenreTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('genre');
+        Schema::drop('imagegenre');
     }
 
 }
