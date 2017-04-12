@@ -26,14 +26,15 @@ class ImageGenreController extends Controller {
     {
         $imagegenre = ImageGenre::with("genre")->where('genre_id',1)->paginate(2);
         $genres = Genre::all();
-		return view('admin.imagegenre.index', compact('imagegenre','genres'));
+        $id = 1;
+		return view('admin.imagegenre.index', compact('imagegenre','genres','id'));
 	}
 
 	public function getImage($id)
     {
         $imagegenre = ImageGenre::with("genre")->where('genre_id',$id)->paginate(2);
         $genres = Genre::all();
-		return view('admin.imagegenre.index', compact('imagegenre',compact('genres')));
+		return view('admin.imagegenre.index', compact('imagegenre','genres','id'));
 	}
 
 	/**

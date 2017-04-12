@@ -1,11 +1,22 @@
 @extends('admin.layouts.master')
 
 @section('content')
-
-@if ($imagegenre->count())
+<?php $i =0 ?>
     @foreach($genres as $genre)
-    <p>{!! link_to_route(config('quickadmin.route').'.imagegenre.image',$genre->id, $genre->name, null, array('class' => 'btn btn-success')) !!}</p>
+    <?php 
+        $class[$i] = '';
+        if($genre->id == $id){
+            $class[$i] = 'btn btn-primary';
+        }else{
+            $class[$i] = 'btn btn-success';
+        }
+ ?>
+    <span>{!! link_to_route(config('quickadmin.route').'.imagegenre.image', $genre->name, array($genre->id), array('class' =>$class[$i])) !!}</span>
+    <?php $i++ ?>
     @endforeach
+    <br>
+     <br>
+@if ($imagegenre->count())
     <div class="portlet box green">
         <div class="portlet-title">
             <div class="caption">{{ trans('quickadmin::templates.templates-view_index-list') }}</div>

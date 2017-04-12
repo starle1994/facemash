@@ -34,7 +34,7 @@
                             $pre = $current;
                             ?>
                         <tr>
-                            <td colspan="1">{{ $i }}</td>
+                            <td colspan="1">{{ $row->rating }}</td>
                             <td colspan="1">@if($row->image != '')<img src="{{ asset('uploads/thumb') . '/'.  $row->image }}">@endif</td>
                             <td colspan="2">
                                 <div class="progress">
