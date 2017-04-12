@@ -20,7 +20,7 @@ class HomeController extends Controller
         $day = (int)date('d');
         $month = (int)date('m');
         $year = (int)date('Y');
-
+        
         $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
 
         // check first view
