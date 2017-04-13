@@ -20,5 +20,6 @@ class Statistical extends Model
           'numberright',
           'views',
           'timespent',
+          'genre_id',
     ];
 }

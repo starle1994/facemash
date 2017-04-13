@@ -70,22 +70,21 @@ class HomeController extends Controller
         }else{
             $staffs = ImageGenre::where('genre_id', $id)->inRandomOrder()->take(2)->get()->toArray();
 
-            if(isset($staff[0])){
+            if(isset($staffs[0])){
                 $staff[0] = [
                     'image'=>$staffs[0]['image'],
                     'id'=>  $staffs[0]['id']
                 ];
             }
 
-            if(isset($staff[1])){
+            if(isset($staffs[1])){
                 $staff[1] = [
                     'image'=>$staffs[1]['image'],
                     'id'=>  $staffs[1]['id']
                 ];
             }
         }
-    	
-    	
+    
         $tests = Message::limit(100)->get();
         return view('welcome', compact('staff','view','tests','id'));
     }
