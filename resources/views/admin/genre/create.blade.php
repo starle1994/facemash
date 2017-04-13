@@ -9,7 +9,7 @@
         border-radius: 3px;
         margin-top: 7px;
         width: 250px;
-        height: 250px;
+        height: 150px;
       }
       .cropit-preview-image-container {
         cursor: move;

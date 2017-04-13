@@ -10,8 +10,6 @@ use App\Http\Requests\CreateGenreRequest;
 use App\Http\Requests\UpdateGenreRequest;
 use Illuminate\Http\Request;
 
-
-
 class GenreController extends Controller {
 
 	/**

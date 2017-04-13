@@ -15,6 +15,10 @@ Route::get('/', [
             'as' => 'index',
             'uses' => 'HomeController@index'
         ]);
+Route::get('/genre/{id}', [
+            'as' => 'genre.detail',
+            'uses' => 'HomeController@index'
+        ]);
 Route::get('/get-random', [
             'as' => 'get-random',
             'uses' => 'HomeController@getRandom'
@@ -38,6 +42,14 @@ Route::get('/ajax', [
 Route::get('/genre', [
             'as' => 'genre',
             'uses' => 'HomeController@indexGenre'
+        ]);
+Route::get('/ranking', [
+            'as' => 'ranking',
+            'uses' => 'HomeController@ranking'
+        ]);
+Route::get('/ranking/detail/{id}', [
+            'as' => 'ranking.detail',
+            'uses' => 'HomeController@rankingDetail'
         ]);
 Route::group([ 'middleware' => 'auth'], function () {
 	Route::get(config('quickadmin.homeRoute'), 'QuickadminController@index');

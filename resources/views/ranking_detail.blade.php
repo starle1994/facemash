@@ -285,25 +285,46 @@
                 <div class = "col-md-12  col-xs-12" >
                     <div class="row header1">
                         <div class = "col-md-8 col-xs-12" >
-                            <a href="{{route('genre')}}"><div class="col-md-3  col-xs-3  leftButton"></div></a>
+                           <a href="{{route('genre')}}"><div class="col-md-3  col-xs-3  leftButton"></div></a>
                         <div class="col-md-3  col-xs-3  centerButton"></div>
                         <a href="{{route('ranking')}}"><div class="col-md-3  col-xs-3  rightButton"></div></a>
                         </div>
                     </div>
+
                    <div class="avaId">
-                   @foreach($genres as $genre)
-                        <div class="col-xs-4 col-md-3 pdLeft">
+                   <div class = "col-md-6 col-xs-12" >
+                    <?php for($i=0; $i < 4; $i++){ ?>
+                     <?php $n = $i+1?>
+                        @if($images[$i] != null)
+                        <div class="col-xs-6 col-md-6 pdLeft">
                             <div class="ct-ava">
-                             <a href="{{route('genre.detail',$genre->id)}}"><img src="{{asset('uploads/'.$genre->image)}}" alt="">
-                                <img src="{{asset('uploads/'.$genre->image)}}" alt="">
+                                <img src="{{asset('uploads/'.$images[$i]->image)}}" alt="">
                                 <p class="titleAva1">
-                                    {{$genre->name}}
+                               
+                                    {{ 'No'.$n }}
                                 </p>
-                            </a>
                             </div>
                         </div>
-                    @endforeach     
-                                       
+                        @endif
+                       <?php $n++?>
+                    <?php } ?>   
+                   </div>  
+                   <div class = "col-md-6 col-xs-12" >
+                  <?php for ($i=4; $i < 10; $i++) { ?>
+                    <?php $n = $i+1?>
+                        @if($images[$i] != null)
+                        <div class="col-xs-6 col-md-6 pdLeft">
+                            <div class="ct-ava">
+                                <img src="{{asset('uploads/'.$images[$i]->image)}}" alt="">
+                                <p class="titleAva1">
+                                      {{ 'No'.$n }}
+                                </p>
+                            </div>
+                        </div>
+                        @endif
+                        <?php $n++?>
+                   <?php } ?>  
+                   </div>                     
                  </div>
              
             </div>

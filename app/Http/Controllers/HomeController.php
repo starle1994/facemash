@@ -7,6 +7,7 @@ use App\Statistical;
 use App\Message;
 use Illuminate\Http\Request;
 use App\Genre;
+use App\ImageGenre;
 
 class HomeController extends Controller
 {
@@ -20,7 +21,25 @@ class HomeController extends Controller
         $genres = Genre::all();
         return view('genre',compact('genres'));
     }
-    public function index()
+
+    public function ranking()
+    {
+        $genres = Genre::all();
+        return view('ranking',compact('genres'));
+    }
+
+    public function rankingDetail($id)
+    {
+        if($id==1){
+            $images = Staff::orderBy('rating','desc')->take(10)->get();
+        }else{
+            $images = ImageGenre::where('genre_id', $id)->orderBy('rating','desc')->take(10)->get();
+        }
+        
+        return view('ranking_detail',compact('images'));
+    }
+
+    public function index($id=1)
     {
         // get date now
         $day = (int)date('d');
@@ -32,24 +51,50 @@ class HomeController extends Controller
         // check first view
         $view =1;
         if($statistical == null){
-            Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>0,'views'=>1]);
+            Statistical::where('genre_id', $id)->insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>0,'views'=>1]);
         }else{
             $view = $statistical->views + 1;
-            Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['views' => $view]); 
+            Statistical::where('genre_id', $id)->where('day',$day)->where('month',$month)->where('year',$year)->update(['views' => $view]); 
         }
-
-    	$staffs = Staff::inRandomOrder()->take(2)->get()->toArray();
-		$staff[0] = [
-			'image'=>$staffs[0]['image'],
-			'id'=>  $staffs[0]['id']
-		];
-		$staff[1] = [
-            'image'=>$staffs[1]['image'],
-            'id'=>  $staffs[1]['id']
-        ];
+        if($id == 1){
+            $staffs = Staff::inRandomOrder()->take(2)->get()->toArray();
+            $staff[0] = [
+                'image'=>$staffs[0]['image'],
+                'id'=>  $staffs[0]['id']
+            ];
+            $staff[1] = [
+                'image'=>$staffs[1]['image'],
+                'id'=>  $staffs[1]['id']
+            ];
+        }else{
+            $staffs = ImageGenre::where('genre_id', $id)->inRandomOrder()->take(2)->get()->toArray();
+            if($staff[0] != null){
+                $staff[0] = [
+                    'image'=>$staffs[0]['image'],
+                    'id'=>  $staffs[0]['id']
+                ];
+            }else{
+                $staff[0] = [
+                    'image'=>'',
+                    'id'=>  ''
+                ];
+            }
+            if($staff[1] != null){
+                $staff[1] = [
+                    'image'=>$staffs[1]['image'],
+                    'id'=>  $staffs[1]['id']
+                ];
+            }else{
+                $staff[1] = [
+                    'image'=>'',
+                    'id'=>  ''
+                ];
+            }
+        }
+    	
     	
         $tests = Message::limit(100)->get();
-        return view('welcome', compact('staff','view','tests'));
+        return view('welcome', compact('staff','view','tests','id'));
     }
    
    public function getRandom()
@@ -57,6 +102,7 @@ class HomeController extends Controller
 
 		$id = $_GET['id'];
 		$choose = $_GET['choose'];
+        $id = $_GET['genre_id'];
         $a = Staff::where('id', $id)->first();
         $number = $a->rating + 1;
         $a->update(['rating' => $number]);                         
@@ -65,33 +111,48 @@ class HomeController extends Controller
         $month = (int)date('m');
         $year = (int)date('Y');
 
-        $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
+        $statistical = Statistical::where('day',$day)->where('day',$day)->where('month',$month)->where('year',$year)->first();
         if($statistical == null){
             if($choose=='left'){
-                Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>1,'numberright'=>0,'views'=>1]);
+                Statistical::where('day',$day)->insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>1,'numberright'=>0,'views'=>1]);
             }elseif($choose=='right'){
-                Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>1,'views'=>1]);
+                Statistical::where('day',$day)->insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>1,'views'=>1]);
             }                                               
         }else{
             if($choose=='left'){
                 $left = $statistical->numberleft + 1;
-                Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['numberleft' => $left]);
+                Statistical::where('day',$day)->where('day',$day)->where('month',$month)->where('year',$year)->update(['numberleft' => $left]);
             }elseif($choose=='right'){
                 $right = $statistical->numberright + 1;
-                Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['numberright' => $right]);
+                Statistical::where('day',$day)->where('day',$day)->where('month',$month)->where('year',$year)->update(['numberright' => $right]);
             }
         }
-        $staffs = Staff::inRandomOrder()->take(2)->get()->toArray();
+        if($id= 1){
+            $staffs = Staff::inRandomOrder()->take(2)->get()->toArray();
         
-        $staff[0] = [
-            'image'=>$staffs[0]['image'],
-            'id'=>  $staffs[0]['id']
-        ];
-        $staff[1] = [
-            'image'=>$staffs[1]['image'],
-            'id'=>  $staffs[1]['id']
-        ];
-
+            $staff[0] = [
+                'image'=>$staffs[0]['image'],
+                'id'=>  $staffs[0]['id'],
+                'genre_id' =>$id
+            ];
+            $staff[1] = [
+                'image'=>$staffs[1]['image'],
+                'id'=>  $staffs[1]['id'],
+                'genre_id' =>$id
+            ];
+        }else{
+            $staffs = ImageGenre::where('genre_id', $id)->inRandomOrder()->take(2)->get()->toArray();
+            $staff[0] = [
+                'image'=>$staffs[0]['image'],
+                'id'=>  $staffs[0]['id'],
+                'genre_id' =>$id
+            ];
+            $staff[1] = [
+                'image'=>$staffs[1]['image'],
+                'id'=>  $staffs[1]['id'],
+                'genre_id' =>$id
+            ];
+        }
     	return $staff;
 
 		

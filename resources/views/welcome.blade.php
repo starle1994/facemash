@@ -211,7 +211,7 @@
                     <div class="row header1">
                         <a href="{{route('genre')}}"><div class="col-md-3  col-xs-3  leftButton"></div></a>
                         <div class="col-md-3  col-xs-3  centerButton"></div>
-                        <div class="col-md-3  col-xs-3  rightButton"></div>
+                        <a href="{{route('ranking')}}"><div class="col-md-3  col-xs-3  rightButton"></div></a>
                     </div>
                     <div class="row please">
                         <p>あなたはどちらがお好きですか？</p>
@@ -219,11 +219,11 @@
                     </div>
                     <div class="row row-choose">
                         <div class="col-md-4 col-md-offset-1 col-xs-5" style="padding-right: 0px;padding-left: 0px">
-                            <a id="left" onclick="getRandom('<?php echo $staff[0]['id']  ?>','<?php echo 'left'?>');"><img id="imgLeft" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[0]['image'] }}"></a>
+                            <a id="left" onclick="getRandom('<?php echo $staff[0]['id']  ?>','<?php echo 'left'?>','<?php echo $id ?>');"><img id="imgLeft" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[0]['image'] }}"></a>
                         </div>
                         <div class="col-md-1 col-xs-1 or">OR</div>
                         <div class="col-md-4 col-xs-5" style="padding-right: 0px;padding-left: 0px" >
-                            <a id="right" onclick="getRandom('<?php echo $staff[1]['id']  ?>','<?php echo 'right'?>');"> <img id="imgRight" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[1]['image'] }}">
+                            <a id="right" onclick="getRandom('<?php echo $staff[1]['id']  ?>','<?php echo 'right'?>','<?php echo $id?>');"> <img id="imgRight" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[1]['image'] }}">
                            </a>
                         </div>
                     </div>      
@@ -373,21 +373,20 @@
 
             // number
             
-            function getRandom(id,choose){  
+            function getRandom(id,choose,genre_id){  
                 $.ajax({
                     type:'GET',
                     url:'jp/get-random',
                     dataType: 'json',
-                    data: 'id='+id+'&choose='+choose,
+                    data: 'id='+id+'&choose='+choose+'genre_id='+genre_id,
 
                     success:function(staffs){   
-                        console.log(staffs);
                         numberClick = numberClick + 1;                    
-                        $("#left").attr("onclick","getRandom('"+staffs[0]['id']+"','left')");
+                        $("#left").attr("onclick","getRandom('"+staffs[0]['id']+"','left','"+staffs[0]['genre_id']+"')");
 
                         $("#imgLeft").attr("src","http://"+$(location).attr('host')+"/uploads/"+staffs[0]['image']);
 
-                        $("#right").attr("onclick","getRandom('"+staffs[1]['id']+"','right')");
+                        $("#right").attr("onclick","getRandom('"+staffs[1]['id']+"','right','"+staffs[0]['genre_id']+"')");
 
                         $("#imgRight").attr("src","http://"+$(location).attr('host')+"/uploads/"+staffs[1]['image']);                                        
                     }

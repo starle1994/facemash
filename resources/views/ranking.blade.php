@@ -291,15 +291,23 @@
                         </div>
                     </div>
                    <div class="avaId">
+                   <div class="col-xs-4 col-md-3 pdLeft">
+                            <div class="ct-ava">
+                                <a href="{{route('ranking.detail',1)}}"><img src="{{asset('uploads/')}}" alt="">
+                                <p class="titleAva1">
+                                   
+                                </p>
+                                </a>
+                            </div>
+                        </div>
                    @foreach($genres as $genre)
                         <div class="col-xs-4 col-md-3 pdLeft">
                             <div class="ct-ava">
-                             <a href="{{route('genre.detail',$genre->id)}}"><img src="{{asset('uploads/'.$genre->image)}}" alt="">
-                                <img src="{{asset('uploads/'.$genre->image)}}" alt="">
+                                <a href="{{route('ranking.detail',$genre->id)}}"><img src="{{asset('uploads/'.$genre->image)}}" alt="">
                                 <p class="titleAva1">
                                     {{$genre->name}}
                                 </p>
-                            </a>
+                                </a>
                             </div>
                         </div>
                     @endforeach     
