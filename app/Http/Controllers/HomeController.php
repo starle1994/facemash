@@ -58,7 +58,7 @@ class HomeController extends Controller
         }
         $staff = [];
         if($id == 1){
-            $staffs = Staff::inRandomOrder()->select('id','image','genre_id')->take(2)->get()->toArray();
+            $staffs = Staff::inRandomOrder()->select('id','image')->take(2)->get()->toArray();
             $staff[0] = [
                 'image'=>$staffs[0]['image'],
                 'id'=>  $staffs[0]['id']
@@ -127,7 +127,7 @@ class HomeController extends Controller
             }
         }
         if($id== 1){
-            $staffs = Staff::inRandomOrder()->select('id','image','genre_id')->take(2)->get()->toArray();
+            $staffs = Staff::inRandomOrder()->select('id','image')->take(2)->get()->toArray();
         
             $staff[0] = [
                 'image'=>$staffs[0]['image'],
