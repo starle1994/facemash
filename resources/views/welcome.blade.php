@@ -209,7 +209,7 @@
             <div class = "row" id="main">
                 <div class = "col-md-8 col-xs-12" >
                     <div class="row header1">
-                        <a href=" "><div class="col-md-3  col-xs-3  leftButton"></div></a>
+                        <a href="{{route('genre')}}"><div class="col-md-3  col-xs-3  leftButton"></div></a>
                         <div class="col-md-3  col-xs-3  centerButton"></div>
                         <div class="col-md-3  col-xs-3  rightButton"></div>
                     </div>

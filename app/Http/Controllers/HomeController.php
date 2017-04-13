@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function indexGenre()
     {
-        return vie
+        return view('genre');
     }
     public function index()
     {
