@@ -47,10 +47,40 @@ class GenreController extends Controller {
 	 */
 	public function store(CreateGenreRequest $request)
 	{
-	    
-		Genre::create($request->all());
+
+	    $image = $this->uploadAvatarAgent($request->image, $request['image-data']);
+	    	
+		Genre::create([
+			'name'  =>$request->name,
+			'image' =>$image['url'],
+			]);
 
 		return redirect()->route(config('quickadmin.route').'.genre.index');
+	}
+
+	public function uploadAvatarAgent($file,$content)
+	{
+	
+	//Check request Avata
+		$explode[1] = null;
+		$explode = explode('.', $file->getClientOriginalName());
+		$arr_ext = array('jpg', 'jpeg', 'png', 'PNG', 'JPG');
+		$result['status'] = 0; 
+
+		if(!empty($explode) && in_array($explode[1], $arr_ext)) {
+		list($type, $content) = explode(';', $content);
+		list(, $data) = explode(',', $content);
+		$data = base64_decode($data);
+		$setNewFileName = time() . "_" . rand(000000, 999999).'.'.$explode[1];
+		$fileUrl = public_path() . '/uploads/' . $setNewFileName;
+		file_put_contents($fileUrl, $data);
+		$result['status'] = 1;
+		$result['url'] = $setNewFileName; 
+		} else{
+		$result['status'] = 0;
+		$result['url'] = '';
+		}
+		return $result;
 	}
 
 	/**

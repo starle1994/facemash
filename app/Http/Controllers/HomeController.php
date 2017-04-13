@@ -6,6 +6,7 @@ use App\Staff;
 use App\Statistical;
 use App\Message;
 use Illuminate\Http\Request;
+use App\Genre;
 
 class HomeController extends Controller
 {
@@ -16,7 +17,8 @@ class HomeController extends Controller
      */
     public function indexGenre()
     {
-        return view('genre');
+        $genres = Genre::all();
+        return view('genre',compact('genres'));
     }
     public function index()
     {

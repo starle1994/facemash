@@ -291,60 +291,17 @@
                         </div>
                     </div>
                    <div class="avaId">
+                   @foreach($genres as $genre)
                         <div class="col-xs-4 col-md-3 pdLeft">
                             <div class="ct-ava">
-                                <img src="images/grouptop/avar1.png" alt="">
+                                <img src="{{asset('uploads/'.$genre->image)}}" alt="">
                                 <p class="titleAva1">
                                     asdfsdfasdf
                                 </p>
                             </div>
                         </div>
-                          
-                          <div class="col-xs-4 col-md-3 pdLeft">
-                            <div class="ct-ava">
-                                <img src="images/grouptop/avar1.png" alt="">
-                                <p class="titleAva1">
-                                    asdfsdfasdf
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="col-xs-4 col-md-3 pdLeft">
-                            <div class="ct-ava">
-                                <img src="images/grouptop/avar1.png" alt="">
-                                <p class="titleAva1">
-                                    asdfsdfasdf
-                                </p>
-                            </div>
-                        </div>  
-                         
-                          <div class="col-xs-4 col-md-3 pdLeft">
-                            <div class="ct-ava">
-                                <img src="images/grouptop/avar1.png" alt="">
-                                <p class="titleAva1">
-                                    asdfsdfasdf
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="col-xs-4 col-md-3 pdLeft">
-                            <div class="ct-ava">
-                                <img src="images/grouptop/avar1.png" alt="">
-                                <p class="titleAva1">
-                                    asdfsdfasdf
-                                </p>
-                            </div>
-                        </div>  
-                         
-                        <div class="col-xs-4 col-md-3 pdLeft">
-                            <div class="ct-ava">
-                                <img src="images/grouptop/avar1.png" alt="">
-                                <p class="titleAva1">
-                                    asdfsdfasdf
-                                </p>
-                            </div>
-                        </div>    
-                    </div>                
+                    @endforeach     
+                                       
                  </div>
              
             </div>

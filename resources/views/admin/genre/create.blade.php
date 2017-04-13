@@ -2,7 +2,7 @@
 
 @section('content')
 <style>
-      .cropit-preview {
+   .cropit-preview {
         background-color: #f8f8f8;
         background-size: cover;
         border: 5px solid #ccc;
@@ -36,16 +36,16 @@
         <h1>{{ trans('quickadmin::templates.templates-view_create-add_new') }}</h1>
 
         @if ($errors->any())
-        	<div class="alert alert-danger">
-        	    <ul>
+          <div class="alert alert-danger">
+              <ul>
                     {!! implode('', $errors->all('<li class="error">:message</li>')) !!}
                 </ul>
-        	</div>
+          </div>
         @endif
     </div>
 </div>
 
-{!! Form::open(array('route' => config('quickadmin.route').'.genre.store', 'id' => 'form-with-validation', 'class' => 'form-horizontal')) !!}
+{!! Form::open(array('files' => true,'route' => config('quickadmin.route').'.genre.store', 'id' => 'form-with-validation', 'class' => 'form-horizontal','enctype' => 'multipart/form-data')) !!}
 
 <div class="form-group">
     {!! Form::label('name', 'name*', array('class'=>'col-sm-2 control-label')) !!}
@@ -55,17 +55,23 @@
     </div>
 </div>
 <div class="form-group">
+  <div class="col-sm-2 control-label">
+      Image
+  </div>
+  <div class="col-sm-10">
     <div class="image-editor">
-        <input type="file" class="cropit-image-input" name='image'>
-        <div class="cropit-preview"></div>
-        <div class="image-size-label">
-            Resize image
-        </div>
-        <input type="range" class="cropit-image-zoom-input">
-        <input type="hidden" name="image-data" class="hidden-image-data"/>
-        <a type="button" class="rotate-ccw">Rotate counterclockwise</a>
-        <a type="button"  class="rotate-cw">Rotate clockwise</a>
-      <a type="button"  class="export">Export</a>
+      <input type="file" class="cropit-image-input" name="image">
+      <div class="cropit-preview"></div>
+      <div class="image-size-label">
+        Resize image
+      </div>
+      <input type="range" class="cropit-image-zoom-input" >
+       <input type="hidden" name="image-data" class="hidden-image-data"/>
+      <button class="rotate-ccw">Rotate counterclockwise</button>
+      <button class="rotate-cw">Rotate clockwise</button>
+
+      <button class="export">Export</button>
+    </div>
     </div>
 </div>
 <div class="form-group">
@@ -78,7 +84,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
  <script>
       $(function() {
-       var i= $('.image-editor').cropit({
+        $('.image-editor').cropit({
           exportZoom: 1.25,
           imageBackground: true,
           imageBackgroundBorderWidth: 20,
