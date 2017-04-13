@@ -96,7 +96,7 @@
                    @foreach($genres as $genre)
                         <div class="col-xs-4 col-md-3 pdLeft">
                             <div class="ct-ava">
-                                <a href="{{route('ranking.detail',$genre->id)}}"><img src="{{asset('uploads/'.$genre->image)}}" alt="">
+                                <a href="{{route('ranking.detail',$genre->id)}}"><img src="{{asset('uploads/'.$genre->image)}}" alt="" class="img-reponsive img-thumbnail">
                                 <p class="titleAva1">
                                     {{$genre->name}}
                                 </p>

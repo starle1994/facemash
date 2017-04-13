@@ -100,7 +100,7 @@
                         @if(isset($images[$i]))
                         <div class="col-xs-6 col-md-6 pdLeft">
                             <div class="ct-ava">
-                                <img src="{{asset('uploads/'.$images[$i]->image)}}" alt="">
+                                <img src="{{asset('uploads/'.$images[$i]->image)}}" alt="" class="img-reponsive img-thumbnail">
                                 <p class="titleAva1">
                                
                                     {{ 'No'.$n }}
@@ -117,7 +117,7 @@
                         @if(isset($images[$i]))
                         <div class="col-xs-6 col-md-6 pdLeft">
                             <div class="ct-ava">
-                                <img src="{{asset('uploads/'.$images[$i]->image)}}" alt="">
+                                <img src="{{asset('uploads/'.$images[$i]->image)}}" alt="" class="img-reponsive img-thumbnail">
                                 <p class="titleAva1">
                                       {{ 'No'.$n }}
                                 </p>
