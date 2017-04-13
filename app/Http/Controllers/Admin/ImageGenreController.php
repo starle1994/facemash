@@ -24,7 +24,8 @@ class ImageGenreController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $imagegenre = ImageGenre::with("genre")->where('genre_id',1)->paginate(20);
+        $imagegenre = ImageGenre::with("genre")->orderBy('rating', 'DESC')->where('genre_id',1)->paginate(20);
+        
         $genres = Genre::all();
         $id = 1;
 		return view('admin.imagegenre.index', compact('imagegenre','genres','id'));
