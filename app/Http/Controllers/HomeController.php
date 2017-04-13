@@ -166,15 +166,15 @@ class HomeController extends Controller
 
         $time = $_GET['time'];
         $numberClick = $_GET['numberClick'];
-
-        $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
+        $genre_id = $_GET['genre_id'];
+        $statistical = Statistical::where('day',$day)->where('genre_id',$genre_id)->where('month',$month)->where('year',$year)->first();
 
         if($statistical != null){
                 $timeNew = $statistical->timespent + $time;
-                Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['timespent' => $timeNew]);
+                Statistical::where('day',$day)->where('genre_id',$genre_id)->where('month',$month)->where('year',$year)->update(['timespent' => $timeNew]);
                 if($numberClick > 0){
                     $viewClick = $statistical->viewClick + 1;
-                    Statistical::where('day',$day)->where('month',$month)->where('year',$year)->update(['viewClick' => $viewClick]);
+                    Statistical::where('day',$day)->where('genre_id',$genre_id)->where('month',$month)->where('year',$year)->update(['viewClick' => $viewClick]);
                 }
         }
    }

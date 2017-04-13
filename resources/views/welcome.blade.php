@@ -141,6 +141,7 @@
             var view = <?php echo $view?>;
             var enter = false;
             var numberClick = 0;
+            var gen_id = <?php echo $id ?>;
             $(document).on('keydown','.send',function(e){
                 var msg = $(this).val();
                 var element = $(this);
@@ -273,7 +274,7 @@
                     type:'GET',
                     url:'{{ route('get.time') }}',
                     dataType: 'json',
-                    data:'time='+time+'&numberClick='+numberClick
+                    data:'time='+time+'&numberClick='+numberClick+'&genre_id='+gen_id
                     });
                 });
                 $('#submit').click(function(){
