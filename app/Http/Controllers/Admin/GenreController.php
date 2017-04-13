@@ -22,7 +22,7 @@ class GenreController extends Controller {
 	public function index(Request $request)
     {
         $genre = Genre::all();
-        
+
 		return view('admin.genre.index', compact('genre'));
 	}
 
@@ -58,7 +58,7 @@ class GenreController extends Controller {
 
 	public function uploadAvatarAgent($file,$content)
 	{
-	
+
 	//Check request Avata
 		$explode[1] = null;
 		$explode = explode('.', $file->getClientOriginalName());
@@ -104,14 +104,13 @@ class GenreController extends Controller {
 	public function update($id, UpdateGenreRequest $request)
 	{
 		$genre = Genre::findOrFail($id);
-
-        
-		$image = $this->uploadAvatarAgent($request->image, $request['image-data']);
-	    	
-		$genre->update([
-			'name'  =>$request->name,
-			'image' =>$image['url'],
-			]); 
+		$data['name'] = $request->name;
+        if($request['image-data'] != null){
+        	$image = $this->uploadAvatarAgent($request->image, $request['image-data']);
+        	$data['image'] = $image['url'];
+        }
+	
+		$genre->update($data); 
 
 		return redirect()->route(config('quickadmin.route').'.genre.index');
 	}
