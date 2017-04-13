@@ -17,7 +17,6 @@
                         <th>image</th>
                         <th>rating</th>
 
-
                     </tr>
                 </thead>
 

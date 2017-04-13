@@ -147,7 +147,7 @@
                 var msg = $(this).val();
                 var element = $(this);
                 var name = $('#name').val(); 
-                if(!msg == '' && e.keyCode == 13 && !e.shiftKey){
+                if(!msg.trim() == '' && e.keyCode == 13 && !e.shiftKey){
                     if(name==""){
                         name = "No name";
                     }else{
@@ -276,12 +276,12 @@
                     var element = $('.send');
                     var msg = element.val();                    
                     var name = $('#name').val();
-                    if(!msg == ''){
+                    if(!msg.trim() == ''){
                         if(name==""){
                         name = "No name";
-                    }else{
-                        $('#name').attr('disabled','true');
-                    }
+                        }else{
+                            $('#name').attr('disabled','true');
+                        }
                         $.ajax({
                         type:'POST',
                         url: '{{ route('add') }}',
