@@ -126,7 +126,7 @@ class HomeController extends Controller
                 Statistical::where('genre_id', $genre_id)->where('day',$day)->where('day',$day)->where('month',$month)->where('year',$year)->update(['numberright' => $right]);
             }
         }
-        if($id== 1){
+        if($genre_id== 1){
             $staffs = Staff::inRandomOrder()->select('id','image')->take(2)->get()->toArray();
         
             $staff[0] = [
@@ -140,7 +140,8 @@ class HomeController extends Controller
                 'genre_id' =>$id
             ];
         }else{
-            $staffs = ImageGenre::where('genre_id', $genre_id)->select('id','image','genre_id')->inRandomOrder()->take(2)->get()->toArray();
+            $staffs = ImageGenre::where('genre_id', $genre_id)->inRandomOrder()->take(2)->get()->toArray();
+
             $staff[0] = [
                 'image'=>$staffs[0]['image'],
                 'id'=>  $staffs[0]['id'],
