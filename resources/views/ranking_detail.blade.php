@@ -102,10 +102,10 @@
                             <div class="ct-ava">
                                 <img src="{{asset('uploads/'.$images[$i]->image)}}" alt="" class="img-reponsive img-thumbnail">
                                 <p class="titleAva1">
-                               
                                     {{ 'No'.$n }}
                                 </p>
                             </div>
+                            <p style="font-size: 15px ;font-weight: bold;">{{ number_format($images[$i]->rating) }} click</p>
                         </div>
                         @endif
                        <?php $n++?>
@@ -122,6 +122,7 @@
                                       {{ 'No'.$n }}
                                 </p>
                             </div>
+                            <p style="font-size: 15px ;font-weight: bold;">{{ number_format($images[$i]->rating) }} click</p>
                         </div>
                         @endif
                         <?php $n++?>
@@ -134,4 +135,19 @@
         
        
     </body>
+    <script type="text/javascript">
+    window.onload = function(){
+        var height = $('.container .avaId .pdLeft div:first-child').height(); 
+        console.log(height);     
+                $('.container .avaId .pdLeft .ct-ava img').height(height);   
+        };
+    $(document).ready(function () {  
+         
+        $( window ).resize(function() {
+             var height = $('.container .avaId .pdLeft div:first-child').height();      
+                $('.container .avaId .pdLeft .ct-ava img').height(height);
+
+        });
+});
+</script>  
 </html>
