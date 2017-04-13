@@ -46,12 +46,12 @@ class HomeController extends Controller
         $month = (int)date('m');
         $year = (int)date('Y');
 
-        $statistical = Statistical::where('day',$day)->where('month',$month)->where('year',$year)->first();
+        $statistical = Statistical::where('genre_id',$id)->where('day',$day)->where('month',$month)->where('year',$year)->first();
 
         // check first view
-        $view =1;
         if($statistical == null){
-            Statistical::where('genre_id', $id)->insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>0,'views'=>1]);
+            $view =1;
+            Statistical::insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>0,'views'=>1,'genre_id'=>$id]);
         }else{
             $view = $statistical->views + 1;
             Statistical::where('genre_id', $id)->where('day',$day)->where('month',$month)->where('year',$year)->update(['views' => $view]); 
@@ -84,9 +84,9 @@ class HomeController extends Controller
                 ];
             }
         }
-    
-        $tests = Message::limit(100)->get();
-        return view('welcome', compact('staff','view','tests','id'));
+        $messages = Message::where('genre_id',$id)->limit(100)->get();
+
+        return view('welcome', compact('staff','view','messages','id'));
     }
    
    public function getRandom()
@@ -228,6 +228,7 @@ class HomeController extends Controller
         $add->msg = $request->input('msg');
         $add->name = $request->input('name');
         $add->view = $request->input('view');
+        $add->genre_id = $request->input('id');
         $add->save();
     }   
 
@@ -235,13 +236,15 @@ class HomeController extends Controller
         ini_set('max_execution_time',7200);
 
         $time = $request->input('timePre');
+        $id = $request->input('id');
+
         if($time == null){
             $time = Date('Y-m-d H:i:s');
         }
-        while(Message::where('created_at','>',$time)->count() < 1 ){
+        while(Message::where('genre_id',$id)->where('created_at','>',$time)->count() < 1 ){
             usleep(1000);
         }
-        if(Message::where('created_at','>',$time)->count() > 0){
+        if(Message::where('genre_id',$id)->where('created_at','>',$time)->count() > 0){
             $data = Message::where('created_at','>',$time)->get();
             $arrMsg = array();
             $i= 0;
