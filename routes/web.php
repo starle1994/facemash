@@ -37,7 +37,7 @@ Route::get('/ajax', [
         ]);
 Route::get('/genre', [
             'as' => 'genre',
-            'uses' => 'HomeController@store'
+            'uses' => 'HomeController@indexGenre'
         ]);
 Route::group([ 'middleware' => 'auth'], function () {
 	Route::get(config('quickadmin.homeRoute'), 'QuickadminController@index');

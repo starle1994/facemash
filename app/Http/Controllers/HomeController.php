@@ -14,9 +14,9 @@ class HomeController extends Controller
      *
      * @return Response
      */
-    public function indexGenre($value='')
+    public function indexGenre()
     {
-        # code...
+        return vie
     }
     public function index()
     {
