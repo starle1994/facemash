@@ -46,13 +46,10 @@ class StatisticalController extends Controller {
                 $totalClick = $left + $right;
                 if ($totalClick !=0) {
                     $left = ($left/$totalClick)*100;
+                    $left = round($left);
+                    $right = ($right/$totalClick)*100;
+                    $right = round($right);
                 }
-                
-
-                $left = round($left);
-
-                $right = ($right/$totalClick)*100;
-                 $right = round($right);
             }
             
 

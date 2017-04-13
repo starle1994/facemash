@@ -113,7 +113,7 @@
 <div class="row">
 	<div class="col-sm-4 bg" >
 		<p>How long</p>
-		<p class="text-right number" > <b> {{$timeAvg}} minute %</b></p>
+		<p class="text-right number" > <b> {{$timeAvg}} minute </b></p>
 	</div>
 	<div class="col-sm-1"></div>
 	<div class="col-sm-4 bg">
