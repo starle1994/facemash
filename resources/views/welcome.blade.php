@@ -117,16 +117,25 @@
                 margin-right: 10px;
             }
             .leftButton{
-                background-image :url("{{ asset('images/left.png')}}");
+                background-image :url("{{ asset('images/genre.png')}}");
                 background-size: 100% 100%;    
                 background-repeat:   no-repeat;
                 height: 23px;
+                margin-left: 30px
             }
             .rightButton{
-                background-image :url("{{ asset('images/right.png')}}");
+                background-image :url("{{ asset('images/rk.png')}}");
                 background-size: 100% 100%;    
                 background-repeat:   no-repeat;
                 height: 23px;
+                margin-left: 20px;
+            }
+            .centerButton{
+                background-image :url("{{ asset('images/cm.png')}}");
+                background-size: 100% 100%;    
+                background-repeat:   no-repeat;
+                height: 23px;
+                 margin-left: 20px;
             }
             .header1{
                 margin-top: 35px;
@@ -200,8 +209,9 @@
             <div class = "row" id="main">
                 <div class = "col-md-8 col-xs-12" >
                     <div class="row header1">
-                        <div class="col-md-3 col-md-offset-2 col-xs-3 col-xs-offset-2 leftButton"></div>
-                        <div class="col-md-3 col-md-offset-2 col-xs-3 col-xs-offset-2 rightButton"></div>
+                        <a href=" "><div class="col-md-3  col-xs-3  leftButton"></div></a>
+                        <div class="col-md-3  col-xs-3  centerButton"></div>
+                        <div class="col-md-3  col-xs-3  rightButton"></div>
                     </div>
                     <div class="row please">
                         <p>あなたはどちらがお好きですか？</p>

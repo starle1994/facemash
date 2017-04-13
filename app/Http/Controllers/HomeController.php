@@ -14,6 +14,10 @@ class HomeController extends Controller
      *
      * @return Response
      */
+    public function indexGenre($value='')
+    {
+        # code...
+    }
     public function index()
     {
         // get date now
