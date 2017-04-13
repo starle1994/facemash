@@ -94,7 +94,7 @@
                     </div>
                    <div class="avaId">
                    @foreach($genres as $genre)
-                        <div class="col-xs-4 col-md-3 pdLeft">
+                        <div class="col-xs-6 col-md-3 pdLeft">
                             <div class="ct-ava">
                              <a href="{{route('genre.detail',$genre->id)}}">
                                 <img src="{{asset('uploads/'.$genre->image)}}" alt="" class="img-reponsive img-thumbnail">
