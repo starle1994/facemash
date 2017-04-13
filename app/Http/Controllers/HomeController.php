@@ -58,7 +58,7 @@ class HomeController extends Controller
         }
         $staff = [];
         if($id == 1){
-            $staffs = Staff::inRandomOrder()->take(2)->get()->toArray();
+            $staffs = Staff::inRandomOrder()->select('id','image','genre_id')->take(2)->get()->toArray();
             $staff[0] = [
                 'image'=>$staffs[0]['image'],
                 'id'=>  $staffs[0]['id']
@@ -68,7 +68,7 @@ class HomeController extends Controller
                 'id'=>  $staffs[1]['id']
             ];
         }else{
-            $staffs = ImageGenre::where('genre_id', $id)->inRandomOrder()->take(2)->get()->toArray();
+            $staffs = ImageGenre::select('id','image','genre_id')->where('genre_id', $id)->inRandomOrder()->take(2)->get()->toArray();
 
             if(isset($staffs[0])){
                 $staff[0] = [
@@ -127,7 +127,7 @@ class HomeController extends Controller
             }
         }
         if($id== 1){
-            $staffs = Staff::inRandomOrder()->take(2)->get()->toArray();
+            $staffs = Staff::inRandomOrder()->select('id','image','genre_id')->take(2)->get()->toArray();
         
             $staff[0] = [
                 'image'=>$staffs[0]['image'],
@@ -140,7 +140,7 @@ class HomeController extends Controller
                 'genre_id' =>$id
             ];
         }else{
-            $staffs = ImageGenre::where('genre_id', $genre_id)->inRandomOrder()->take(2)->get()->toArray();
+            $staffs = ImageGenre::where('genre_id', $genre_id)->select('id','image','genre_id')->inRandomOrder()->take(2)->get()->toArray();
             $staff[0] = [
                 'image'=>$staffs[0]['image'],
                 'id'=>  $staffs[0]['id'],
