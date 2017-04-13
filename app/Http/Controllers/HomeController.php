@@ -132,12 +132,12 @@ class HomeController extends Controller
             $staff[0] = [
                 'image'=>$staffs[0]['image'],
                 'id'=>  $staffs[0]['id'],
-                'genre_id' =>$id
+                'genre_id' =>$genre_id
             ];
             $staff[1] = [
                 'image'=>$staffs[1]['image'],
                 'id'=>  $staffs[1]['id'],
-                'genre_id' =>$id
+                'genre_id' =>$genre_id
             ];
         }else{
             $staffs = ImageGenre::where('genre_id', $genre_id)->inRandomOrder()->take(2)->get()->toArray();
