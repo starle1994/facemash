@@ -16,7 +16,7 @@ class StatisticalController extends Controller {
      *
      * @return \Illuminate\View\View
 	 */
-	public function index()
+	public function index($id=1)
     {
 		$day = (int)date('d');
             $month = (int)date('m');
@@ -27,20 +27,21 @@ class StatisticalController extends Controller {
             $left =0;
             $right=0;
             $totalClick=0;
-            $total = (int)(Statistical::where('genre_id', 1)->sum('views'));
+            $total = (int)(Statistical::where('genre_id', $id)->sum('views'));
+
             if ($total !=0) {
-                $viewClick = (int)(Statistical::where('genre_id', 1)->sum('viewClick'));
+                $viewClick = (int)(Statistical::where('genre_id', $id)->sum('viewClick'));
 
                 $percentClick = ($viewClick/$total)*100;
 
                 $percentClick = round($percentClick);
 
-                $time = (double)(Statistical::where('genre_id', 1)->sum('timespent'));
+                $time = (double)(Statistical::where('genre_id', $id)->sum('timespent'));
 
                 $timeAvg = round(($time/(double)$total),2);
 
-                $left = (int)(Statistical::where('genre_id', 1)->sum('numberleft'));
-                $right  = (int)(Statistical::where('genre_id', 1)->sum('numberright'));
+                $left = (int)(Statistical::where('genre_id', $id)->sum('numberleft'));
+                $right  = (int)(Statistical::where('genre_id', $id)->sum('numberright'));
 
                 $totalClick = $left + $right;
                 if ($totalClick !=0) {
@@ -50,26 +51,28 @@ class StatisticalController extends Controller {
 
                 $left = round($left);
 
-                $right = 100 - $left;
+                $right = ($right/$totalClick)*100;
+                 $right = round($right);
             }
             
 
 
-            $statistical = Statistical::where('genre_id', 1)->where('day',$day)->where('month',$month)->where('year',$year)->first();
+            $statistical = Statistical::where('genre_id', $id)->where('day',$day)->where('month',$month)->where('year',$year)->first();
             if($statistical != null){
-                $ondayleft = Statistical::where('genre_id', 1)->where('day',$day)->where('month',$month)->where('year',$year)->sum('numberleft');
-                $ondayright = Statistical::where('genre_id', 1)->where('day',$day)->where('month',$month)->where('year',$year)->sum('numberright');
+                $ondayleft = Statistical::where('genre_id', $id)->where('day',$day)->where('month',$month)->where('year',$year)->sum('numberleft');
+                $ondayright = Statistical::where('genre_id', $id)->where('day',$day)->where('month',$month)->where('year',$year)->sum('numberright');
                 $onday = $ondayleft + $ondayright;
-                $ondayView = Statistical::where('genre_id', 1)->where('day',$day)->where('month',$month)->where('year',$year)->sum('views');
+                $ondayView = Statistical::where('genre_id', $id)->where('day',$day)->where('month',$month)->where('year',$year)->sum('views');
             }else{
                 $onday = 0;
+                $ondayView  =0;
             }
             $now = new DateTime();
             $prevDateTime = $now->modify("last day of this month");
             $days = $prevDateTime->format('d');
             $month = $prevDateTime->format('m');
 
-            $statistical = Statistical::where('genre_id', 1)->where('month',$month)->where('year',$year)->get();
+            $statistical = Statistical::where('genre_id', $id)->where('month',$month)->where('year',$year)->get();
             $date =[];
             $aaa = [];
             
@@ -86,7 +89,7 @@ class StatisticalController extends Controller {
                 }
             }
             
-             $statistical_months = Statistical::where('genre_id', 1)->where('month',$month)->where('year',$year)->select('month', DB::raw('sum(numberleft) as numberleft'), DB::raw('sum(numberright) as numberright') )->groupby('month')->get();
+             $statistical_months = Statistical::where('genre_id', $id)->where('month',$month)->where('year',$year)->select('month', DB::raw('sum(numberleft) as numberleft'), DB::raw('sum(numberright) as numberright') )->groupby('month')->get();
              for ($i=1; $i <= 12 ; $i++) { 
                 $months[$i] =0;
             }

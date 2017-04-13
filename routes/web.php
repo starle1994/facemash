@@ -118,6 +118,10 @@ Route::group([ 'middleware' => 'auth'], function () {
             'as' => 'admin.imagegenre.image',
             'uses' => 'Admin\ImageGenreController@getImage'
         ]);
+        Route::get(config('quickadmin.route') . '/statistical/{id}', [
+            'as' => 'admin.statistical.getIndex',
+            'uses' => 'Admin\StatisticalController@index'
+        ]);
     });
 });
 
