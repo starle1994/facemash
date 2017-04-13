@@ -51,7 +51,7 @@
                 background-repeat:   no-repeat;
                 height: 10px;
             }
-                  
+
         </style>
     </head>
     <body>        
@@ -240,11 +240,11 @@
                                   
                         $("#left").attr("onclick","getRandom('"+staffs[0]['id']+"','left','"+staffs[0]['genre_id']+"')");
 
-                        $("#imgLeft").attr("src","http://localhost/facemash/public/uploads/"+staffs[0]['image']);
+                        $("#imgLeft").attr("src","http://enjoyxoxo.com/uploads/"+staffs[0]['image']);
 
                         $("#right").attr("onclick","getRandom('"+staffs[1]['id']+"','right','"+staffs[0]['genre_id']+"')");
 
-                        $("#imgRight").attr("src","http://localhost/facemash/public/uploads/"+staffs[1]['image']);                                        
+                        $("#imgRight").attr("src","http://enjoyxoxo.com/uploads/"+staffs[1]['image']);                                        
                     }
                 });
             }
