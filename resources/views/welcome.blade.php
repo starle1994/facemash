@@ -91,9 +91,9 @@
                             <?php $viewPrevios = null;
                                     $createAtPrevios = null;
                                     $namePrevios = null;?>
-                            @if(count($tests) > 0)
-                                @foreach($tests as $test)                                
-                                    @if($test->view!=$viewPrevios || $test->name!=$namePrevios)
+                            @if(count($messages) > 0)
+                                @foreach($messages as $message)                                
+                                    @if($message->view!=$viewPrevios || $message->name!=$namePrevios)
                                         @if($viewPrevios != null)
                                         </div>
                                         <div class="date-message">{{$createAtPrevios}}</div>
@@ -101,16 +101,16 @@
                                         <div class="line"></div>
                                         @endif
                                         <div class="row-msg">
-                                            <div class="col-md-offset-1 name-user name-row"><b>{{$test->name}}</b></div>
-                                            <input type="hidden" class="view-hidden" value="<?php echo $test->view;?>" />
+                                            <div class="col-md-offset-1 name-user name-row"><b>{{$message->name}}</b></div>
+                                            <input type="hidden" class="view-hidden" value="<?php echo $message->view;?>" />
                                             <div class="msg-user other-msg col-md-offset-2">
-                                                <div class="col-md-offset-2">{{$test->msg}}</div>                                                                                                   
+                                                <div class="col-md-offset-2">{{$message->msg}}</div>                                                                                                   
                                     @else
-                                        <div class="col-md-offset-2">{{$test->msg}}</div>                                  
+                                        <div class="col-md-offset-2">{{$message->msg}}</div>                                  
                                     @endif
-                                    <?php $viewPrevios=$test->view;
-                                        $namePrevios = $test->name;
-                                        $createAtPrevios=$test->created_at?>
+                                    <?php $viewPrevios=$message->view;
+                                        $namePrevios = $message->name;
+                                        $createAtPrevios=$message->created_at?>
                                 @endforeach 
                             </div>
                             </div>
@@ -139,6 +139,7 @@
         <script type="text/javascript"> 
         /// chat
             var view = <?php echo $view?>;
+            var id = <?php echo $id?>;
             var enter = false;
             var numberClick = 0;
             var gen_id = <?php echo $id ?>;
@@ -147,23 +148,17 @@
                 var element = $(this);
                 var name = $('#name').val(); 
                 if(!msg == '' && e.keyCode == 13 && !e.shiftKey){
-                    if(name!=""){
-                        $.ajax({
-                        type:'POST',
-                        url: '{{ route('add') }}',
-                        data:{_token:"{{csrf_token()}}",msg:msg,name:name,view:view}
-                        });
-                        element.val('');
+                    if(name==""){
+                        name = "No name";
+                    }else{
                         $('#name').attr('disabled','true');
-                   }else{
-                        name = "No name"
-                        $.ajax({
-                        type:'POST',
-                        url: '{{ route('add') }}',
-                        data:{_token:"{{csrf_token()}}",msg:msg,name:name,view:view}
-                        });
-                        element.val('');
                     }
+                    $.ajax({
+                    type:'POST',
+                    url: '{{ route('add') }}',
+                    data:{_token:"{{csrf_token()}}",msg:msg,name:name,view:view,id:id}
+                    });
+                    element.val('');
                     enter = true;
                 }
             });
@@ -178,7 +173,7 @@
                 var timePre = $('.date-message:last').html();
                 var xhr = $.ajax({
                     url: '{{ route('ajax') }}',
-                    data:{_token:"{{csrf_token()}}",timePre:timePre},
+                    data:{_token:"{{csrf_token()}}",timePre:timePre,id:id},
                     success:function(data){                          
                         var check = setScrollBottom();
                         for(i = 0; i < data.length ; i++){ 
@@ -282,24 +277,18 @@
                     var msg = element.val();                    
                     var name = $('#name').val();
                     if(!msg == ''){
-                        if(name!=""){
-                            $.ajax({
-                            type:'POST',
-                            url:'{{ route('add') }}',
-                            data:{_token:"{{csrf_token()}}",msg:msg,name:name,view:view}
-                            });
-                            element.val('');
-                            $('#name').attr('disabled','true');
-                        }else{
-                            name = "No name"
-                            $.ajax({
-                            type:'POST',
-                            url:'{{ route('add') }}',
-                            data:{_token:"{{csrf_token()}}",msg:msg,name:name,view:view}
-                            });
-                            element.val('');
-                        }
-                    enter = true;
+                        if(name==""){
+                        name = "No name";
+                    }else{
+                        $('#name').attr('disabled','true');
+                    }
+                        $.ajax({
+                        type:'POST',
+                        url: '{{ route('add') }}',
+                        data:{_token:"{{csrf_token()}}",msg:msg,name:name,view:view,id:id}
+                        });
+                        element.val('');
+                        enter = true;
                     }
                 });              
             });
