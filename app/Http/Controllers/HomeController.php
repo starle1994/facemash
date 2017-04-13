@@ -95,7 +95,7 @@ class HomeController extends Controller
 
 		$id = $_GET['id'];
 		$choose = $_GET['choose'];
-        $id = $_GET['genre_id'];
+        $genre_id = $_GET['genre_id'];
         $a = Staff::where('id', $id)->first();
         $number = $a->rating + 1;
         $a->update(['rating' => $number]);                         
@@ -104,20 +104,20 @@ class HomeController extends Controller
         $month = (int)date('m');
         $year = (int)date('Y');
 
-        $statistical = Statistical::where('genre_id', $id)->where('day',$day)->where('day',$day)->where('month',$month)->where('year',$year)->first();
+        $statistical = Statistical::where('genre_id', $genre_id)->where('day',$day)->where('day',$day)->where('month',$month)->where('year',$year)->first();
         if($statistical == null){
             if($choose=='left'){
-                Statistical::where('genre_id', $id)->where('day',$day)->insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>1,'numberright'=>0,'views'=>1]);
+                Statistical::where('genre_id', $genre_id)->where('day',$day)->insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>1,'numberright'=>0,'views'=>1]);
             }elseif($choose=='right'){
-                Statistical::where('genre_id', $id)->where('day',$day)->insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>1,'views'=>1]);
+                Statistical::where('genre_id', $genre_id)->where('day',$day)->insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>1,'views'=>1]);
             }                                               
         }else{
             if($choose=='left'){
                 $left = $statistical->numberleft + 1;
-                Statistical::where('genre_id', $id)->where('day',$day)->where('day',$day)->where('month',$month)->where('year',$year)->update(['numberleft' => $left]);
+                Statistical::where('genre_id', $genre_id)->where('day',$day)->where('day',$day)->where('month',$month)->where('year',$year)->update(['numberleft' => $left]);
             }elseif($choose=='right'){
                 $right = $statistical->numberright + 1;
-                Statistical::where('genre_id', $id)->where('day',$day)->where('day',$day)->where('month',$month)->where('year',$year)->update(['numberright' => $right]);
+                Statistical::where('genre_id', $genre_id)->where('day',$day)->where('day',$day)->where('month',$month)->where('year',$year)->update(['numberright' => $right]);
             }
         }
         if($id= 1){
@@ -134,16 +134,16 @@ class HomeController extends Controller
                 'genre_id' =>$id
             ];
         }else{
-            $staffs = ImageGenre::where('genre_id', $id)->where('genre_id', $id)->inRandomOrder()->take(2)->get()->toArray();
+            $staffs = ImageGenre::where('genre_id', $genre_id)->inRandomOrder()->take(2)->get()->toArray();
             $staff[0] = [
                 'image'=>$staffs[0]['image'],
                 'id'=>  $staffs[0]['id'],
-                'genre_id' =>$id
+                'genre_id' =>$genre_id
             ];
             $staff[1] = [
                 'image'=>$staffs[1]['image'],
                 'id'=>  $staffs[1]['id'],
-                'genre_id' =>$id
+                'genre_id' =>$genre_id
             ];
         }
     	return $staff;
