@@ -20,11 +20,11 @@ Route::get('/genre/{id}', [
             'uses' => 'HomeController@index'
         ]);
 Route::get('/get-random', [
-            'as' => 'get-random',
+            'as' => 'get.random',
             'uses' => 'HomeController@getRandom'
         ]);
 Route::get('/get-time', [
-            'as' => 'get-time',
+            'as' => 'get.time',
             'uses' => 'HomeController@getTime'
         ]);
 Route::get('/statistical', [

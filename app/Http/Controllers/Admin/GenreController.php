@@ -106,8 +106,12 @@ class GenreController extends Controller {
 		$genre = Genre::findOrFail($id);
 
         
-
-		$genre->update($request->all());
+		$image = $this->uploadAvatarAgent($request->image, $request['image-data']);
+	    	
+		$genre->update([
+			'name'  =>$request->name,
+			'image' =>$image['url'],
+			]); 
 
 		return redirect()->route(config('quickadmin.route').'.genre.index');
 	}
