@@ -93,15 +93,6 @@
                         </div>
                     </div>
                    <div class="avaId">
-                   <div class="col-xs-4 col-md-3 pdLeft">
-                            <div class="ct-ava">
-                                <a href="{{route('ranking.detail',1)}}"><img src="{{asset('uploads/')}}" alt="">
-                                <p class="titleAva1">
-                                   
-                                </p>
-                                </a>
-                            </div>
-                        </div>
                    @foreach($genres as $genre)
                         <div class="col-xs-4 col-md-3 pdLeft">
                             <div class="ct-ava">

@@ -22,7 +22,7 @@ class GenreController extends Controller {
 	public function index(Request $request)
     {
         $genre = Genre::all();
-
+        
 		return view('admin.genre.index', compact('genre'));
 	}
 
