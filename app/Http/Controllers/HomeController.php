@@ -126,7 +126,7 @@ class HomeController extends Controller
                 Statistical::where('genre_id', $genre_id)->where('day',$day)->where('day',$day)->where('month',$month)->where('year',$year)->update(['numberright' => $right]);
             }
         }
-        if($id= 1){
+        if($id== 1){
             $staffs = Staff::inRandomOrder()->take(2)->get()->toArray();
         
             $staff[0] = [
