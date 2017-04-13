@@ -245,7 +245,7 @@ class HomeController extends Controller
             usleep(1000);
         }
         if(Message::where('genre_id',$id)->where('created_at','>',$time)->count() > 0){
-            $data = Message::where('created_at','>',$time)->get();
+            $data = Message::where('genre_id',$id)->where('created_at','>',$time)->get();
             $arrMsg = array();
             $i= 0;
             foreach ($data as $item) {
