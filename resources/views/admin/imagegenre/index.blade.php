@@ -3,7 +3,7 @@
 @section('content')
 <?php $i =0 ?>
     @foreach($genres as $genre)
-        @if($genre->id)
+        @if($genre->id != 1)
             <?php 
                     $class[$i] = '';
                     if($genre->id == $id){
