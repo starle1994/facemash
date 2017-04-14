@@ -69,7 +69,8 @@ class StatisticalController extends Controller {
             $days = $prevDateTime->format('d');
             $month = $prevDateTime->format('m');
 
-            $statistical = Statistical::where('month',$month)->where('year',$year)->get();
+            $statistical = Statistical::where('month',$month)->where('year',$year)->select('day', DB::raw('sum(numberleft) as numberleft'), DB::raw('sum(numberright) as numberright') )->groupby('day')->get();
+            
             $date =[];
             $aaa = [];
             
