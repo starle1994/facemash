@@ -20,6 +20,13 @@
 }
 </style>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+ <h1>@if($id ==0)
+ All Genre
+ @else
+ <?php $genre = \App\Genre::where('id',$id)->first()->name ;?>
+ {{$genre}}
+ @endif
+ </h1>
 <div class="row">
 	<div class="col-sm-4 bg" >
 		<p>All View </p>

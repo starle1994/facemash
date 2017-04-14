@@ -3,16 +3,18 @@
 @section('content')
 <?php $i =0 ?>
     @foreach($genres as $genre)
-    <?php 
-        $class[$i] = '';
-        if($genre->id == $id){
-            $class[$i] = 'btn btn-primary';
-        }else{
-            $class[$i] = 'btn btn-success';
-        }
- ?>
-    <span>{!! link_to_route(config('quickadmin.route').'.imagegenre.image', $genre->name, array($genre->id), array('class' =>$class[$i])) !!}</span>
-    <?php $i++ ?>
+        @if($genre->id)
+            <?php 
+                    $class[$i] = '';
+                    if($genre->id == $id){
+                        $class[$i] = 'btn btn-primary';
+                    }else{
+                        $class[$i] = 'btn btn-success';
+                    }
+             ?>
+                <span>{!! link_to_route(config('quickadmin.route').'.imagegenre.image', $genre->name, array($genre->id), array('class' =>$class[$i])) !!}</span>
+                <?php $i++ ?>
+        @endif
     @endforeach
     <br>
      <br>
@@ -38,17 +40,17 @@
                 <tbody>
                     @foreach ($imagegenre as $row)
                         <tr>
-                            <td>
-                                {!! Form::checkbox('del-'.$row->id,1,false,['class' => 'single','data-id'=> $row->id]) !!}
-                            </td>
-                            <td>{{ isset($row->genre->name) ? $row->genre->name : '' }}</td>
-<td>@if($row->image != '')<img src="{{ asset('uploads/thumb') . '/'.  $row->image }}">@endif</td>
+                            <td colspan="1">{{ $row->rating }}</td>
+                            <td colspan="1">@if($row->image != '')<img src="{{ asset('uploads/thumb') . '/'.  $row->image }}">@endif</td>
 
-                            <td>
-                                {!! link_to_route(config('quickadmin.route').'.imagegenre.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
-                                {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('".trans("quickadmin::templates.templates-view_index-are_you_sure")."');",  'route' => array(config('quickadmin.route').'.imagegenre.destroy', $row->id))) !!}
-                                {!! Form::submit(trans('quickadmin::templates.templates-view_index-delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                {!! Form::close() !!}
+                            <td colspan="2">
+                                <div class="progress">
+                                  <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                                  aria-valuemin="0" aria-valuemax="100" style="width:{{ $row->rating }}px" >
+                                    <span class="sr-only">70% Complete</span>
+                                  </div>
+                                </div>
+
                             </td>
                         </tr>
                     @endforeach

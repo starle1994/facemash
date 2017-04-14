@@ -120,7 +120,7 @@ Route::group([ 'middleware' => 'auth'], function () {
         ]);
         Route::get(config('quickadmin.route') . '/statistical/{id}', [
             'as' => 'admin.statistical.getIndex',
-            'uses' => 'Admin\StatisticalController@index'
+            'uses' => 'Admin\StatisticalController@getIndex'
         ]);
     });
 });
