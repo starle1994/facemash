@@ -135,7 +135,7 @@ class HomeController extends Controller
             'id'=>  $staffs[0]['id'],
             'name'=>  $sff,
             'url'=>  $staffs[0]['url'],
-            'genre_id'=>  $staffs[0]['genre_id'],
+            'genre_id'=>  $genre_id,
         ];
         $sff = ($staffs[1]['name'] == null) ? 'No Name' : $staffs[1]['name'];
         $staff[1] = [
@@ -143,7 +143,7 @@ class HomeController extends Controller
             'id'=>  $staffs[1]['id'],
             'name'=> $sff,
             'url'=>  $staffs[1]['url'],
-            'genre_id'=>  $staffs[1]['genre_id'],
+            'genre_id'=>  $genre_id,
         ];
     	return $staff;
 
