@@ -77,7 +77,8 @@ class StaffController extends Controller {
             $image->move($destinationPath, $input['imagename']);
 
 		Staff::create(['name'=>$request->name,
-						'image'=>$input['imagename']]);
+						'image'=>$input['imagename'],
+						'url'=>$request->url]);
 
 		return redirect()->route(config('quickadmin.route').'.staff.index');
 	}
@@ -102,7 +103,7 @@ class StaffController extends Controller {
      *
 	 * @param  int  $id
 	 */
-	public function update($id, UpdateStaffRequest $request)
+	public function update($id, Request $request)
 	{
 		$staff = Staff::findOrFail($id);
 

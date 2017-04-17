@@ -45,7 +45,9 @@ class HomeController extends Controller
         $day = (int)date('d');
         $month = (int)date('m');
         $year = (int)date('Y');
-
+        $genre = Genre::where('id',$id)->first();
+        $ge_name =$genre->name;
+        $ge_url  = $genre->url;
         $statistical = Statistical::where('genre_id',$id)->where('day',$day)->where('month',$month)->where('year',$year)->first();
 
         // check first view
@@ -58,35 +60,29 @@ class HomeController extends Controller
         }
         $staff = [];
         if($id == 1){
-            $staffs = Staff::inRandomOrder()->select('id','image')->take(2)->get()->toArray();
-            $staff[0] = [
-                'image'=>$staffs[0]['image'],
-                'id'=>  $staffs[0]['id']
-            ];
-            $staff[1] = [
-                'image'=>$staffs[1]['image'],
-                'id'=>  $staffs[1]['id']
-            ];
+            $staffs = Staff::inRandomOrder()->select('id','image','name','url')->take(2)->get()->toArray();
+
         }else{
-            $staffs = ImageGenre::select('id','image','genre_id')->where('genre_id', $id)->inRandomOrder()->take(2)->get()->toArray();
+            $staffs = ImageGenre::select('id','image','genre_id','name','url')->where('genre_id', $id)->inRandomOrder()->take(2)->get()->toArray();
 
-            if(isset($staffs[0])){
-                $staff[0] = [
-                    'image'=>$staffs[0]['image'],
-                    'id'=>  $staffs[0]['id']
-                ];
-            }
-
-            if(isset($staffs[1])){
-                $staff[1] = [
-                    'image'=>$staffs[1]['image'],
-                    'id'=>  $staffs[1]['id']
-                ];
-            }
         }
+        $sff = ($staffs[0]['name'] == null) ? 'No Name' : $staffs[0]['name'];
+        $staff[0] = [
+            'image'=>$staffs[0]['image'],
+            'id'=>  $staffs[0]['id'],
+            'name'=>  $sff,
+            'url'=>  $staffs[0]['url'],
+        ];
+        $sff = ($staffs[1]['name'] == null) ? 'No Name' : $staffs[1]['name'];
+        $staff[1] = [
+            'image'=>$staffs[1]['image'],
+            'id'=>  $staffs[1]['id'],
+            'name'=> $sff,
+            'url'=>  $staffs[1]['url'],
+        ];
         $messages = Message::where('genre_id',$id)->limit(100)->get();
 
-        return view('welcome', compact('staff','view','messages','id'));
+        return view('welcome', compact('staff','view','messages','id','ge_name','ge_url'));
     }
    
    public function getRandom()
@@ -127,32 +123,26 @@ class HomeController extends Controller
             }
         }
         if($genre_id== 1){
-            $staffs = Staff::inRandomOrder()->select('id','image')->take(2)->get()->toArray();
+            $staffs = Staff::inRandomOrder()->select('id','image','name','url')->take(2)->get()->toArray();
         
-            $staff[0] = [
-                'image'=>$staffs[0]['image'],
-                'id'=>  $staffs[0]['id'],
-                'genre_id' =>$genre_id
-            ];
-            $staff[1] = [
-                'image'=>$staffs[1]['image'],
-                'id'=>  $staffs[1]['id'],
-                'genre_id' =>$genre_id
-            ];
         }else{
-            $staffs = ImageGenre::where('genre_id', $genre_id)->inRandomOrder()->take(2)->get()->toArray();
-
-            $staff[0] = [
-                'image'=>$staffs[0]['image'],
-                'id'=>  $staffs[0]['id'],
-                'genre_id' =>$genre_id
-            ];
-            $staff[1] = [
-                'image'=>$staffs[1]['image'],
-                'id'=>  $staffs[1]['id'],
-                'genre_id' =>$genre_id
-            ];
+            $staffs = ImageGenre::select('id','image','genre_id','name','url')->where('genre_id', $genre_id)->inRandomOrder()->take(2)->get()->toArray();
         }
+
+        $sff = ($staffs[0]['name'] == null) ? 'No Name' : $staffs[0]['name'];
+        $staff[0] = [
+            'image'=>$staffs[0]['image'],
+            'id'=>  $staffs[0]['id'],
+            'name'=>  $sff,
+            'url'=>  $staffs[0]['url'],
+        ];
+        $sff = ($staffs[1]['name'] == null) ? 'No Name' : $staffs[1]['name'];
+        $staff[1] = [
+            'image'=>$staffs[1]['image'],
+            'id'=>  $staffs[1]['id'],
+            'name'=> $sff,
+            'url'=>  $staffs[1]['url'],
+        ];
     	return $staff;
 
 		

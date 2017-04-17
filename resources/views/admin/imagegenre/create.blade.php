@@ -22,6 +22,21 @@
     <div class="col-sm-2 control-label"><h2>{{ $genre->name}}</h2></div>
     {!! Form::hidden('genre_id', $genre->id) !!}
 </div>
+<div style="clear: both;"></div>
+<div class="form-group">
+    {!! Form::label('name', 'name', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::text('name', old('name'), array('class'=>'form-control')) !!}
+
+    </div>
+</div>
+<div class="form-group">
+    {!! Form::label('url', 'url', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::text('url', old('url'), array('class'=>'form-control')) !!}
+
+    </div>
+</div>
 <div class="form-group">
     {!! Form::label('image', 'image', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">

@@ -30,14 +30,14 @@
         {!! Form::text('image', old('image',$staff->image), array('class'=>'form-control')) !!}
         
     </div>
-</div><div class="form-group">
-    {!! Form::label('rating', 'rating*', array('class'=>'col-sm-2 control-label')) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('url', 'url', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::text('rating', old('rating',$staff->rating), array('class'=>'form-control')) !!}
+        {!! Form::text('url', old('url', $staff->url), array('class'=>'form-control')) !!}
         
     </div>
 </div>
-
 <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
       {!! Form::submit(trans('quickadmin::templates.templates-view_edit-update'), array('class' => 'btn btn-primary')) !!}

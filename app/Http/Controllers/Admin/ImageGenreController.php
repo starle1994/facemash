@@ -82,7 +82,9 @@ class ImageGenreController extends Controller {
             $image->move($destinationPath, $input['imagename']);
 
 		ImageGenre::create(['genre_id'=>$genre_id,
-						'image'=>$input['imagename']]);
+						'image'=>$input['imagename'],
+						'url'  =>$request->url
+						]);
 
 		return redirect()->route(config('quickadmin.route').'.imagegenre.index');
 	}
@@ -108,7 +110,7 @@ class ImageGenreController extends Controller {
      *
 	 * @param  int  $id
 	 */
-	public function update($id, UpdateImageGenreRequest $request)
+	public function update($id, Request $request)
 	{
 		$imagegenre = ImageGenre::findOrFail($id);
 

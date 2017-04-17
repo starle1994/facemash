@@ -24,7 +24,9 @@ class ImageGenre extends Model {
     protected $fillable = [
           'genre_id',
           'image',
-          'rating'
+          'rating',
+          'name',
+          'url'
     ];
     
 

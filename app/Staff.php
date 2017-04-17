@@ -24,7 +24,8 @@ class Staff extends Model {
     protected $fillable = [
           'name',
           'image',
-          'rating'
+          'rating',
+          'url'
     ];
     
 

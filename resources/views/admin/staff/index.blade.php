@@ -13,29 +13,28 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Level</th>
+                        <th></th>
                         <th>image</th>
-                        <th>rating</th>
+                        <th>name</th>
 
                     </tr>
                 </thead>
 
-                <tbody>
-                <?php $i = 0;
-                    $pre = -1;
-                ?>
+                <tbody> 
                     @foreach ($staff as $row)
-                    <?php
-                            $current = $row->rating;
-                            if($current != $pre){
-                                $i++;
-                            }
-                            $pre = $current;
-                            ?>
+                    
                         <tr>
-                            <td colspan="1">{{ $row->rating }}</td>
+                            <td>{!! link_to_route(config('quickadmin.route').'.staff.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
+                        {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('".trans("quickadmin::templates.templates-view_index-are_you_sure")."');",  'route' => array(config('quickadmin.route').'.staff.destroy', $row->id))) !!}
+                            {!! Form::submit(trans('quickadmin::templates.templates-view_index-delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+
+                        {!! Form::close() !!}    
+                        </td>
                             <td colspan="1">@if($row->image != '')<img src="{{ asset('uploads/thumb') . '/'.  $row->image }}">@endif</td>
+                            <td colspan="1">{{ $row->name }}</td>
+                            <td colspan="1"><a href="{{$row->url}}">{{ mb_substr($row->url,0,25) }}...</a></td>
                             <td colspan="2">
+                            {{ $row->rating }}
                                 <div class="progress">
                                   <div class="progress-bar" role="progressbar" aria-valuenow="70"
                                   aria-valuemin="0" aria-valuemax="100" style="width:{{ $row->rating }}px" >

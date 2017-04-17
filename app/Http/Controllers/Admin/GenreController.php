@@ -49,6 +49,7 @@ class GenreController extends Controller {
 		Genre::create([
 			'name'  =>$request->name,
 			'image' =>$image['url'],
+			'name'  =>$request->url,
 			]);
 
 		return redirect()->route(config('quickadmin.route').'.genre.index');
@@ -107,7 +108,7 @@ class GenreController extends Controller {
         	$image = $this->uploadAvatarAgent($request->image, $request['image-data']);
         	$data['image'] = $image['url'];
         }
-	
+		$data['url'] = $request->url;
 		$genre->update($data); 
 
 		return redirect()->route(config('quickadmin.route').'.genre.index');

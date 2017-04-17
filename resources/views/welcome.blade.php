@@ -51,7 +51,17 @@
                 background-repeat:   no-repeat;
                 height: 10px;
             }
-
+  
+  .titleAva1  a{color: #fff}
+   .titleAva1 {
+    background-image: url("{{ asset('images/number1.png')}}");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px 0;
+    margin-bottom: 0px; }
         </style>
     </head>
     <body>        
@@ -73,11 +83,19 @@
                     <div class="row row-choose">
                     @if($staff != null)
                         <div class="col-md-4 col-md-offset-1 col-xs-5" style="padding-right: 0px;padding-left: 0px">
+                            <a id="name_left" href="{{$staff[0]['url']}}">{{$staff[0]['name']}}</a>
                             <a id="left" onclick="getRandom('<?php echo $staff[0]['id']  ?>','<?php echo 'left'?>','<?php echo $id ?>');"><img id="imgLeft" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[0]['image'] }}"></a>
+                            <p class="titleAva1">
+                                    <a href="{{$ge_url}}">{{$ge_name}}</a>
+                                </p>
                         </div>
                         <div class="col-md-1 col-xs-1 or">OR</div>
                         <div class="col-md-4 col-xs-5" style="padding-right: 0px;padding-left: 0px" >
+                            <a href="{{$staff[1]['url']}}">{{$staff[1]['name']}}</a>
                             <a id="right" onclick="getRandom('<?php echo $staff[1]['id']  ?>','<?php echo 'right'?>','<?php echo $id?>');"> <img id="imgRight" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[1]['image'] }}">
+                            <p class="titleAva1">
+                                    <a href="{{$ge_url}}">{{$ge_name}}</a>
+                                </p>
                            </a>
                         </div>
                     @endif
@@ -235,11 +253,14 @@
                         numberClick = numberClick + 1;    
                                   
                         $("#left").attr("onclick","getRandom('"+staffs[0]['id']+"','left','"+staffs[0]['genre_id']+"')");
+                        $("#name_left").attr("href","'"+staffs[0]['url']+"'");
+                        $("#name_left").text(staffs[0]['name']);
 
                         $("#imgLeft").attr("src","http://enjoyxoxo.com/uploads/"+staffs[0]['image']);
 
                         $("#right").attr("onclick","getRandom('"+staffs[1]['id']+"','right','"+staffs[0]['genre_id']+"')");
-
+                        $("#name_right").attr("href","'"+staffs[1]['url']+"'");
+                        $("#name_right").text(staffs[1]['name']);
                         $("#imgRight").attr("src","http://enjoyxoxo.com/uploads/"+staffs[1]['image']);                                        
                     }
                 });

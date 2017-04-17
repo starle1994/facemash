@@ -18,12 +18,20 @@
 {!! Form::open(array('route' => config('quickadmin.route').'.staff.store', 'id' => 'form-with-validation', 'files' => true, 'enctype' => 'multipart/form-data', 'class' => 'dropzone', 'id' => 'image-upload')) !!}
 
 <div class="form-group">
-    {!! Form::label('name', 'name*', array('class'=>'col-sm-2 control-label')) !!}
+    {!! Form::label('name', 'name', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('name', old('name'), array('class'=>'form-control')) !!}
 
     </div>
-</div><div class="form-group">
+</div>
+<div class="form-group">
+    {!! Form::label('url', 'url', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::text('url', old('url'), array('class'=>'form-control')) !!}
+
+    </div>
+</div>
+<div class="form-group">
     {!! Form::label('image', 'image', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
        <div>
