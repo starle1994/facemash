@@ -85,13 +85,7 @@
             </div>         
             <div class = "row" id="main">
                 <div class = "col-md-12  col-xs-12" >
-                    <div class="row header1">
-                        <div class = "col-md-8 col-xs-12" >
-                            <a href="{{route('genre')}}"><div class="col-md-3  col-xs-3  leftButton"></div></a>
-                        <div class="col-md-3  col-xs-3  centerButton"></div>
-                        <a href="{{route('ranking')}}"><div class="col-md-3  col-xs-3  rightButton"></div></a>
-                        </div>
-                    </div>
+                    @include('include.header1')
                    <div class="avaId">
                    @foreach($genres as $genre)
                         <div class="col-xs-6 col-md-3 pdLeft">

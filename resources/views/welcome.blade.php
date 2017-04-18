@@ -8,11 +8,12 @@
          <title>XOXO</title>
         
         <link href='{!! url('css/bootstrap.min.css') !!}' rel='stylesheet' type='text/css' />
-        <script src='{!! url('js/jquery-3.2.0.min.js') !!}' type='text/javascript'></script>
-        <script src='{!! url('js/bootstrap.min.js') !!}' type='text/javascript'></script> 
+        
         <link rel="stylesheet" href="{!! url('css/style.css') !!}"/>
         <style type="text/css"> 
-        
+            .submit{
+                margin-left: -10px;
+            }
             .header {
                 background-image :url("{{ asset('images/header.png')}}");
                 background-size: 100% 100%;    
@@ -71,18 +72,14 @@
             </div>         
             <div class = "row" id="main">
                 <div class = "col-md-8 col-xs-12" >
-                    <div class="row header1">
-                        <a href="{{route('genre')}}"><div class="col-md-3  col-xs-3  leftButton"></div></a>
-                        <div class="col-md-3  col-xs-3  centerButton"></div>
-                        <a href="{{route('ranking')}}"><div class="col-md-3  col-xs-3  rightButton"></div></a>
-                    </div>
+                    @include('include.header1')
                     <div class="row please">
                         <p>あなたはどちらがお好きですか？</p>
                         <p>お好きな方を選んでください。</p>
                     </div>
                     <div class="row row-choose">
                     @if($staff != null)
-                        <div class="col-md-4 col-md-offset-1 col-xs-5" style="padding-right: 0px;padding-left: 0px">
+                        <div class="col-md-4 col-md-offset-1 col-xs-5">
                             <a id="l_name">{{$staff[0]['name']}}</a>
                             <a id="left" onclick="getRandom('<?php echo $staff[0]['id']  ?>','<?php echo 'left'?>','<?php echo $id ?>');"><img id="imgLeft" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[0]['image'] }}"></a>
                             <p class="titleAva1">
@@ -145,7 +142,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-xs-3 input-button">
-                                    <input type="button" name="submit" id="submit" value="送信" style="margin-left: -10px">
+                                    <input type="button" name="submit" id="submit" value="送信">
                                 </div>
                             </div>                       
                         </div>                            
@@ -153,7 +150,8 @@
                 </div>
             </div>
         </div>
-        
+        <script src='{!! url('js/jquery-3.2.0.min.js') !!}' type='text/javascript'></script>
+        <script src='{!! url('js/bootstrap.min.js') !!}' type='text/javascript'></script> 
         <script type="text/javascript"> 
         /// chat
             var view = <?php echo $view?>;
