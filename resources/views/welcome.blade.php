@@ -251,13 +251,13 @@
                         numberClick = numberClick + 1;    
                                   
                         $("#left").attr("onclick","getRandom('"+staffs[0]['id']+"','left','"+staffs[0]['genre_id']+"')");
-                        $("#name_left").attr("href","'"+staffs[0]['url']+"'");
+                        $("#name_left").attr("href",staffs[0]['url']);
                         $("#l_name").text(staffs[0]['name']);
 
                         $("#imgLeft").attr("src","http://enjoyxoxo.com/uploads/"+staffs[0]['image']);
 
                         $("#right").attr("onclick","getRandom('"+staffs[1]['id']+"','right','"+staffs[0]['genre_id']+"')");
-                        $("#name_right").attr("href","'"+staffs[1]['url']+"'");
+                        $("#name_right").attr("href",staffs[1]['url']);
                         $("#r_name").text(staffs[1]['name']);
                         $("#imgRight").attr("src","http://enjoyxoxo.com/uploads/"+staffs[1]['image']);                                        
                     }
