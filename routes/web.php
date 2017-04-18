@@ -122,6 +122,10 @@ Route::group([ 'middleware' => 'auth'], function () {
             'as' => 'admin.statistical.getIndex',
             'uses' => 'Admin\StatisticalController@getIndex'
         ]);
+        Route::get(config('quickadmin.route') . '/mesages/{id}', [
+            'as' => 'admin.mesages.list',
+            'uses' => 'Admin\MesagesController@getMessage'
+        ]);
     });
 });
 

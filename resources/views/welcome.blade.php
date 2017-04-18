@@ -14,6 +14,9 @@
             .submit{
                 margin-left: -10px;
             }
+            span{
+                font-weight: bold;
+            }
             .header {
                 background-image :url("{{ asset('images/header.png')}}");
                 background-size: 100% 100%;    
@@ -53,16 +56,20 @@
                 height: 10px;
             }
   
-  .titleAva1  a{color: #fff}
-   .titleAva1 {
-    background-image: url("{{ asset('images/number1.png')}}");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    color: white;
-    text-align: center;
-    font-size: 16px;
-    padding: 10px 0;
-    margin-bottom: 0px; }
+          .titleAva1  a{color: #fff}
+           .titleAva1 {
+            background-image: url("{{ asset('images/number1.png')}}");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            padding: 10px 0;
+            margin-bottom: 0px; }
+            .show_img{
+                padding-right: 0px;
+                padding-left: 0px;
+            }
         </style>
     </head>
     <body>        
@@ -79,16 +86,16 @@
                     </div>
                     <div class="row row-choose">
                     @if($staff != null)
-                        <div class="col-md-4 col-md-offset-1 col-xs-5">
-                            <a id="l_name">{{$staff[0]['name']}}</a>
+                        <div class="col-md-4 col-md-offset-1 col-xs-5 show_img">
+                            <span id="l_name">{{$staff[0]['name']}}</span>
                             <a id="left" onclick="getRandom('<?php echo $staff[0]['id']  ?>','<?php echo 'left'?>','<?php echo $id ?>');"><img id="imgLeft" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[0]['image'] }}"></a>
                             <p class="titleAva1">
                                     <a id="name_left" href="{{$staff[0]['url']}}">{{ $ge_url }}</a>
                                 </p>
                         </div>
                         <div class="col-md-1 col-xs-1 or">OR</div>
-                        <div class="col-md-4 col-xs-5" style="padding-right: 0px;padding-left: 0px" >
-                            <a id="r_name">{{$staff[1]['name']}}</a>
+                        <div class="col-md-4 col-xs-5 show_img" >
+                            <span id="r_name">{{$staff[1]['name']}}</span>
                             <a id="right" onclick="getRandom('<?php echo $staff[1]['id']  ?>','<?php echo 'right'?>','<?php echo $id?>');"> <img id="imgRight" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[1]['image'] }}">
                             <p class="titleAva1">
                                     <a id="name_right" href="{{$staff[1]['url']}}">{{$ge_url}}</a>
@@ -311,7 +318,19 @@
                     }
                 });              
             });
-                                   
+             window.onload = function(){
+                var height = $('.container #main .row-choose div:first-child img').height();    
+                        $('.container #main .row-choose div img').height(height);   
+                };
+                $(document).ready(function () {  
+                     
+                    $( window ).resize(function() {
+                         var height = $('.container #main .row-choose div:first-child img').height();    
+                        $('.container #main .row-choose div img').height(height);   
+                });
+
+            });
+                                          
         </script>        
     </body>
 </html>

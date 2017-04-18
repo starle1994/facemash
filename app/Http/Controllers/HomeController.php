@@ -48,6 +48,7 @@ class HomeController extends Controller
         $genre = Genre::where('id',$id)->first();
         $ge_name =$genre->name;
         $ge_url  = $genre->url;
+        
         $statistical = Statistical::where('genre_id',$id)->where('day',$day)->where('month',$month)->where('year',$year)->first();
 
         // check first view
