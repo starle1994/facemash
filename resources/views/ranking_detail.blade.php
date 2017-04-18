@@ -131,8 +131,7 @@
     </body>
 <script type="text/javascript">
     window.onload = function(){
-        var height = $('.container .avaId .pdLeft div:first-child img').height(); 
-        console.log(height);     
+        var height = $('.container .avaId .pdLeft div:first-child img').height();    
                 $('.container .avaId .pdLeft .ct-ava img').height(height);   
         };
     $(document).ready(function () {  
