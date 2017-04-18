@@ -56,16 +56,20 @@
                 height: 10px;
             }
   
-  .titleAva1  a{color: #fff}
-   .titleAva1 {
-    background-image: url("{{ asset('images/number1.png')}}");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    color: white;
-    text-align: center;
-    font-size: 16px;
-    padding: 10px 0;
-    margin-bottom: 0px; }
+          .titleAva1  a{color: #fff}
+           .titleAva1 {
+            background-image: url("{{ asset('images/number1.png')}}");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            padding: 10px 0;
+            margin-bottom: 0px; }
+            .show_img{
+                padding-right: 0px;
+                padding-left: 0px;
+            }
         </style>
     </head>
     <body>        
@@ -82,7 +86,7 @@
                     </div>
                     <div class="row row-choose">
                     @if($staff != null)
-                        <div class="col-md-4 col-md-offset-1 col-xs-5">
+                        <div class="col-md-4 col-md-offset-1 col-xs-5 show_img">
                             <span id="l_name">{{$staff[0]['name']}}</span>
                             <a id="left" onclick="getRandom('<?php echo $staff[0]['id']  ?>','<?php echo 'left'?>','<?php echo $id ?>');"><img id="imgLeft" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[0]['image'] }}"></a>
                             <p class="titleAva1">
@@ -90,7 +94,7 @@
                                 </p>
                         </div>
                         <div class="col-md-1 col-xs-1 or">OR</div>
-                        <div class="col-md-4 col-xs-5" style="padding-right: 0px;padding-left: 0px" >
+                        <div class="col-md-4 col-xs-5 show_img" >
                             <span id="r_name">{{$staff[1]['name']}}</span>
                             <a id="right" onclick="getRandom('<?php echo $staff[1]['id']  ?>','<?php echo 'right'?>','<?php echo $id?>');"> <img id="imgRight" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[1]['image'] }}">
                             <p class="titleAva1">
