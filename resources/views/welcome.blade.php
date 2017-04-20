@@ -73,6 +73,7 @@
                 <div class = "col-md-8 col-xs-12" >
                     @include('include.header1')
                     <div class="row please">
+                        <p>名古屋の人気ランキングはあなたが決める-XOXO(ハグ&キス)ハグキス</p>
                         <p>あなたはどちらがお好きですか？</p>
                         <p>お好きな方を選んでください。</p>
                     </div>
