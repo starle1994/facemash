@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-         <title>XOXO</title>
-        
-        <link href='{!! url('css/bootstrap.min.css') !!}' rel='stylesheet' type='text/css' />
-        
-        <link rel="stylesheet" href="{!! url('css/style.css') !!}"/>
+        @include('include.head')
         <style type="text/css"> 
             .submit{
                 margin-left: -10px;
