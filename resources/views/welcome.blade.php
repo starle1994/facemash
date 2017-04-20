@@ -2,78 +2,17 @@
 <html lang="en">
     <head>
         @include('include.head')
-        <style type="text/css"> 
-            .submit{
-                margin-left: -10px;
-            }
-            span{
-                font-weight: bold;
-            }
-            .header {
-                background-image :url("{{ asset('images/header.png')}}");
-                background-size: 100% 100%;    
-                background-repeat:   no-repeat;
-                color: #fff;
-                height: 20px;
-                padding: 5px;
-                width: : 100%;
-            }
-            
-            .leftButton{
-                background-image :url("{{ asset('images/genre.png')}}");
-                background-size: 100% 100%;    
-                background-repeat:   no-repeat;
-                height: 23px;
-                margin-left: 30px
-            }
-            .rightButton{
-                background-image :url("{{ asset('images/rk.png')}}");
-                background-size: 100% 100%;    
-                background-repeat:   no-repeat;
-                height: 23px;
-                margin-left: 20px;
-            }
-            .centerButton{
-                background-image :url("{{ asset('images/cm.png')}}");
-                background-size: 100% 100%;    
-                background-repeat:   no-repeat;
-                height: 23px;
-                 margin-left: 20px;
-            }
-            
-            .line{
-                background-image :url("{{ asset('images/line.png')}}");
-                background-size: 100% 100%;    
-                background-repeat:   no-repeat;
-                height: 10px;
-            }
-  
-          .titleAva1  a{color: #fff}
-           .titleAva1 {
-            background-image: url("{{ asset('images/number1.png')}}");
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            color: white;
-            text-align: center;
-            font-size: 16px;
-            padding: 10px 0;
-            margin-bottom: 0px; }
-            .show_img{
-                padding-right: 0px;
-                padding-left: 0px;
-            }
-        </style>
     </head>
     <body>        
         <div class="container">
-           
-            <div class="row header"> 
-                           
-            </div>         
+            <h3 class="row titleAva2"> 
+                 XOXO(ハグ&キス)      
+            </h3>         
             <div class = "row" id="main">
                 <div class = "col-md-8 col-xs-12" >
                     @include('include.header1')
                     <div class="row please">
+                        <h2>XOXO(ハグ&キス)</h2>
                         <p>あなたはどちらがお好きですか？</p>
                         <p>お好きな方を選んでください。</p>
                     </div>
@@ -81,7 +20,7 @@
                     @if($staff != null)
                         <div class="col-md-4 col-md-offset-1 col-xs-5 show_img">
                             <span id="l_name">{{$staff[0]['name']}}</span>
-                            <a id="left" onclick="getRandom('<?php echo $staff[0]['id']  ?>','<?php echo 'left'?>','<?php echo $id ?>');"><img id="imgLeft" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[0]['image'] }}"></a>
+                            <a id="left" onclick="getRandom('<?php echo $staff[0]['id']  ?>','<?php echo 'left'?>','<?php echo $id ?>');"><img id="imgLeft" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[0]['image'] }}" alt="XOXO(ハグ&キス)" title="XOXO(ハグ&キス)"></a>
                             <p class="titleAva1">
                                     <a id="name_left" href="{{$staff[0]['url']}}">{{ $ge_url }}</a>
                                 </p>
@@ -89,11 +28,11 @@
                         <div class="col-md-1 col-xs-1 or">OR</div>
                         <div class="col-md-4 col-xs-5 show_img" >
                             <span id="r_name">{{$staff[1]['name']}}</span>
-                            <a id="right" onclick="getRandom('<?php echo $staff[1]['id']  ?>','<?php echo 'right'?>','<?php echo $id?>');"> <img id="imgRight" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[1]['image'] }}">
+                            <a id="right" onclick="getRandom('<?php echo $staff[1]['id']  ?>','<?php echo 'right'?>','<?php echo $id?>');"> <img id="imgRight" class="img-reponsive img-thumbnail" src="{{ asset('uploads/') . '/'.  $staff[1]['image'] }}" alt="XOXO(ハグ&キス)" title="XOXO(ハグ&キス)"></a>
                             <p class="titleAva1">
-                                    <a id="name_right" href="{{$staff[1]['url']}}">{{$ge_url}}</a>
-                                </p>
-                           </a>
+                                <a id="name_right" href="{{$staff[1]['url']}}">{{$ge_url}}</a>
+                            </p>
+                        
                         </div>
                     @endif
                     </div>      

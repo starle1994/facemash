@@ -2,78 +2,13 @@
 <html lang="en">
     <head>
         @include('include.head')
-        <style type="text/css"> 
-        
-            .header {
-                background-image :url("{{ asset('images/header.png')}}");
-                background-size: 100% 100%;    
-                background-repeat:   no-repeat;
-                color: #fff;
-                height: 20px;
-                padding: 5px;
-                width: : 100%;
-            }
-            
-            .leftButton{
-                background-image :url("{{ asset('images/genre.png')}}");
-                background-size: 100% 100%;    
-                background-repeat:   no-repeat;
-                height: 23px;
-                margin-left: 30px
-            }
-            .rightButton{
-                background-image :url("{{ asset('images/rk.png')}}");
-                background-size: 100% 100%;    
-                background-repeat:   no-repeat;
-                height: 23px;
-                margin-left: 20px;
-            }
-            .centerButton{
-                background-image :url("{{ asset('images/cm.png')}}");
-                background-size: 100% 100%;    
-                background-repeat:   no-repeat;
-                height: 23px;
-                 margin-left: 20px;
-            }
-            
-            .line{
-                background-image :url("{{ asset('images/line.png')}}");
-                background-size: 100% 100%;    
-                background-repeat:   no-repeat;
-                height: 10px;
-            }
-            
-            .avaId .titleAva1 {
-    background-image: url(images/titleNumber.png);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    color: white;
-    text-align: left;
-    font-size: 18px;
-    padding: 10px 0px 10px 35px;
-    margin-bottom: 0px; }
-  
-    margin-bottom: 0px; }
-  .avaId .ct-ava img {
-    max-width: 100%;
-    width: 100%; }
-  .avaId .ct-ava .titleAva1 {
-    background-image: url("{{ asset('images/number1.png')}}");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    color: white;
-    text-align: center;
-    font-size: 16px;
-    padding: 10px 0;
-    margin-bottom: 0px; }
-           
-        </style>
     </head>
     <body>        
         <div class="container">
            
-            <div class="row header">              
-            </div>         
+            <h3 class="row titleAva2"> 
+                  ハグ&キス      
+            </h3>         
             <div class = "row" id="main">
                 <div class = "col-md-12  col-xs-12" >
                     @include('include.header1')
@@ -85,7 +20,7 @@
                         @if(isset($images[$i]))
                         <div class="col-xs-6 col-md-6 pdLeft">
                             <div class="ct-ava">
-                                <img src="{{asset('uploads/'.$images[$i]->image)}}" alt="" class="img-reponsive img-thumbnail">
+                                <img src="{{asset('uploads/'.$images[$i]->image)}}" alt="" class="img-reponsive img-thumbnail" alt="XOXO(ハグ&キス)" title="XOXO(ハグ&キス)">
                                 <p class="titleAva1">
                                     {{ 'No'.$n }}
                                 </p>
@@ -102,7 +37,7 @@
                         @if(isset($images[$i]))
                         <div class="col-xs-6 col-md-6 pdLeft">
                             <div class="ct-ava">
-                                <img src="{{asset('uploads/'.$images[$i]->image)}}" alt="" class="img-reponsive img-thumbnail">
+                                <img src="{{asset('uploads/'.$images[$i]->image)}}" alt="" class="img-reponsive img-thumbnail" alt="XOXO(ハグ&キス)" title="XOXO(ハグ&キス)">
                                 <p class="titleAva1">
                                       {{ 'No'.$n }}
                                 </p>
