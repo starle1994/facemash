@@ -5,14 +5,13 @@
     </head>
     <body>        
         <div class="container">
-            <h3 class="row titleAva2"> 
+            <h1 class="row titleAva2"> 
                  XOXO(ハグ&キス)      
-            </h3>         
+            </h1>         
             <div class = "row" id="main">
                 <div class = "col-md-8 col-xs-12" >
                     @include('include.header1')
                     <div class="row please">
-                        <h2>XOXO(ハグ&キス)</h2>
                         <p>あなたはどちらがお好きですか？</p>
                         <p>お好きな方を選んでください。</p>
                     </div>
@@ -36,7 +35,8 @@
                         </div>
                     @endif
                     </div>      
-                    <div class="row row-bottom"><p>Which do you like?</p></div>                     
+                    <div class="row row-bottom">
+                    <p>Which do you like?</p></div>                     
                  </div>
                 <div class = "col-md-4 col-xs-12">
                     <div class = "col-md-10 col-xs-10 col-xs-offset-1">
@@ -88,6 +88,7 @@
                     </div>
                 </div>
             </div>
+            @include('include.footer')
         </div>
         <script src='{!! url('js/jquery-3.2.0.min.js') !!}' type='text/javascript'></script>
         <script src='{!! url('js/bootstrap.min.js') !!}' type='text/javascript'></script> 

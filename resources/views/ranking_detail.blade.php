@@ -6,9 +6,9 @@
     <body>        
         <div class="container">
            
-            <h3 class="row titleAva2"> 
-                  ハグ&キス      
-            </h3>         
+            <h1 class="row titleAva2"> 
+                  XOXO(ハグ&キス)     
+            </h1>         
             <div class = "row" id="main">
                 <div class = "col-md-12  col-xs-12" >
                     @include('include.header1')
@@ -51,6 +51,7 @@
                  </div>
              
             </div>
+            @include('include.footer')
         </div>
         
        
