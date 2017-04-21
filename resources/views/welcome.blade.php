@@ -12,8 +12,8 @@
                 <div class = "col-md-8 col-xs-12" >
                     @include('include.header1')
                     <div class="row please">
-                        <p>あなたはどちらがお好きですか？</p>
-                        <p>お好きな方を選んでください。</p>
+                        <p>どちらが好きですか？</p>
+                        <p>好きな方にプッシュ！</p>
                     </div>
                     <div class="row row-choose">
                     @if($staff != null)
