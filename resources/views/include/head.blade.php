@@ -8,6 +8,7 @@
 <meta name="keywords" content="XOXO(ハグ&キス)"> 
 <meta name="author" content="名古屋の人気ランキングはあなたが決める-XOXO(ハグ&キス)ハグキス">
 <meta name="copyright" content="名古屋の人気ランキングはあなたが決める-XOXO(ハグ&キス)ハグキス">
+<link rel="alternate" hreflang="ja-jp" href="{{route('index')}}" />
 <link rel="canonical" href="{{route('index')}}">
 <title>XOXO(ハグ&キス)</title>
 <link href='{!! url('css/bootstrap.min.css') !!}' rel='stylesheet' type='text/css' />

@@ -38,8 +38,13 @@
                     <div class="row row-bottom">
                     <p>Which do you like?</p></div>                     
                  </div>
+
                 <div class = "col-md-4 col-xs-12">
-                    <div class = "col-md-10 col-xs-10 col-xs-offset-1">
+                    
+                    <div class = "col-md-12 col-xs-12 ">
+                        <div class="ad">
+                            <img src="{{ ($ad == null) ? asset('css/images/ad.png') : asset('uploads/'.$ad->image) }}" class="img-responsive" alt="XOXO(ハグ&キス)">
+                        </div>
                         <div class= "chat-box">
                             <div class= "message-box">
                             <?php $viewPrevios = null;

@@ -8,6 +8,7 @@ use App\Message;
 use Illuminate\Http\Request;
 use App\Genre;
 use App\ImageGenre;
+use App\Advertisement;
 
 class HomeController extends Controller
 {
@@ -48,7 +49,7 @@ class HomeController extends Controller
         $genre = Genre::where('id',$id)->first();
         $ge_name =$genre->name;
         $ge_url  = $genre->url;
-        
+        $ad = Advertisement::first();
         $statistical = Statistical::where('genre_id',$id)->where('day',$day)->where('month',$month)->where('year',$year)->first();
 
         // check first view
@@ -83,7 +84,7 @@ class HomeController extends Controller
         ];
         $messages = Message::where('genre_id',$id)->limit(100)->get();
 
-        return view('welcome', compact('staff','view','messages','id','ge_name','ge_url'));
+        return view('welcome', compact('staff','view','messages','id','ge_name','ge_url','ad'));
     }
    
    public function getRandom()

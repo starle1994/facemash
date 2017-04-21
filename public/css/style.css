@@ -110,9 +110,12 @@
                 margin-top: 35px;
                 margin-bottom: 35px;
             }
+            .ad{
+                    margin-top: 35px;  
+            }
             .chat-box{
                 font-size: 13px;
-                margin-top: 35px;  
+            
                 border-style: solid;
                 border-radius: 4px;
                 border-width: 1px;
