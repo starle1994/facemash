@@ -43,7 +43,7 @@
                     
                     <div class = "col-md-12 col-xs-12 ">
                         <div class="ad">
-                            <img src="{{ ($ad == null) ? asset('css/images/ad.png') : asset('uploads/'.$ad->image) }}" class="img-responsive" alt="XOXO(ハグ&キス)">
+                            <a href="{{($ad != null) ? $ad->link : '' }}"><img src="{{ ($ad == null) ? asset('css/images/ad.png') : asset('uploads/'.$ad->image) }}" class="img-responsive" alt="XOXO(ハグ&キス)"></a>
                         </div>
                         <div class= "chat-box">
                             <div class= "message-box">
