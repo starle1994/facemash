@@ -21,7 +21,7 @@ class Genre extends Model {
 
     protected $table    = 'genre';
     
-    protected $fillable = ['name','image','url'];
+    protected $fillable = ['name'];
     
 
     public static function boot()

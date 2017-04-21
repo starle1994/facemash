@@ -10,6 +10,8 @@ use App\Http\Requests\CreateGenreRequest;
 use App\Http\Requests\UpdateGenreRequest;
 use Illuminate\Http\Request;
 
+
+
 class GenreController extends Controller {
 
 	/**
@@ -22,7 +24,7 @@ class GenreController extends Controller {
 	public function index(Request $request)
     {
         $genre = Genre::all();
-        
+
 		return view('admin.genre.index', compact('genre'));
 	}
 
@@ -33,6 +35,8 @@ class GenreController extends Controller {
 	 */
 	public function create()
 	{
+	    
+	    
 	    return view('admin.genre.create');
 	}
 
@@ -43,41 +47,10 @@ class GenreController extends Controller {
 	 */
 	public function store(CreateGenreRequest $request)
 	{
-
-	    $image = $this->uploadAvatarAgent($request->image, $request['image-data']);
-	    	
-		Genre::create([
-			'name'  =>$request->name,
-			'image' =>$image['url'],
-			'name'  =>$request->url,
-			]);
+	    
+		Genre::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.genre.index');
-	}
-
-	public function uploadAvatarAgent($file,$content)
-	{
-
-	//Check request Avata
-		$explode[1] = null;
-		$explode = explode('.', $file->getClientOriginalName());
-		$arr_ext = array('jpg', 'jpeg', 'png', 'PNG', 'JPG');
-		$result['status'] = 0; 
-
-		if(!empty($explode) && in_array($explode[1], $arr_ext)) {
-		list($type, $content) = explode(';', $content);
-		list(, $data) = explode(',', $content);
-		$data = base64_decode($data);
-		$setNewFileName = time() . "_" . rand(000000, 999999).'.'.$explode[1];
-		$fileUrl = public_path() . '/uploads/' . $setNewFileName;
-		file_put_contents($fileUrl, $data);
-		$result['status'] = 1;
-		$result['url'] = $setNewFileName; 
-		} else{
-		$result['status'] = 0;
-		$result['url'] = '';
-		}
-		return $result;
 	}
 
 	/**
@@ -103,13 +76,10 @@ class GenreController extends Controller {
 	public function update($id, UpdateGenreRequest $request)
 	{
 		$genre = Genre::findOrFail($id);
-		$data['name'] = $request->name;
-        if($request['image-data'] != null){
-        	$image = $this->uploadAvatarAgent($request->image, $request['image-data']);
-        	$data['image'] = $image['url'];
-        }
-		$data['url'] = $request->url;
-		$genre->update($data); 
+
+        
+
+		$genre->update($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.genre.index');
 	}
