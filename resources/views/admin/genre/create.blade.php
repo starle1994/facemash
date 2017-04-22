@@ -1,15 +1,19 @@
-@extends('admin.layouts.master')
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>cropit</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="{{ asset('js/jquery.cropit.js')}}"></script>
 
-@section('content')
-<style>
-   .cropit-preview {
+    <style>
+      .cropit-preview {
         background-color: #f8f8f8;
         background-size: cover;
         border: 5px solid #ccc;
         border-radius: 3px;
         margin-top: 7px;
         width: 250px;
-        height: 150px;
+        height: 250px;
       }
       .cropit-preview-image-container {
         cursor: move;
@@ -31,65 +35,22 @@
         margin-top: 10px;
       }
     </style>
-<div class="row">
-    <div class="col-sm-10 col-sm-offset-2">
-        <h1>{{ trans('quickadmin::templates.templates-view_create-add_new') }}</h1>
-
-        @if ($errors->any())
-          <div class="alert alert-danger">
-              <ul>
-                    {!! implode('', $errors->all('<li class="error">:message</li>')) !!}
-                </ul>
-          </div>
-        @endif
-    </div>
-</div>
-
-{!! Form::open(array('files' => true,'route' => config('quickadmin.route').'.genre.store', 'id' => 'form-with-validation', 'class' => 'form-horizontal','enctype' => 'multipart/form-data')) !!}
-
-<div class="form-group">
-    {!! Form::label('name', 'name*', array('class'=>'col-sm-2 control-label')) !!}
-    <div class="col-sm-10">
-        {!! Form::text('name', old('name'), array('class'=>'form-control')) !!}
-        
-    </div>
-</div>
-<div class="form-group">
-  <div class="col-sm-2 control-label">
-      Image
-  </div>
-  <div class="col-sm-10">
+  </head>
+  <body>
     <div class="image-editor">
-      <input type="file" class="cropit-image-input" name="image">
+      <input type="file" class="cropit-image-input">
       <div class="cropit-preview"></div>
       <div class="image-size-label">
         Resize image
       </div>
-      <input type="range" class="cropit-image-zoom-input" >
-       <input type="hidden" name="image-data" class="hidden-image-data"/>
+      <input type="range" class="cropit-image-zoom-input">
       <button class="rotate-ccw">Rotate counterclockwise</button>
       <button class="rotate-cw">Rotate clockwise</button>
 
       <button class="export">Export</button>
     </div>
-    </div>
-</div>
-<div class="form-group">
-    {!! Form::label('url', 'url*', array('class'=>'col-sm-2 control-label')) !!}
-    <div class="col-sm-10">
-        {!! Form::text('url', old('url'), array('class'=>'form-control')) !!}
-        
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-sm-10 col-sm-offset-2">
-      {!! Form::submit( trans('quickadmin::templates.templates-view_create-create') , array('class' => 'btn btn-primary')) !!}
-    </div>
-</div>
 
-{!! Form::close() !!}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
- <script>
+    <script>
       $(function() {
         $('.image-editor').cropit({
           exportZoom: 1.25,
@@ -105,10 +66,11 @@
         $('.rotate-ccw').click(function() {
           $('.image-editor').cropit('rotateCCW');
         });
-        $('form').submit(function() {
+        $('.export').click(function() {
           var imageData = $('.image-editor').cropit('export');
-          $('.hidden-image-data').val(imageData);
+          window.open(imageData);
         });
       });
     </script>
-@endsection
+  </body>
+</html>
