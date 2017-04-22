@@ -93,13 +93,37 @@ class HomeController extends Controller
 		$id = $_GET['id'];
 		$choose = $_GET['choose'];
         $genre_id = $_GET['genre_id'];
-                 
+        if ($genre_id ==1) {
+            $a = Staff::where('id', $id)->first();
+            $number = $a->rating + 1;
+            $a->update(['rating' => $number]);    
+        }else{
+            $a = ImageGenre::where('id', $id)->first();
+            $number = $a->rating + 1;
+            $a->update(['rating' => $number]);
+        }
+                            
 
         $day = (int)date('d');
         $month = (int)date('m');
         $year = (int)date('Y');
 
-        
+        $statistical = Statistical::where('genre_id', $genre_id)->where('day',$day)->where('day',$day)->where('month',$month)->where('year',$year)->first();
+        if($statistical == null){
+            if($choose=='left'){
+                Statistical::where('genre_id', $genre_id)->where('day',$day)->insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>1,'numberright'=>0,'views'=>1,'genre_id'=>$genre_id]);
+            }elseif($choose=='right'){
+                Statistical::where('genre_id', $genre_id)->where('day',$day)->insert(['day'=>$day,'month'=>$month,'year'=>$year,'numberleft'=>0,'numberright'=>1,'views'=>1,'genre_id'=>$genre_id]);
+            }                                               
+        }else{
+            if($choose=='left'){
+                $left = $statistical->numberleft + 1;
+                Statistical::where('genre_id', $genre_id)->where('day',$day)->where('day',$day)->where('month',$month)->where('year',$year)->update(['numberleft' => $left]);
+            }elseif($choose=='right'){
+                $right = $statistical->numberright + 1;
+                Statistical::where('genre_id', $genre_id)->where('day',$day)->where('day',$day)->where('month',$month)->where('year',$year)->update(['numberright' => $right]);
+            }
+        }
         if($genre_id== 1){
             $staffs = Staff::inRandomOrder()->select('id','image','name','url')->take(2)->get()->toArray();
         
