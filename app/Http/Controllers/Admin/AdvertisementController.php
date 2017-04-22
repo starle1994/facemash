@@ -64,7 +64,7 @@ class AdvertisementController extends Controller {
 		$advertisement  = Advertisement::find($id);
 	    
 	    $position = ['top'=>'Top','bottom'=>'Bottom'];
-		return view('admin.advertisement.edit', compact('advertisement',compact('position')));
+		return view('admin.advertisement.edit', compact('advertisement''position'));
 	}
 
 	/**
