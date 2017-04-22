@@ -96,7 +96,7 @@
           imageBackground: true,
           imageBackgroundBorderWidth: 20,
           imageState: {
-            src: 'http://lorempixel.com/500/400/',
+            src: 'https://lorempixel.com/500/400/',
           },
         });
         $('.rotate-cw').click(function() {
