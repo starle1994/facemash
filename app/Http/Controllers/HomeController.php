@@ -20,13 +20,15 @@ class HomeController extends Controller
     public function indexGenre()
     {
         $genres = Genre::all();
-        return view('genre',compact('genres'));
+        $ads = Advertisement::all();
+        return view('genre',compact('genres','ads'));
     }
 
     public function ranking()
     {
         $genres = Genre::all();
-        return view('ranking',compact('genres'));
+        $ads = Advertisement::all();
+        return view('ranking',compact('genres','ads'));
     }
 
     public function rankingDetail($id)
@@ -36,8 +38,8 @@ class HomeController extends Controller
         }else{
             $images = ImageGenre::where('genre_id', $id)->orderBy('rating','desc')->take(10)->get();
         }
-        
-        return view('ranking_detail',compact('images'));
+        $ads = Advertisement::all();
+        return view('ranking_detail',compact('images','ads'));
     }
 
     public function index($id=1)
