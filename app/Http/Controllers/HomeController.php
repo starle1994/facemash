@@ -49,7 +49,7 @@ class HomeController extends Controller
         $genre = Genre::where('id',$id)->first();
         $ge_name =$genre->name;
         $ge_url  = $genre->url;
-        $ad = Advertisement::first();
+        $ads = Advertisement::all();
         $statistical = Statistical::where('genre_id',$id)->where('day',$day)->where('month',$month)->where('year',$year)->first();
 
         // check first view
@@ -84,7 +84,7 @@ class HomeController extends Controller
         ];
         $messages = Message::where('genre_id',$id)->limit(100)->get();
 
-        return view('welcome', compact('staff','view','messages','id','ge_name','ge_url','ad'));
+        return view('welcome', compact('staff','view','messages','id','ge_name','ge_url','ads'));
     }
    
    public function getRandom()

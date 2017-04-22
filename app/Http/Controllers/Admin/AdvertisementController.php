@@ -36,8 +36,8 @@ class AdvertisementController extends Controller {
 	public function create()
 	{
 	    
-	    
-	    return view('admin.advertisement.create');
+	    $position = ['top'=>'Top','bottom'=>'Bottom'];
+	    return view('admin.advertisement.create',compact('position'));
 	}
 
 	/**
@@ -63,8 +63,8 @@ class AdvertisementController extends Controller {
 	{
 		$advertisement  = Advertisement::find($id);
 	    
-	    
-		return view('admin.advertisement.edit', compact('advertisement'));
+	    $position = ['top'=>'Top','bottom'=>'Bottom'];
+		return view('admin.advertisement.edit', compact('advertisement',compact('position')));
 	}
 
 	/**

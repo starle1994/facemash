@@ -19,6 +19,7 @@
                         <th>name company</th>
                         <th>image</th>
                         <th>link</th>
+                        <th>position</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -33,6 +34,7 @@
                            
                             <td>@if($row->image != '')<img src="{{ asset('uploads/thumb') . '/'.  $row->image }}">@endif</td>
                             <td>{{ $row->link }}</td>
+                            <td>{{ $row->position }}</td>
                             <td>
                                 {!! link_to_route(config('quickadmin.route').'.advertisement.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
                                 {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('".trans("quickadmin::templates.templates-view_index-are_you_sure")."');",  'route' => array(config('quickadmin.route').'.advertisement.destroy', $row->id))) !!}
