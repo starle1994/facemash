@@ -43,11 +43,10 @@
             .please{
                 margin-bottom: 30px;
             }
-            .row-choose{
-                margin-left: 1%;
+            .row-choose {
+                margin-left: 4%;
             }
             .row-choose div{
-              
                 text-align: center;
                 vertical-align: middle;
       
@@ -75,154 +74,171 @@
                 margin-right: 10px;
             }
             @media screen and (min-width: 320px)
-        {
-            body {                
-                margin: 0;
-                padding: 0;
-                text-align: center;
-               
-                font-family: "ＭＳ Ｐゴシック";
-            }
-            body p {
-                 font-size: 25px;
-            }
-            .or{
-               
-                margin-top: 150px;
-            }
-        }
-        @media (max-width: 767px)
-        { 
-            body {                
-                margin: 0;
-                padding: 0;
-                text-align: center;
-                font-size: 15px;
-                font-family: "ＭＳ Ｐゴシック";
-            }
-            .or{
-                font-size: 10px;
-                margin-top: 100px;
-                margin-right: 10px;
-            }
-        } 
-            .container{
-                margin-top: 35px;
-                margin-bottom: 35px;
-            }
-            .ad{
+            {
+                body {                
+                    margin: 0;
+                    padding: 0;
+                    text-align: center;
+                   
+                    font-family: "ＭＳ Ｐゴシック";
+                }
+                body p {
+                     font-size: 25px;
+                }
+                .or{
+                   
+                    margin-top: 150px;
+                }
+                .ad{
                     margin-top: 35px;  
-            }
+                }
 
-            .ad img{
-                    margin-bottom: 10px;  
+                .ad img{
+                        margin-bottom: 10px;  
+                }
+                .ad_mobi{
+                    display: none;
+                }
             }
-            .chat-box{
-                font-size: 13px;
-            
-                border-style: solid;
-                border-radius: 4px;
-                border-width: 1px;
-                border-color: orange;
-            }
-            .message-box{
-                width: 100%;
-                height: 500px;
-                overflow: scroll;                              
-            }
-            .input-box{
-                background-color: orange;
-                height: 90px;
-            }
-            .input-box input{
-                height: 100%;                
-            }
-            .input-msg{
-                padding: 10px;
-                height: 100%;                
-            }
-            .input-button{
-                padding: 10px;
-                float:right;
-                height: 100%;                
-            }
-            a {
-                text-decoration: none;
-                color: darkblue;
-            }
-            a:hover {
-                text-decoration: underline;
-            }
-            img {
-                width: 100%;
-                height: 100%;                
-            }
-            .pdLeft{
-                margin-bottom: 20px;
-            }
-            .avaId{
-                margin-left: 15px;
-            }
-            .titleAva1{
+            @media (max-width: 768px)
+            { 
+                body {                
+                    margin: 0;
+                    padding: 0;
+                    text-align: center;
+                    font-size: 15px;
+                    font-family: "ＭＳ Ｐゴシック";
+                }
+                .or{
+                    font-size: 10px;
+                    margin-top: 100px;
+                    margin-right: 10px;
+                }
+                .ad{
+                    display: none;  
+                }
+                .ad_mobi{
+                    display: block;
+                }
+                .ad_mobi img{
+                        margin-top: 20px;  
+                } 
+                .header1 {
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                }
+             }
+             .container{
+                    margin-top: 35px;
+                    margin-bottom: 35px;
+                }
+                
+                .chat-box{
+                    font-size: 13px;
+                
+                    border-style: solid;
+                    border-radius: 4px;
+                    border-width: 1px;
+                    border-color: orange;
+                }
+                .message-box{
+                    width: 100%;
+                    height: 500px;
+                    overflow: scroll;                              
+                }
+                .input-box{
+                    background-color: orange;
+                    height: 90px;
+                }
+                .input-box input{
+                    height: 100%;                
+                }
+                .input-msg{
+                    padding: 10px;
+                    height: 100%;                
+                }
+                .input-button{
+                    padding: 10px;
+                    float:right;
+                    height: 100%;                
+                }
+                a {
+                    text-decoration: none;
+                    color: darkblue;
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+                img {
+                    width: 100%;
+                    height: 100%;                
+                }
+                .pdLeft{
+                    margin-bottom: 20px;
+                }
+                .avaId{
+                    margin-left: 15px;
+                }
+                .titleAva1{
+                    font-weight: bold;
+                }
+                .submit{
+                    margin-left: -10px;
+                }
+                span{
+                    font-weight: bold;
+                }
+                
+                .leftButton{
+                    background-image :url(images/genre.png);
+                    background-size: 100% 100%;    
+                    background-repeat:   no-repeat;
+                    padding: 15px;
+                    margin-left: 30px
+                }
+                .rightButton{
+                    background-image :url(images/rk.png);
+                    background-size: 100% 100%;    
+                    background-repeat:   no-repeat;
+                     padding: 15px;
+                    margin-left: 20px;
+                }
+                .centerButton{
+                    background-image :url(images/cm.png);
+                    background-size: 100% 100%;    
+                    background-repeat:   no-repeat;
+                     padding: 15px;
+                     margin-left: 20px;
+                }
+                
+                .line{
+                    background-image :url(images/line.png);
+                    background-size: 100% 100%;    
+                    background-repeat:   no-repeat;
+                    height: 10px;
+                }
+      
+              .titleAva1  a{color: #fff}
+               .titleAva1 {
+                background-image: url(images/number1.png);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                color: white;
+                text-align: center;
+                font-size: 16px;
+                padding: 10px 0;
+                margin-bottom: 0px; }
+                .show_img{
+                    padding-right: 0px;
+                    padding-left: 0px;
+                }
+                .titleAva2 {
+               background-image :url(images/header.png);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                color: white;
+                font-size: 20px;
                 font-weight: bold;
-            }
-            .submit{
-                margin-left: -10px;
-            }
-            span{
-                font-weight: bold;
-            }
-            
-            .leftButton{
-                background-image :url(images/genre.png);
-                background-size: 100% 100%;    
-                background-repeat:   no-repeat;
-                padding: 15px;
-                margin-left: 30px
-            }
-            .rightButton{
-                background-image :url(images/rk.png);
-                background-size: 100% 100%;    
-                background-repeat:   no-repeat;
-                 padding: 15px;
-                margin-left: 20px;
-            }
-            .centerButton{
-                background-image :url(images/cm.png);
-                background-size: 100% 100%;    
-                background-repeat:   no-repeat;
-                 padding: 15px;
-                 margin-left: 20px;
-            }
-            
-            .line{
-                background-image :url(images/line.png);
-                background-size: 100% 100%;    
-                background-repeat:   no-repeat;
-                height: 10px;
-            }
-  
-          .titleAva1  a{color: #fff}
-           .titleAva1 {
-            background-image: url(images/number1.png);
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            color: white;
-            text-align: center;
-            font-size: 16px;
-            padding: 10px 0;
-            margin-bottom: 0px; }
-            .show_img{
-                padding-right: 0px;
-                padding-left: 0px;
-            }
-            .titleAva2 {
-           background-image :url(images/header.png);
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            text-align: left;
-            padding: 10px 0;
-            margin-bottom: 0px; }
+                text-align: left;
+                padding: 10px 0;
+                margin-bottom: 0px;

@@ -10,6 +10,9 @@
             </h1>         
             <div class = "row" id="main">
                 <div class = "col-md-8 col-xs-12" >
+                    <div class="ad_mobi">
+                        <a href="{{($ad != null) ? $ad->link : '' }}"><img src="{{ ($ad == null) ? asset('css/images/ad.png') : asset('uploads/'.$ad->image) }}" class="img-responsive" alt="XOXO(ハグ&キス)"></a>
+                    </div>
                     @include('include.header1')
                     <div class="row please">
                         <p>どちらが好きですか？</p>
