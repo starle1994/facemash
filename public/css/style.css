@@ -189,42 +189,31 @@
                     font-weight: bold;
                 }
                 
-                .titleAva2 {
-       
-                background-size: 100% 100%;
-                background-repeat: no-repeat;
-                color: white;
-                font-size: 20px;
-                font-weight: bold;
-                text-align: left;
-                padding: 10px 0;
-                margin-bottom: 0px;
-            }
-            
-            .leftButton{
                 
+            .leftButton{
+                background-image :url(images/genre.png);
                 background-size: 100% 100%;    
                 background-repeat:   no-repeat;
                 padding: 15px;
                 margin-left: 30px
             }
             .rightButton{
-              
+                background-image :url(images/rk.png);
                 background-size: 100% 100%;    
                 background-repeat:   no-repeat;
-                padding: 15px;
+                 padding: 15px;
                 margin-left: 20px;
             }
             .centerButton{
-                
+                background-image :url(images/cm.png);
                 background-size: 100% 100%;    
                 background-repeat:   no-repeat;
-                padding: 15px;
+                 padding: 15px;
                  margin-left: 20px;
             }
             
             .line{
-               
+                background-image :url(images/line.png);
                 background-size: 100% 100%;    
                 background-repeat:   no-repeat;
                 height: 10px;
@@ -232,6 +221,7 @@
   
           .titleAva1  a{color: #fff}
            .titleAva1 {
+            background-image: url(images/number1.png);
             background-size: 100% 100%;
             background-repeat: no-repeat;
             color: white;
@@ -239,3 +229,17 @@
             font-size: 16px;
             padding: 10px 0;
             margin-bottom: 0px; }
+            .show_img{
+                padding-right: 0px;
+                padding-left: 0px;
+            }
+            .titleAva2 {
+           background-image :url(images/header.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+            padding: 10px 0;
+            margin-bottom: 0px;
