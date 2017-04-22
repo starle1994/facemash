@@ -2,6 +2,31 @@
 <html lang="en">
     <head>
         @include('include.head')
+        <style type="text/css">
+            .submit{
+                margin-left: -10px;
+            }
+            .titleAva2 {
+               background-image :url(images/header.png);
+            }
+            
+            .leftButton{
+                background-image :url("{{ asset('images/genre.png')}}");
+            }
+            .rightButton{
+                background-image :url("{{ asset('images/rk.png')}}");
+            }
+            .centerButton{
+                background-image :url("{{ asset('images/cm.png')}}");
+            }
+            
+            .line{
+                background-image :url("{{ asset('images/line.png')}}");
+            }
+
+           .titleAva1 {
+            background-image: url("{{ asset('images/number1.png')}}"); }
+        </style>
     </head>
     <body>        
         <div class="container">
