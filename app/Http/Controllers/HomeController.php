@@ -24,6 +24,13 @@ class HomeController extends Controller
         return view('genre',compact('genres','ads'));
     }
 
+    public function toppages()
+    {
+        $genres = Genre::all();
+        $ads = Advertisement::all();
+        return view('toppages',compact('genres','ads'));
+    }
+
     public function ranking()
     {
         $genres = Genre::all();
