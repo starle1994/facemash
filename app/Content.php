@@ -8,7 +8,7 @@ use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Genre extends Model {
+class Content extends Model {
 
     use SoftDeletes;
 
@@ -19,16 +19,16 @@ class Genre extends Model {
     */
     protected $dates = ['deleted_at'];
 
-    protected $table    = 'genre';
+    protected $table    = 'content';
     
-    protected $fillable = ['name','image','url','ranking_img','talk_img'];
+    protected $fillable = ['name','image','url'];
     
 
     public static function boot()
     {
         parent::boot();
 
-        Genre::observe(new UserActionsObserver);
+        Content::observe(new UserActionsObserver);
     }
     
     

@@ -10,13 +10,9 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-Route::get('/top', [
-            'as' => 'toppages',
-            'uses' => 'HomeController@toppages'
-        ]);
 Route::get('/', [
             'as' => 'index',
-            'uses' => 'HomeController@index'
+            'uses' => 'HomeController@toppages'
         ]);
 Route::get('/genre/{id}', [
             'as' => 'genre.detail',

@@ -37,13 +37,22 @@ class GenreController extends Controller {
 	 */
 	public function store(CreateGenreRequest $request)
 	{
-	    $image = $this->uploadAvatarAgent($request->image, $request['image-data']);
-	    	
-		Genre::create([
-			'name'  =>$request->name,
-			'image' =>$image['url'],
-			'name'  =>$request->url,
-			]);
+		$data['name'] = $request->name;
+        if($request['image-data'] != null){
+        	$image = $this->uploadAvatarAgent($request->image, $request['image-data']);
+        	$data['image'] = $image['url'];
+        }
+        if($request['ranking_img-data'] != null){
+        	$image = $this->uploadAvatarAgent($request->ranking_img, $request['ranking_img-data']);
+        	$data['ranking_img'] = $image['url'];
+        }
+        if($request['talk_img-data'] != null){
+        	$image = $this->uploadAvatarAgent($request->talk_img, $request['talk_img-data']);
+        	$data['talk_img'] = $image['url'];
+        }
+		$data['url'] = $request->url;
+	
+		Genre::create($data);
 		return redirect()->route(config('quickadmin.route').'.genre.index');
 	}
 	public function uploadAvatarAgent($file,$content)
@@ -95,7 +104,16 @@ class GenreController extends Controller {
         	$image = $this->uploadAvatarAgent($request->image, $request['image-data']);
         	$data['image'] = $image['url'];
         }
+        if($request['ranking_img-data'] != null){
+        	$image = $this->uploadAvatarAgent($request->ranking_img, $request['ranking_img-data']);
+        	$data['ranking_img'] = $image['url'];
+        }
+        if($request['talk_img-data'] != null){
+        	$image = $this->uploadAvatarAgent($request->talk_img, $request['talk_img-data']);
+        	$data['talk_img'] = $image['url'];
+        }
 		$data['url'] = $request->url;
+	
 		$genre->update($data); 
 		return redirect()->route(config('quickadmin.route').'.genre.index');
 	}

@@ -45,7 +45,7 @@
     </div>
 </div>
 
-{!! Form::open(array('files' => true,'route' => config('quickadmin.route').'.genre.store', 'id' => 'form-with-validation', 'class' => 'form-horizontal','enctype' => 'multipart/form-data')) !!}
+{!! Form::open(array('files' => true,'route' => config('quickadmin.route').'.content.store', 'id' => 'form-with-validation', 'class' => 'form-horizontal','enctype' => 'multipart/form-data')) !!}
 
 <div class="form-group">
     {!! Form::label('name', 'name*', array('class'=>'col-sm-2 control-label')) !!}
@@ -67,43 +67,6 @@
       </div>
       <input type="range" class="cropit-image-zoom-input" >
        <input type="hidden" name="image-data" class="hidden-image-data"/>
-      <p class="rotate-ccw">Click here to Rotate counterclockwise</p>
-      <p class="rotate-cw">Click here to Rotate clockwise</p>
-    </div>
-    </div>
-</div>
-<div class="form-group">
-  <div class="col-sm-2 control-label">
-      Rangking Image
-  </div>
-  <div class="col-sm-10">
-    <div class="ranking_img-editor">
-      <input type="file" class="cropit-image-input" name="ranking_img">
-      <div class="cropit-preview"></div>
-      <div class="image-size-label">
-        Resize image
-      </div>
-      <input type="range" class="cropit-image-zoom-input" >
-       <input type="hidden" name="ranking_img-data" class="hidden-ranking_img-data"/>
-      <p class="rotate-ccw">Click here to Rotate counterclockwise</p>
-      <p class="rotate-cw">Click here to Rotate clockwise</p>
-    </div>
-    </div>
-</div>
-
-<div class="form-group">
-  <div class="col-sm-2 control-label">
-      Talk Image
-  </div>
-  <div class="col-sm-10">
-    <div class="talk_img-editor">
-      <input type="file" class="cropit-image-input" name="talk_img">
-      <div class="cropit-preview"></div>
-      <div class="image-size-label">
-        Resize image
-      </div>
-      <input type="range" class="cropit-image-zoom-input" >
-       <input type="hidden" name="talk_img-data" class="hidden-talk_img-data"/>
       <p class="rotate-ccw">Click here to Rotate counterclockwise</p>
       <p class="rotate-cw">Click here to Rotate clockwise</p>
     </div>
@@ -144,50 +107,6 @@
         $('form').submit(function() {
           var imageData = $('.image-editor').cropit('export');
           $('.hidden-image-data').val(imageData);
-        });
-      });
-    </script>
-    <script>
-      $(function() {
-        $('.ranking_img-editor').cropit({
-          exportZoom: 1.25,
-          imageBackground: true,
-          imageBackgroundBorderWidth: 20,
-          imageState: {
-            src: 'https://lorempixel.com/500/400/',
-          },
-        });
-        $('.rotate-cw').click(function() {
-          $('.ranking_img-editor').cropit('rotateCW');
-        });
-        $('.rotate-ccw').click(function() {
-          $('.ranking_img-editor').cropit('rotateCCW');
-        });
-        $('form').submit(function() {
-          var imageData = $('.ranking_img-editor').cropit('export');
-          $('.hidden-ranking_img-data').val(imageData);
-        });
-      });
-    </script>
-    <script>
-      $(function() {
-        $('.talk_img-editor').cropit({
-          exportZoom: 1.25,
-          imageBackground: true,
-          imageBackgroundBorderWidth: 20,
-          imageState: {
-            src: 'https://lorempixel.com/500/400/',
-          },
-        });
-        $('.rotate-cw').click(function() {
-          $('.talk_img-editor').cropit('rotateCW');
-        });
-        $('.rotate-ccw').click(function() {
-          $('.talk_img-editor').cropit('rotateCCW');
-        });
-        $('form').submit(function() {
-          var imageData = $('.talk_img-editor').cropit('export');
-          $('.hidden-talk_img-data').val(imageData);
         });
       });
     </script>

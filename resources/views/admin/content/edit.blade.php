@@ -33,24 +33,24 @@
     </style>
 <div class="row">
     <div class="col-sm-10 col-sm-offset-2">
-        <h1>{{ trans('quickadmin::templates.templates-view_create-add_new') }}</h1>
+        <h1>{{ trans('quickadmin::templates.templates-view_edit-edit') }}</h1>
 
         @if ($errors->any())
-          <div class="alert alert-danger">
-              <ul>
+            <div class="alert alert-danger">
+                <ul>
                     {!! implode('', $errors->all('<li class="error">:message</li>')) !!}
                 </ul>
-          </div>
+            </div>
         @endif
     </div>
 </div>
 
-{!! Form::open(array('files' => true,'route' => config('quickadmin.route').'.genre.store', 'id' => 'form-with-validation', 'class' => 'form-horizontal','enctype' => 'multipart/form-data')) !!}
+{!! Form::model($content, array('class' => 'form-horizontal', 'id' => 'form-with-validation', 'method' => 'PATCH', 'route' => array(config('quickadmin.route').'.content.update', $content->id),'enctype' => 'multipart/form-data','files' => true)) !!}
 
 <div class="form-group">
     {!! Form::label('name', 'name*', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::text('name', old('name'), array('class'=>'form-control')) !!}
+        {!! Form::text('name', old('name',$content->name), array('class'=>'form-control')) !!}
         
     </div>
 </div>
@@ -67,8 +67,10 @@
       </div>
       <input type="range" class="cropit-image-zoom-input" >
        <input type="hidden" name="image-data" class="hidden-image-data"/>
-      <p class="rotate-ccw">Click here to Rotate counterclockwise</p>
-      <p class="rotate-cw">Click here to Rotate clockwise</p>
+      <button class="rotate-ccw">Rotate counterclockwise</button>
+      <button class="rotate-cw">Rotate clockwise</button>
+
+      <button class="export">Export</button>
     </div>
     </div>
 </div>
@@ -90,41 +92,22 @@
     </div>
     </div>
 </div>
-
-<div class="form-group">
-  <div class="col-sm-2 control-label">
-      Talk Image
-  </div>
-  <div class="col-sm-10">
-    <div class="talk_img-editor">
-      <input type="file" class="cropit-image-input" name="talk_img">
-      <div class="cropit-preview"></div>
-      <div class="image-size-label">
-        Resize image
-      </div>
-      <input type="range" class="cropit-image-zoom-input" >
-       <input type="hidden" name="talk_img-data" class="hidden-talk_img-data"/>
-      <p class="rotate-ccw">Click here to Rotate counterclockwise</p>
-      <p class="rotate-cw">Click here to Rotate clockwise</p>
-    </div>
-    </div>
-</div>
-
 <div class="form-group">
     {!! Form::label('url', 'url*', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::text('url', old('url'), array('class'=>'form-control')) !!}
+        {!! Form::text('url', old('url',$content->url), array('class'=>'form-control')) !!}
         
     </div>
 </div>
 <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
-      {!! Form::submit( trans('quickadmin::templates.templates-view_create-create') , array('class' => 'btn btn-primary')) !!}
+      {!! Form::submit(trans('quickadmin::templates.templates-view_edit-update'), array('class' => 'btn btn-primary')) !!}
+      {!! link_to_route(config('quickadmin.route').'.content.index', trans('quickadmin::templates.templates-view_edit-cancel'), null, array('class' => 'btn btn-default')) !!}
     </div>
 </div>
 
 {!! Form::close() !!}
-<script src="{{ asset('js/jquery-2.0.0.min.js')}}"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
  <script>
       $(function() {
         $('.image-editor').cropit({
@@ -132,7 +115,7 @@
           imageBackground: true,
           imageBackgroundBorderWidth: 20,
           imageState: {
-            src: 'https://lorempixel.com/500/400/',
+            src: 'http://lorempixel.com/500/400/',
           },
         });
         $('.rotate-cw').click(function() {

@@ -2,9 +2,9 @@
 
 @section('content')
 
-<p>{!! link_to_route(config('quickadmin.route').'.genre.create', trans('quickadmin::templates.templates-view_index-add_new') , null, array('class' => 'btn btn-success')) !!}</p>
+<p>{!! link_to_route(config('quickadmin.route').'.content.create', trans('quickadmin::templates.templates-view_index-add_new') , null, array('class' => 'btn btn-success')) !!}</p>
 
-@if ($genre->count())
+@if ($content->count())
     <div class="portlet box green">
         <div class="portlet-title">
             <div class="caption">{{ trans('quickadmin::templates.templates-view_index-list') }}</div>
@@ -16,29 +16,25 @@
                         
                         <th>name</th>
                         <th>image</th>
-                        <th>Ranking image</th>
-                        <th>Talk image</th>
+                         <th>url</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($genre as $row)
+                    @foreach ($content as $row)
                         <tr>
                             
                             <td>{{ $row->name }}</td>
                             <td>@if($row->image != '')<img width="50px" height="50px" src="{{ asset('uploads') . '/'.  $row->image }}">@endif</td>
-                            <td>@if($row->ranking_img != '')<img width="50px" height="50px" src="{{ asset('uploads') . '/'.  $row->ranking_img }}">@endif</td>
-                            <td>@if($row->talk_img != '')<img width="50px" height="50px" src="{{ asset('uploads') . '/'.  $row->talk_img }}">@endif</td>
                             <td>
-                            {!! link_to_route(config('quickadmin.route').'.statistical.getIndex', 'Statistical', array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
-                                {!! link_to_route(config('quickadmin.route').'.genre.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
-                                @if($row->id !=1)
-                                {!! link_to_route(config('quickadmin.route').'.genre.add.image', 'Image新しく追加する', array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
-                                
-                                {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('".trans("quickadmin::templates.templates-view_index-are_you_sure")."');",  'route' => array(config('quickadmin.route').'.genre.destroy', $row->id))) !!}
+                            <td>{{ $row->url }}</td>
+                            <td>
+                                {!! link_to_route(config('quickadmin.route').'.content.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
+                               
+                                {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('".trans("quickadmin::templates.templates-view_index-are_you_sure")."');",  'route' => array(config('quickadmin.route').'.content.destroy', $row->id))) !!}
                                 {!! Form::submit(trans('quickadmin::templates.templates-view_index-delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                @endif
+                               
                                 {!! Form::close() !!}
                             </td>
                         </tr>
@@ -52,7 +48,7 @@
                     </button>
                 </div>
             </div>
-            {!! Form::open(['route' => config('quickadmin.route').'.genre.massDelete', 'method' => 'post', 'id' => 'massDelete']) !!}
+            {!! Form::open(['route' => config('quickadmin.route').'.content.massDelete', 'method' => 'post', 'id' => 'massDelete']) !!}
                 <input type="hidden" id="send" name="toDelete">
             {!! Form::close() !!}
         </div>

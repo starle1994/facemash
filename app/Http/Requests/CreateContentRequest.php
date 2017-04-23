@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateGenreRequest extends FormRequest {
+class CreateContentRequest extends FormRequest {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -26,8 +26,7 @@ class CreateGenreRequest extends FormRequest {
 		return [
             'name' => 'required', 
             'image'=> 'required', 
-            'ranking_img'=> 'required', 
-            'talk_img'=> 'required', 
+          	 
 		];
 	}
 }

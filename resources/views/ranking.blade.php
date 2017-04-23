@@ -5,10 +5,11 @@
     </head>
     <body>        
         <div class="container">
-           
-             <h1 class="row titleAva2"> 
-                  XOXO(ハグ&キス)        
-            </h1>          
+           <a href="{{route('index')}}">
+               <h1 class="row titleAva2"> 
+                   XOXO(ハグ&キス)      
+              </h1>    
+             </a>          
             <div class = "row" id="main">
                 <div class = "col-md-12  col-xs-12" >
                     @include('include.header1')
@@ -16,7 +17,7 @@
                    @foreach($genres as $genre)
                         <div class="col-xs-6 col-md-3 pdLeft">
                             <div class="ct-ava">
-                                <a href="{{route('ranking.detail',$genre->id)}}"><img src="{{asset('uploads/'.$genre->image)}}" alt="" class="img-reponsive img-thumbnail" alt="XOXO(ハグ&キス)" title="XOXO(ハグ&キス)">
+                                <a href="{{route('ranking.detail',$genre->id)}}"><img src="{{$genre->ranking_img != null ? asset('uploads/'.$genre->ranking_img) : asset('css/images/img_ranking.png') }}" alt="" class="img-reponsive img-thumbnail" alt="XOXO(ハグ&キス)" title="XOXO(ハグ&キス)">
                                 <p class="titleAva1">
                                     {{$genre->name}}
                                 </p>

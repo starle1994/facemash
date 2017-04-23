@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Genre;
 use App\ImageGenre;
 use App\Advertisement;
+use App\Content;
 
 class HomeController extends Controller
 {
@@ -26,9 +27,10 @@ class HomeController extends Controller
 
     public function toppages()
     {
-        $genres = Genre::all();
+        $genres = Genre::take(4)->get();
         $ads = Advertisement::all();
-        return view('toppages',compact('genres','ads'));
+        $content = Content::take(4)->get();
+        return view('toppages',compact('genres','ads','content'));
     }
 
     public function ranking()

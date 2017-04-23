@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -5,14 +6,14 @@
     <title>
         {{ trans('quickadmin::admin.partials-header-title') }}
     </title>
-
     <meta http-equiv="X-UA-Compatible"
           content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0"
           name="viewport"/>
     <meta http-equiv="Content-type"
-          content="text/html; charset=utf-8">
-
+          content="text/html;application/json; charset=utf-8">
+     <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <header name = "Access-Control-Allow-Origin" value = "*" />
     <link rel="stylesheet"
           href="{{ url('quickadmin/css') }}/font-awesome.min.css"/>
     <link rel="stylesheet"

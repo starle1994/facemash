@@ -5,10 +5,11 @@
     </head>
     <body>        
         <div class="container">
-           
-             <h1 class="row titleAva2"> 
-                  XOXO(ハグ&キス)       
-            </h1>         
+           <a href="{{route('index')}}">
+               <h1 class="row titleAva2"> 
+                   XOXO(ハグ&キス)      
+              </h1>    
+             </a>        
             <div class = "row" id="main">
                 <div class = "col-md-12  col-xs-12" >
                     @include('include.header1')
