@@ -107,7 +107,7 @@
 </div>
 
 {!! Form::close() !!}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="{{ asset('js/jquery-2.0.0.min.js')}}"></script>
  <script>
       $(function() {
         $('.image-editor').cropit({
