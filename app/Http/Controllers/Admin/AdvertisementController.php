@@ -33,8 +33,8 @@ class AdvertisementController extends Controller {
   		$pages = Genre::all();
   		$pgs[''] = '-------Please choose--------';
         $pgs[0] = 'Top page';
-        $pgs[10] = 'Genre page';
-        $pgs[11] = 'Ranking page';
+        $pgs[11] = 'Genre page';
+        $pgs[12] = 'Ranking page';
 	    foreach ($pages as  $value) {
 	    	$pgs[$value->id] = $value->name; 
 	    }

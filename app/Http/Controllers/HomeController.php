@@ -21,7 +21,7 @@ class HomeController extends Controller
     public function indexGenre()
     {
         $genres = Genre::all();
-        $ads = Advertisement::where('page',10)->get();
+        $ads = Advertisement::where('page',11)->get();
         return view('genre',compact('genres','ads'));
     }
 
@@ -36,7 +36,7 @@ class HomeController extends Controller
     public function ranking()
     {
         $genres = Genre::all();
-        $ads = Advertisement::where('page',11)->get();
+        $ads = Advertisement::where('page',12)->get();
         return view('ranking',compact('genres','ads'));
     }
 
