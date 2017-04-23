@@ -17,7 +17,7 @@
         <img src="{{ asset('css/images/ad.png')}}" class="img-responsive bottom_ad" alt="XOXO(ハグ&キス)">
     @endif
      @include('include.header1')
-		<a href="{!! route('index') !!}"><img src="{{asset('css/images/footer.png')}}" alt="" class="img-reponsive " alt="XOXO(ハグ&キス)" title="XOXO(ハグ&キス)"></a>
+		<a href="{!! route('index') !!}"><img src="{{asset('css/images/footer.png')}}" alt="" class="img-responsive bottom_ad" alt="XOXO(ハグ&キス)" title="XOXO(ハグ&キス)"></a>
 	</div>
 </div>
 

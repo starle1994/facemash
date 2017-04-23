@@ -121,6 +121,9 @@
     display: block;
  }
  .ads_pc{display: none;}
+ .header1{
+                    display: none;
+                }
 }
 .avaId .title{
     text-align: center;
