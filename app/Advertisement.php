@@ -21,7 +21,7 @@ class Advertisement extends Model {
 
     protected $table    = 'advertisement';
     
-    protected $fillable = ['image','link','name','position'];
+    protected $fillable = ['image','link','name','page','position'];
     
 
     public static function boot()

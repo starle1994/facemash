@@ -21,14 +21,14 @@ class HomeController extends Controller
     public function indexGenre()
     {
         $genres = Genre::all();
-        $ads = Advertisement::all();
+        $ads = Advertisement::where('page',10)->get();
         return view('genre',compact('genres','ads'));
     }
 
     public function toppages()
     {
         $genres = Genre::take(4)->get();
-        $ads = Advertisement::all();
+        $ads = Advertisement::where('page',0)->get();
         $content = Content::take(4)->get();
         return view('toppages',compact('genres','ads','content'));
     }
@@ -36,7 +36,7 @@ class HomeController extends Controller
     public function ranking()
     {
         $genres = Genre::all();
-        $ads = Advertisement::all();
+        $ads = Advertisement::where('page',11)->get();
         return view('ranking',compact('genres','ads'));
     }
 
@@ -47,11 +47,11 @@ class HomeController extends Controller
         }else{
             $images = ImageGenre::where('genre_id', $id)->orderBy('rating','desc')->take(10)->get();
         }
-        $ads = Advertisement::all();
+        $ads = Advertisement::where('page',$id)->get();
         return view('ranking_detail',compact('images','ads'));
     }
 
-    public function index($id=1)
+    public function index($id)
     {
         // get date now
         $day = (int)date('d');
@@ -60,7 +60,7 @@ class HomeController extends Controller
         $genre = Genre::where('id',$id)->first();
         $ge_name =$genre->name;
         $ge_url  = $genre->url;
-        $ads = Advertisement::all();
+        $ads = Advertisement::where('page',$id)->get();
         $statistical = Statistical::where('genre_id',$id)->where('day',$day)->where('month',$month)->where('year',$year)->first();
 
         // check first view

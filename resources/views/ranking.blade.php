@@ -12,6 +12,9 @@
              </a>          
             <div class = "row" id="main">
                 <div class = "col-md-12  col-xs-12" >
+                     <div class="ad_mobi">
+                        @include('include.ad_top')
+                    </div>
                     @include('include.header1')
                    <div class="avaId">
                    @foreach($genres as $genre)

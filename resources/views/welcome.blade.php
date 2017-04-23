@@ -13,17 +13,7 @@
             <div class = "row" id="main">
                 <div class = "col-md-8 col-xs-12" >
                     <div class="ad_mobi">
-                        @if ($ads->isEmpty() != true)
-                            <?php foreach ($ads as $ad): ?>
-                                @if($ad->position == 'top')
-                                    <a href="{{($ad != null) ? $ad->link : '' }}"><img src="{{ ($ad == null) ? asset('css/images/ad.png') : asset('uploads/'.$ad->image) }}" class="img-responsive" alt="XOXO(ハグ&キス)"></a>
-                               
-                                @endif
-                            <?php endforeach ?>
-                        @else
-                            <img src="{{ asset('css/images/ad.png')}}" class="img-responsive" alt="XOXO(ハグ&キス)">
-                        @endif
-                        
+                        @include('include.ad_top')
                     </div>
                     @include('include.header1')
                     <div class="row please">
@@ -58,16 +48,7 @@
                     
                     <div class = "col-md-12 col-xs-12 ">
                         <div class="ad">
-
-                            @if ($ads->isEmpty() != true)
-                                <?php foreach ($ads as $ad): ?>
-                                    @if($ad->position == 'top')
-                                        <a href="{{($ad != null) ? $ad->link : '' }}"><img src="{{ ($ad == null) ? asset('css/images/ad.png') : asset('uploads/'.$ad->image) }}" class="img-responsive" alt="XOXO(ハグ&キス)"></a>
-                                    @endif
-                                <?php endforeach ?>
-                            @else
-                                <img src="{{ asset('css/images/ad.png')}}" class="img-responsive" alt="XOXO(ハグ&キス)">
-                            @endif
+                            @include('include.ad_top')
                         </div>
                         <div class= "chat-box">
                             <div class= "message-box">

@@ -26,6 +26,7 @@ class CreateAdvertisementRequest extends FormRequest {
 		return [
             'image' => 'required', 
             'link' => 'required',
+            'page' => 'required',
             'position' => 'required',
 		];
 	}

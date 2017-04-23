@@ -9,7 +9,7 @@ use App\Advertisement;
 use App\Http\Requests\CreateAdvertisementRequest;
 use App\Http\Requests\UpdateAdvertisementRequest;
 use Illuminate\Http\Request;
-
+use App\Genre;
 
 
 class AdvertisementController extends Controller {
@@ -24,10 +24,22 @@ class AdvertisementController extends Controller {
 	public function index(Request $request)
     {
         $advertisement = Advertisement::all();
-
-		return view('admin.advertisement.index', compact('advertisement'));
+        $pgs = $this->genre();
+		return view('admin.advertisement.index', compact('advertisement','pgs'));
 	}
-
+  
+  	public function genre()
+  	{
+  		$pages = Genre::all();
+  		$pgs[''] = '-------Please choose--------';
+        $pgs[0] = 'Top page';
+        $pgs[10] = 'Genre page';
+        $pgs[11] = 'Ranking page';
+	    foreach ($pages as  $value) {
+	    	$pgs[$value->id] = $value->name; 
+	    }
+	    return $pgs;
+  	}
 	/**
 	 * Show the form for creating a new Advertisement
 	 *
@@ -36,8 +48,9 @@ class AdvertisementController extends Controller {
 	public function create()
 	{
 	    
-	    $position = ['top'=>'Top','bottom'=>'Bottom'];
-	    return view('admin.advertisement.create',compact('position'));
+	    $position = [''=>'-------Please choose--------','top'=>'Top','bottom'=>'Bottom'];
+	    $pgs = $this->genre();
+	    return view('admin.advertisement.create',compact('position','pgs'));
 	}
 
 	/**
@@ -62,9 +75,11 @@ class AdvertisementController extends Controller {
 	public function edit($id)
 	{
 		$advertisement  = Advertisement::find($id);
+	    $pages = Genre::all();
+	    $pgs = $this->genre();
 	    
-	    $position = ['top'=>'Top','bottom'=>'Bottom'];
-		return view('admin.advertisement.edit', compact('advertisement','position'));
+	    $position = [''=>'-------Please choose--------','top'=>'Top','bottom'=>'Bottom'];
+		return view('admin.advertisement.edit', compact('advertisement','position','pgs'));
 	}
 
 	/**

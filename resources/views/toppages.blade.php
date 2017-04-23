@@ -40,19 +40,9 @@
             <div class = "row" id="main">
             
               <div class = "col-md-6  col-xs-12" >
-                    <div class="ads">
-                      @if ($ads->isEmpty() != true)
-                          <?php foreach ($ads as $ad): ?>
-                              @if($ad->position == 'top')
-                                  <a href="{{($ad != null) ? $ad->link : '' }}"><img src="{{ ($ad == null) ? asset('css/images/ad.png') : asset('uploads/'.$ad->image) }}" class="img-responsive" alt="XOXO(ハグ&キス)"></a>
-                             
-                              @endif
-                          <?php endforeach ?>
-                      @else
-                          <img src="{{ asset('css/images/ad.png')}}" class="img-responsive" alt="XOXO(ハグ&キス)">
-                      @endif
-                    </div>
-                     
+                  <div class="ads">
+                    @include('include.ad_top')
+                  </div>
                    <div class="avaId">
                        <div class = "col-md-12  col-xs-12 title">
                           <b>2in1</b>
