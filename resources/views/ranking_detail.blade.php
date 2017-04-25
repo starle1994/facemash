@@ -60,6 +60,8 @@
         
        
     </body>
+<script src='https://enjoyxoxo.com/js/jquery-3.2.0.min.js' type='text/javascript'></script>
+<script src='https://enjoyxoxo.com/js/bootstrap.min.js' type='text/javascript'></script> 
 <script type="text/javascript">
     window.onload = function(){
         var height = $('.container .avaId .pdLeft div:first-child img').height();    
