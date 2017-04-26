@@ -79,16 +79,5 @@
                 $('.container .avaId .big .no1').height(height);   
     
         };
-         
-    $(document).ready(function () {  
-         
-        $( window ).resize(function() {
-             var height = $('.container .avaId .pdLeft div:first-child img').height();      
-                $('.container .avaId .pdLeft .ct-ava img').height(height/1.3);
-                     var height = $('.container .avaId .big div:first-child').height();    
-                $('.container .avaId .big div').height(height);  
-                 $('.container .avaId .big .no1').height(height);    
-        });
-});
 </script>  
 </html>
