@@ -105,6 +105,22 @@
                 .banner{
                     display: none;
                 }
+                 .number1{
+                    padding: 20px;
+                
+                }
+                .no-nb1{
+
+                     margin-top: 20px;
+                }
+                .no-nb2{
+
+                     margin-top: 50px;
+                }
+                .mal{
+                    margin-left: 30px;
+                    margin-top: 30px;
+                }
             }
             @media (max-width: 768px)
             { 
@@ -114,6 +130,28 @@
                     text-align: center;
                     font-size: 15px;
                     font-family: "ＭＳ Ｐゴシック";
+                }
+                .number1{
+                    padding: none;
+                    margin-left:20px;
+                    margin-top: none;
+                }
+                .no-nb1{
+                    padding: 43px;
+                    padding-top: 0px;
+                     margin-top: 10px;
+                }
+
+                .nn2{
+                    margin-top: -70px !important;
+                }
+                .no-nb2{
+                    margin-left: 10px;
+                     margin-top: 0px;
+                }
+                .mal{
+                    margin-left: 15px;
+                    margin-top: 30px;
                 }
                 .titleAva1 {
                    
@@ -280,3 +318,4 @@
             left: 0;
                 background: none;
         }
+       
