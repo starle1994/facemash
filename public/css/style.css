@@ -270,3 +270,7 @@
             text-align: left;
             padding: 10px 0;
             margin-bottom: 0px;
+        }
+        #no1 {
+            background-image :url(images/no1.png);
+        }

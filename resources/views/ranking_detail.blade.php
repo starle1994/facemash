@@ -22,7 +22,8 @@
                     <?php for($i=0; $i < 4; $i++){ ?>
                      <?php $n = $i+1?>
                         @if(isset($images[$i]))
-                        <div class="col-xs-6 col-md-6 pdLeft">
+                        <div id="no1">
+                            <div class="col-xs-6 col-md-6 pdLeft ">
                             <div class="ct-ava">
                                 <img src="{{asset('uploads/'.$images[$i]->image)}}" alt="" class="img-reponsive img-thumbnail" alt="XOXO(ハグ&キス)" title="XOXO(ハグ&キス)">
                                 <p class="titleAva1">
@@ -31,6 +32,8 @@
                             </div>
                             <p style="font-size: 15px ;font-weight: bold;">{{ number_format($images[$i]->rating) }} click</p>
                         </div>
+                        </div>
+                        
                         @endif
                        <?php $n++?>
                     <?php } ?>   
