@@ -22,17 +22,21 @@
                     <?php for($i=0; $i < 4; $i++){ ?>
                      <?php $n = $i+1?>
                         @if(isset($images[$i]))
-                        <div id="no1">
-                            <div class="col-xs-6 col-md-6 pdLeft ">
-                            <div class="ct-ava">
+                        
+                        <div class="col-xs-6 col-md-6 pdLeft ">
+
+                            <div class="ct-ava" style="padding: 30px;">
                                 <img src="{{asset('uploads/'.$images[$i]->image)}}" alt="" class="img-reponsive img-thumbnail" alt="XOXO(ハグ&キス)" title="XOXO(ハグ&キス)">
                                 <p class="titleAva1">
                                     {{ 'No'.$n }}
                                 </p>
                             </div>
                             <p style="font-size: 15px ;font-weight: bold;">{{ number_format($images[$i]->rating) }} click</p>
+                            @if($n ==1)
+                            <img src="{{asset('css/images/no1.png')}}" alt="" class="img-reponsive img-thumbnail no1" alt="XOXO(ハグ&キス)" title="XOXO(ハグ&キス)">
+                            @endif
                         </div>
-                        </div>
+                       
                         
                         @endif
                        <?php $n++?>

@@ -271,6 +271,12 @@
             padding: 10px 0;
             margin-bottom: 0px;
         }
-        #no1 {
+        .no1 {
             background-image :url(images/no1.png);
+        }
+        .no1{
+            position: absolute;
+            top: 0;
+            left: 0;
+                background: none;
         }
