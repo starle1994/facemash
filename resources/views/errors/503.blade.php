@@ -40,7 +40,9 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Be right back.</div>
+                <div class="title">XOXO(ハグ&キス)</div>
+                <h2>Page Not Found!</h2>
+                <h1>click <a href="{{ route('index') }}">here</a> to be right top page.</h1>
             </div>
         </div>
     </body>
